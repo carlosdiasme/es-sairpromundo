@@ -41,16 +41,16 @@ export async function generateMetadata({ params }: PlacePageProps): Promise<Meta
   }
 
   return {
-    title: `${place.name}`,
+    title: `${place.title}`,
     description: place.description || `Explore ${place.name} with Sair pro Mundo`,
     openGraph: {
-      title: `${place.name}`,
+      title: `${place.title}`,
       description: place.description || `Explore ${place.name} com Sair pro Mundo`,
       images: [{ url: place.image || '/default-place-image.jpg' }],
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${place.name}`,
+      title: `${place.title}`,
       description: place.description || `Explore ${place.name} com Sair pro Mundo`,
       images: [place.image || '/default-place-image.jpg'],
     },
