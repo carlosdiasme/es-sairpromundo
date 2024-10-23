@@ -1,10 +1,7 @@
 import React from 'react'
 
-interface LogoProps {
-  className?: string
-}
 
-export default function Logo(LogoProps = {}) {
+export default function Logo() {
   return (
 <svg width="200" height="40" viewBox="0 0 372 40" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path fillRule="evenodd" clipRule="evenodd" d="M15.515 24.485H9.09082C5.54284 24.485 2.66664 27.3612 2.66664 30.9092C2.66664 34.4572 5.54284 37.3334 9.09082 37.3334C12.6388 37.3334 15.515 34.4572 15.515 30.9092V24.485ZM9.09082 21.8184C4.0701 21.8184 0 25.8885 0 30.9092C0 35.9299 4.0701 40 9.09082 40C14.1115 40 18.1816 35.9299 18.1816 30.9092V21.8184H9.09082Z" fill="#03C03C"/>
