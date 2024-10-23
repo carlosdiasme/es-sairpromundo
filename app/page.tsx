@@ -85,7 +85,7 @@ export default function HomePage() {
               <Card key={place.place_id} className="overflow-hidden">
                 <div className="relative h-48">
                   {place.cover ? (
-                    <img src={place.cover} alt={place.name} className="w-full h-full object-cover" />
+                    <img src={place.highlight_cover} alt={place.name} className="w-full h-full object-cover" />
                   ) : (
                     <div className="w-full h-full bg-muted flex items-center justify-center">
                       <span className="text-muted-foreground">Sem imagem</span>
