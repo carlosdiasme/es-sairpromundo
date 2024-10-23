@@ -123,10 +123,10 @@ export default function BlogHome() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {blogs.map((blog) => (
             <Link href={`/blog/${blog.slug}`} key={blog.blog_id} className="group">
-              <Card className="flex flex-col h-full transition-transform duration-200 ease-in-out transform hover:scale-105">
+              <Card className="flex flex-col h-full transition-transform duration-200 ease-in-out transform hover:scale-105 border-0">
                 <CardHeader className="p-0">
                   <Image
-                    src={blog.image || '/placeholder.svg'}
+                    src={blog.image || 'https://pmiomzmwjvbnvfkdgivd.supabase.co/storage/v1/object/public/sairpromundo/image/defaut-image-spm.jpg'}
                     alt={blog.title}
                     width={400}
                     height={200}

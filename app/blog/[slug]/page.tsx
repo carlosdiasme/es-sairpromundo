@@ -44,6 +44,8 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     }
   }
 
+  const defaultImage = 'https://pmiomzmwjvbnvfkdgivd.supabase.co/storage/v1/object/public/sairpromundo/image/defaut-image-spm.jpg'
+
   return {
     title: `${post.title}`,
     description: post.excerpt || `${post.title} `,
@@ -55,7 +57,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       authors: [post.user_name || 'Redação'],
       images: [
         {
-          url: post.image || 'https://www.sairpromundo.com/default-blog-image.jpg',
+          url: post.image || defaultImage,
           width: 1200,
           height: 630,
           alt: post.title,
@@ -66,7 +68,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       card: 'summary_large_image',
       title: post.title,
       description: post.excerpt || `${post.title}`,
-      images: [post.image || 'https://www.sairpromundo.com/default-blog-image.jpg'],
+      images: [post.image || defaultImage],
     },
   }
 }
@@ -86,6 +88,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       day: 'numeric'
     })
   }
+
+  const defaultImage = 'https://pmiomzmwjvbnvfkdgivd.supabase.co/storage/v1/object/public/sairpromundo/image/defaut-image-spm.jpg'
 
   const breadcrumbData = {
     "@context": "https://schema.org",
@@ -117,7 +121,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     "@type": "Article",
     "headline": post.title,
     "image": [
-      post.image || "https://www.sairpromundo.com/default-blog-image.jpg"
+      post.image || defaultImage
     ],
     "datePublished": post.created_at,
     "dateModified": post.updated_at || post.created_at,
@@ -170,17 +174,15 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <time dateTime={post.created_at}>{formatDate(post.created_at)}</time>
         </div>
 
-        {post.image && (
-          <div className="mb-8">
-            <Image
-              src={post.image}
-              alt={post.title}
-              width={800}
-              height={400}
-              className="w-full h-auto rounded-lg object-cover shadow-lg"
-            />
-          </div>
-        )}
+        <div className="mb-8">
+          <Image
+            src={post.image || defaultImage}
+            alt={post.title}
+            width={800}
+            height={400}
+            className="w-full h-auto rounded-lg object-cover "
+          />
+        </div>
 
         <div 
           className="prose prose-lg max-w-none
