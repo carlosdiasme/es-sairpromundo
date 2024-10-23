@@ -14,7 +14,6 @@ export default function PlaceTabs({ placeSlug }: PlaceTabsProps) {
 
   const tabs = [
     { name: `Sobre`, href: `/${placeSlug}` },
-    { name: 'Avaliações', href: `/${placeSlug}/reviews` },
   ]
 
   return (
