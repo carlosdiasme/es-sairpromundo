@@ -14,8 +14,7 @@ export default function ResponsiveNavbar() {
   const toggleMenu = () => setIsOpen(!isOpen)
 
   useEffect(() => {
-    // Add padding to the body to prevent content from being hidden behind the navbar
-    document.body.style.paddingTop = '64px' // Adjust this value if your navbar height changes
+    document.body.style.paddingTop = '64px'
     return () => {
       document.body.style.paddingTop = '0'
     }
@@ -26,8 +25,10 @@ export default function ResponsiveNavbar() {
       <div className="w-full">
         {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center justify-between h-16 px-4">
-          <Link href="/">
-            <Logo className="h-5 w-auto" />
+          <Link href="/" className="flex items-center h-full">
+            <div className="h-5 w-auto flex items-center">
+              <Logo />
+            </div>
           </Link>
           <nav className="flex flex-wrap justify-center gap-4 text-sm">
             <Link href="/ranking" className="text-gray-800 hover:text-green transition-colors">
@@ -36,7 +37,6 @@ export default function ResponsiveNavbar() {
           </nav>
           <SearchInput placeholder="Procure por lugares" className="max-w-md" />
           <nav className="flex flex-wrap justify-center gap-4 text-sm">
-
             <Link href="/blog" className="text-gray-800 hover:text-green transition-colors">
               Blog
             </Link>
@@ -50,8 +50,10 @@ export default function ResponsiveNavbar() {
         {/* Mobile Navigation */}
         <div className="lg:hidden w-full">
           <div className="flex items-center justify-between h-16 px-4 space-x-4">
-            <Link href="/">
-              <Icon className="h-6 w-auto" />
+            <Link href="/" className="flex items-center h-full">
+              <div className="h-6 w-auto flex items-center">
+                <Icon />
+              </div>
             </Link>
             <SearchInput placeholder="Procure por lugares" className="flex-1 max-w-[240px]" />
             <button onClick={toggleMenu} className="p-2 ml-4" aria-label={isOpen ? "Close menu" : "Open menu"}>
