@@ -4,18 +4,17 @@ import React from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-interface OrganizationTabsProps {
-  organizationName: string
-  organizationSlug: string
+interface PlaceTabsProps {
+  placeName: string
+  placeSlug: string
 }
 
-export default function OrganizationTabs({ organizationName, organizationSlug }: OrganizationTabsProps) {
+export default function PlaceTabs({ placeSlug }: PlaceTabsProps) {
   const pathname = usePathname()
 
   const tabs = [
-    { name: `Sobre`, href: `/${organizationSlug}` },
-    { name: 'Avaliações', href: `/${organizationSlug}/reviews` },
-    { name: 'Horário', href: `/${organizationSlug}/jobs` },
+    { name: `Sobre`, href: `/${placeSlug}` },
+    { name: 'Avaliações', href: `/${placeSlug}/reviews` },
   ]
 
   return (
