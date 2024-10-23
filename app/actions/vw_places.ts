@@ -15,7 +15,6 @@ export interface Place {
   place_id: number
   created_at: string
   small_cover: string
-  highlight_cover: string
   name: string
   title: string
   tig_id: number
