@@ -80,12 +80,14 @@ export default function ResponsiveNavbar() {
                   Ranking
                 </Link>
                 <hr className="border-gray-200" />
-                <Link href="#" className="text-gray-400 hover:text-green transition-colors">
-              Explorar
-            </Link>
-                <Link href="#" className="text-gray-400 hover:text-green transition-colors">
-              Roteiros
-            </Link>
+                <Link href="#" className="text-gray-500 hover:green transition-colors py-3 text-center">
+                  Explorar
+                </Link>
+                <hr className="border-gray-200" />
+                <Link href="#" className="text-gray-500 hover:green transition-colors py-3 text-center">
+                  Roteiros
+                </Link>
+                <hr className="border-gray-200" />
                 <Link href="/blog" className="text-gray-500 hover:text-green transition-colors py-3 text-center">
                   Blog
                 </Link>
