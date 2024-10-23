@@ -26,7 +26,7 @@ export default function ResponsiveNavbar() {
         {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center justify-between h-16 px-4">
           <Link href="/" className="flex items-center h-full">
-            <div className="h-5 w-auto flex items-center">
+            <div className="h-2 w-auto flex items-center">
               <Logo />
             </div>
           </Link>

@@ -13,27 +13,18 @@ export default function Footer() {
 
           {/* Part 2: Links */}
           <nav className="flex flex-wrap justify-center gap-4 text-sm">
-            <Link href="/about" className="text-gray-500 hover:text-green transition-colors">
+            <Link href="/sobre" className="text-gray-500 hover:text-green transition-colors">
               Sobre
             </Link>
-            <Link href="/contact" className="text-gray-500 hover:text-green transition-colors">
-              Contato
-            </Link>
-            <Link href="/guidelines" className="text-gray-500 hover:text-green transition-colors">
-              Diretrizes
-            </Link>
-            <Link href="/privacy" className="text-gray-500 hover:text-green transition-colors">
+            <Link href="/privacidade" className="text-gray-500 hover:text-green transition-colors">
               Privacidade
             </Link>
-            <Link href="/terms" className="text-gray-500 hover:text-green transition-colors">
+            <Link href="/termos" className="text-gray-500 hover:text-green transition-colors">
               Termos
             </Link>
-            <a href="https://feedback.bioonline.xyz" className="text-gray-500 hover:text-green transition-colors">
-              Feedback
-            </a>
-            <a href="https://help.bioonline.xyz" className="text-gray-500 hover:text-green transition-colors">
-              Ajuda
-            </a>
+            <Link href="https://mail.google.com" target="_blank" className="text-gray-500 hover:text-green transition-colors">
+              sairpromundo@gmail.com
+            </Link>
           </nav>
 
           {/* Part 3: Social Media Icons */}
