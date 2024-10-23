@@ -7,7 +7,23 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Skeleton } from "@/components/ui/skeleton"
 import { fetchPlaces, Place } from '@/app/actions/vw_places'
 import Link from 'next/link'
-import AnimatedLines from '@/components/AnimatedLines'
+import Script from 'next/script'
+
+const AnimatedLines: React.FC = () => {
+  return (
+    <div className="lines absolute inset-0 w-[90vw] mx-auto pointer-events-none">
+      <div className="line absolute h-full w-[1px] top-0 left-[25%] bg-green/10 overflow-hidden">
+        <div className="line-inner absolute h-[15vh] w-full -top-1/2 left-0 animate-drop" style={{ animationDelay: '2s' }}></div>
+      </div>
+      <div className="line absolute h-full w-[1px] top-0 left-1/2 bg-green/10 overflow-hidden">
+        <div className="line-inner absolute h-[15vh] w-full -top-1/2 left-0 animate-drop"></div>
+      </div>
+      <div className="line absolute h-full w-[1px] top-0 left-[75%] bg-green/10 overflow-hidden">
+        <div className="line-inner absolute h-[15vh] w-full -top-1/2 left-0 animate-drop" style={{ animationDelay: '2.5s' }}></div>
+      </div>
+    </div>
+  )
+}
 
 export default function HomePage() {
   const [places, setPlaces] = useState<Place[]>([])
@@ -29,7 +45,7 @@ export default function HomePage() {
   }, [])
 
   return (
-    <div className="container mx-auto px-4 py-12 space-y-16 relative min-h-screen">
+    <div className="container mx-auto px-4 py-12 space-y-16">
       <div className="fixed inset-0 -z-10 bg-white">
         <AnimatedLines />
       </div>
@@ -110,6 +126,23 @@ export default function HomePage() {
           </Link>
         </Button>
       </section>
+      <Script id="sitelinks-searchbox" type="application/ld+json">
+  {`
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "url": "https://sairpromundo.com/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://sairpromundo.com/search?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+  `}
+</Script>
     </div>
   )
 }
