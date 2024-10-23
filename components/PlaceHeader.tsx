@@ -4,7 +4,7 @@ import { Cover } from '@/components/Cover'
 import { CheckCircleIcon } from '@heroicons/react/24/solid'
 import { StarIcon } from '@heroicons/react/24/solid'
 import { Button } from "@/components/ui/button"
-import OrganizationTabs from '@/components/PlaceTabs'
+import PlaceTabs from '@/components/PlaceTabs'
 
 interface Organization {
   cover: string
@@ -65,7 +65,7 @@ export default function OrganizationHeader({ organization }: OrganizationHeaderP
         </div>
       </div>
       <div className="p-4">
-        <OrganizationTabs organizationName={organization.name} organizationSlug={organization.slug} />
+        <PlaceTabs placeName={organization.name} placeSlug={organization.slug} />
       </div>
     </div>
   )
