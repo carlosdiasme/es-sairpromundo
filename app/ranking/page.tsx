@@ -75,7 +75,7 @@ export default function IconPage() {
       "item": {
         "@type": "Place",
         "name": place.name,
-        "image": place.cover || "https://www.sairpromundo.com/default-place-image.jpg",
+        "image": place.image_1 || "https://www.sairpromundo.com/default-place-image.jpg",
         "url": `https://www.sairpromundo.com/places/${place.slug}`,
         "address": {
           "@type": "PostalAddress",
