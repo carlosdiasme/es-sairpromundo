@@ -7,6 +7,7 @@ import Link from 'next/link'
 import SearchInput from './SearchInput'
 import { Button } from '@/components/ui/button'
 import { Bars2Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import GeolocationButton from './GeolocationButton'
 
 export default function ResponsiveNavbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -34,7 +35,6 @@ export default function ResponsiveNavbar() {
             <Link href="/ranking" className="text-gray-800 hover:text-green transition-colors">
               Ranking
             </Link>
-    
           </nav>
           <SearchInput placeholder="Procure por lugares" className="max-w-md" />
           <nav className="flex flex-wrap justify-center gap-4 text-sm">
@@ -42,7 +42,8 @@ export default function ResponsiveNavbar() {
               Blog
             </Link>
           </nav>
-          <div className="flex space-x-2">
+          <div className="flex items-center space-x-2">
+            <GeolocationButton />
             <Button variant="outline" onClick={() => window.location.href = "#signin"}>Entrar</Button>
             <Button variant="default" onClick={() => window.location.href = "#signup"}>Criar conta</Button>
           </div>
@@ -57,6 +58,7 @@ export default function ResponsiveNavbar() {
               </div>
             </Link>
             <SearchInput placeholder="Procure por lugares" className="flex-1 max-w-[240px]" />
+            <GeolocationButton />
             <button onClick={toggleMenu} className="p-2 ml-4" aria-label={isOpen ? "Close menu" : "Open menu"}>
               {isOpen ? (
                 <XMarkIcon className="h-6 w-6" aria-hidden="true" />
@@ -75,7 +77,6 @@ export default function ResponsiveNavbar() {
                   Ranking
                 </Link>
                 <hr className="border-gray-200" />
-  
                 <Link href="/blog" className="text-gray-500 hover:text-green transition-colors py-3 text-center">
                   Blog
                 </Link>

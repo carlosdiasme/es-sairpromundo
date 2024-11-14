@@ -6,9 +6,9 @@ export default function Footer() {
     <footer className="bg-white">
       <div className="px-8 mx-auto py-4">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          {/* Part 1: "Por Bio Online" */}
-          <a href="https://bioonline.xyz" className="text-sm text-gray-500 hover:text-green transition-colors">
-            Por Bio Online
+          {/* Part 1: "Por" */}
+          <a href="https://swork.at" className="text-sm text-gray-500 hover:text-green transition-colors">
+            Swork
           </a>
 
           {/* Part 2: Links */}

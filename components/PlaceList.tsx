@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Place } from '@/app/actions/vw_places' // Importando o tipo correto
+import { Place } from '@/app/actions/get_places' // Importando o tipo correto
 
 interface OrganizationListProps {
   places: Place[]; // Alterado para 'places'
@@ -32,9 +32,10 @@ export default function OrganizationList({ places, startIndex }: OrganizationLis
               )}
               <div>
                 <h2 className="text-lg font-regular text-foreground">{place.name}</h2>
-                <p className="text-sm text-muted-foreground">{place.address}</p>
+                <p className="text-sm text-muted-foreground">{place.city_name}, {place.region_name}</p>
               </div>
             </div>
+
             <span className="text-sm font-medium text-muted-foreground">
               {startIndex + index + 1}
             </span>

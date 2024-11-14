@@ -12,7 +12,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination"
-import { fetchPlaces, Place } from '@/app/actions/vw_places'
+import { fetchPlaces, Place } from '@/app/actions/get_places'
 
 export default function IconPage() {
   const [currentPage, setCurrentPage] = useState(1)

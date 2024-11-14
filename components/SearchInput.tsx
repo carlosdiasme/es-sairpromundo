@@ -1,24 +1,45 @@
-import React from 'react'
+'use client'
+
+import React, { useState, useCallback } from 'react'
 import { Search } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
 interface SearchInputProps {
   placeholder?: string
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
   className?: string
 }
 
-export default function SearchInput({ placeholder = 'Search...', onChange, className = '' }: SearchInputProps) {
+export default function SearchInput({ placeholder = 'Search...', className = '' }: SearchInputProps) {
+  const [searchTerm, setSearchTerm] = useState('')
+  const router = useRouter()
+
+  const handleChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value)
+  }, [])
+
+  const handleSubmit = useCallback((event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (searchTerm.trim()) {
+      router.push(`/busca?q=${encodeURIComponent(searchTerm.trim())}`)
+    }
+  }, [searchTerm, router])
+
   return (
-    <div className={`relative w-full max-w-[400px] ${className}`}>
+    <form onSubmit={handleSubmit} className={`relative w-full max-w-[400px] ${className}`}>
       <input
         type="text"
         placeholder={placeholder}
-        onChange={onChange}
-        className="w-full h-10 pl-4 pr-10 text-xs bg-white border border-neongreen rounded-full focus:outline-none focus:border-green focus:ring-1 focus:ring-green"
+        value={searchTerm}
+        onChange={handleChange}
+        className="w-full h-10 pl-4 pr-10 text-[16px] sm:text-xs bg-white border border-neongreen rounded-full focus:outline-none focus:border-green focus:ring-1 focus:ring-green"
       />
-      <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+      <button
+        type="submit"
+        className="absolute inset-y-0 right-0 flex items-center pr-3"
+        aria-label="Search"
+      >
         <Search className="w-4 h-4 text-gray-400" />
-      </div>
-    </div>
+      </button>
+    </form>
   )
 }

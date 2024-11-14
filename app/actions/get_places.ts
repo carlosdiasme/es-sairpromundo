@@ -36,7 +36,10 @@ export interface Place {
   region_id: number
   country_id: number
   logo: string
-  cover: string
+  image_1: string
+  image_2: string
+  image_3: string
+  image_4: string
   tag_slug: string
   tag_title: string
   city_name: string

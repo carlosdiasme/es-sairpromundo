@@ -138,7 +138,7 @@ export default async function PlacePage({ params }: PlacePageProps) {
         {JSON.stringify(localBusinessData)}
       </Script>
       <div className="min-h-screen bg-background">
-        <PlaceHeader organization={place} />
+        <PlaceHeader place={place} />
         <main className="container mx-auto px-4 py-8">
           <h1 className="text-4xl font-bold mb-4">{place.name}</h1>
           <p className="text-lg mb-6">{place.description || `Explore ${place.name} with Sair pro Mundo`}</p>
