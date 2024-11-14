@@ -6,11 +6,16 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { supabase } from '@/lib/supabase-client'
-import { addUserRecord } from '@/app/actions/users'
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
+import { Alert, AlertDescription } from "@/components/ui/alert"
 
 export function SignupForm() {
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
+  const [showConfirmDialog, setShowConfirmDialog] = useState(false)
   const router = useRouter()
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -18,23 +23,19 @@ export function SignupForm() {
     setIsLoading(true)
     setError(null)
 
-    const formData = new FormData(event.currentTarget)
-    const name = formData.get('name') as string
-    const email = formData.get('email') as string
-    const password = formData.get('password') as string
-
     try {
-      const { data: { user }, error } = await supabase.auth.signUp({
+      const { data, error } = await supabase.auth.signUp({
         email,
         password,
+        options: {
+          data: { name },
+        },
       })
 
       if (error) throw error
 
-      if (user) {
-        const { success, error: addUserError } = await addUserRecord(name, email, user.id)
-        if (!success) throw new Error(addUserError || 'Failed to create user record')
-        router.push('/verificar-email')
+      if (data.user) {
+        setShowConfirmDialog(true)
       } else {
         throw new Error('Failed to create user')
       }
@@ -85,7 +86,8 @@ export function SignupForm() {
               autoComplete="name"
               autoCorrect="off"
               disabled={isLoading}
-              name="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               required
             />
           </div>
@@ -101,7 +103,8 @@ export function SignupForm() {
               autoComplete="email"
               autoCorrect="off"
               disabled={isLoading}
-              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
           </div>
@@ -116,7 +119,8 @@ export function SignupForm() {
               autoCapitalize="none"
               autoComplete="new-password"
               disabled={isLoading}
-              name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
@@ -126,7 +130,9 @@ export function SignupForm() {
         </div>
       </form>
       {error && (
-        <p className="text-sm text-red-500">{error}</p>
+        <Alert variant="destructive">
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
       )}
       <div className="relative">
         <div className="absolute inset-0 flex items-center">
@@ -153,6 +159,17 @@ export function SignupForm() {
           </>
         )}
       </Button>
+      <Dialog open={showConfirmDialog} onOpenChange={setShowConfirmDialog}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Verifique seu e-mail</DialogTitle>
+            <DialogDescription>
+              Por favor, verifique seu e-mail e clique no link de confirmação para completar o cadastro.
+            </DialogDescription>
+          </DialogHeader>
+          <Button onClick={() => router.push('/')}>Entendi</Button>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }

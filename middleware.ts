@@ -10,7 +10,10 @@ export async function middleware(req: NextRequest) {
     data: { session },
   } = await supabase.auth.getSession()
 
-  if (!session && req.nextUrl.pathname.startsWith('/perfil')) {
+  const protectedRoutes = ['/perfil', '/painel']
+  const isProtectedRoute = protectedRoutes.some(route => req.nextUrl.pathname.startsWith(route))
+
+  if (!session && isProtectedRoute) {
     const redirectUrl = req.nextUrl.clone()
     redirectUrl.pathname = '/entrar'
     redirectUrl.searchParams.set(`redirectedFrom`, req.nextUrl.pathname)
@@ -18,4 +21,8 @@ export async function middleware(req: NextRequest) {
   }
 
   return res
+}
+
+export const config = {
+  matcher: ['/perfil/:path*', '/painel/:path*'],
 }
