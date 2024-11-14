@@ -8,6 +8,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 import { fetchPlaces, Place } from '@/app/actions/vw_places'
 import Link from 'next/link'
 import Script from 'next/script'
+import Image from 'next/image'
 
 const AnimatedLines: React.FC = () => {
   return (
@@ -85,18 +86,27 @@ export default function HomePage() {
               <Card key={place.place_id} className="overflow-hidden">
                 <div className="relative h-48">
                   {place.cover ? (
-                    <img src={place.small_cover} alt={place.name} className="w-full h-full object-cover" />
+                    <Image
+                      src={place.cover}
+                      alt={place.name}
+                      layout="fill"
+                      objectFit="cover"
+                    />
                   ) : (
                     <div className="w-full h-full bg-muted flex items-center justify-center">
                       <span className="text-muted-foreground">Sem imagem</span>
                     </div>
                   )}
                   {place.logo && (
-                    <img 
-                      src={place.logo} 
-                      alt={`${place.name} logo`} 
-                      className="absolute bottom-2 right-2 w-12 h-12 rounded-full border-2 border-background"
-                    />
+                    <div className="absolute bottom-2 right-2 w-12 h-12">
+                      <Image 
+                        src={place.logo} 
+                        alt={`${place.name} logo`} 
+                        layout="fill"
+                        objectFit="cover"
+                        className="rounded-full border-2 border-background"
+                      />
+                    </div>
                   )}
                 </div>
                 <CardHeader>
@@ -127,22 +137,22 @@ export default function HomePage() {
         </Button>
       </section>
       <Script id="sitelinks-searchbox" type="application/ld+json">
-  {`
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "url": "https://sairpromundo.com/",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": "https://sairpromundo.com/search?q={search_term_string}"
-        },
-        "query-input": "required name=search_term_string"
-      }
-    }
-  `}
-</Script>
+        {`
+          {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "url": "https://sairpromundo.com/",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://sairpromundo.com/search?q={search_term_string}"
+              },
+              "query-input": "required name=search_term_string"
+            }
+          }
+        `}
+      </Script>
     </div>
   )
 }
