@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Sora } from 'next/font/google';
 import { Suspense, lazy } from 'react';
 import { GoogleTagManager } from '@next/third-parties/google'
+import { AuthProvider } from '@/contexts/AuthContext';
 import "./globals.css";
 
 const Header = lazy(() => import("@/components/Header"));
@@ -78,13 +79,15 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={dmSans.variable}>
       <body className="font-sans antialiased">
-        <Suspense fallback={<div>Carregando cabeçalho...</div>}>
-          <Header />
-        </Suspense>
-        <main>{children}</main>
-        <Suspense fallback={<div>Carregando rodapé...</div>}>
-          <Footer />
-        </Suspense>
+        <AuthProvider>
+          <Suspense fallback={<div>Carregando cabeçalho...</div>}>
+            <Header />
+          </Suspense>
+          <main>{children}</main>
+          <Suspense fallback={<div>Carregando rodapé...</div>}>
+            <Footer />
+          </Suspense>
+        </AuthProvider>
         <GoogleTagManager gtmId="GTM-5GHQBP8" />
       </body>
     </html>

@@ -44,8 +44,8 @@ export default function ResponsiveNavbar() {
           </nav>
           <div className="flex items-center space-x-2">
             <GeolocationButton />
-            <Button variant="outline" onClick={() => window.location.href = "#signin"}>Entrar</Button>
-            <Button variant="default" onClick={() => window.location.href = "#signup"}>Criar conta</Button>
+            <Button variant="outline" onClick={() => window.location.href = "/entrar"}>Entrar</Button>
+            <Button variant="default" onClick={() => window.location.href = "/criar-conta"}>Criar conta</Button>
           </div>
         </div>
 
@@ -83,8 +83,8 @@ export default function ResponsiveNavbar() {
                 <hr className="border-gray-200" />
               </nav>
               <div className="mt-4 space-y-2 px-4">
-                <Button variant="outline" className="w-full" onClick={() => window.location.href = "#signin"}>Entrar</Button>
-                <Button variant="default" className="w-full" onClick={() => window.location.href = "#signup"}>Criar conta</Button>
+                <Button variant="outline" className="w-full" onClick={() => window.location.href = "/entrar"}>Entrar</Button>
+                <Button variant="default" className="w-full" onClick={() => window.location.href = "/criar-conta"}>Criar conta</Button>
               </div>
             </div>
           )}

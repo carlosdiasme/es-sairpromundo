@@ -155,7 +155,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       </Script>
       <article className="container mx-auto px-4 py-8 max-w-3xl">
         <Link href="/blog">
-          <Button variant="outline" className="mb-6">
+          <Button variant="ghost" className="mb-6">
             ← Voltar para o Blog
           </Button>
         </Link>
@@ -166,7 +166,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </Link>
         )}
         
-        <h1 className="text-4xl sm:text-5xl font-bold mb-6 text-primary">{post.title}</h1>
+        <h1 className="text-4xl sm:text-5xl font-regular mb-6 text-primary">{post.title}</h1>
         
         <div className="flex items-center text-sm text-muted-foreground mb-8">
           <span>Por {post.user_name || 'Redação'}</span>

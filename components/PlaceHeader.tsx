@@ -70,7 +70,7 @@ export default function PlaceHeader({ place }: PlaceHeaderProps) {
           </div>
         </div>
         <div className="flex space-x-2 mt-4 sm:mt-0 pt-4">
-          <Button variant="outline" className="flex-1 sm:flex-none">Seguir</Button>
+          <Button variant="outline" className="flex-1 sm:flex-none">Já visitei</Button>
           <Button className="flex-1 sm:flex-none">Avaliar</Button>
         </div>
       </div>

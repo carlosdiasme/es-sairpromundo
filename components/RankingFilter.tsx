@@ -126,7 +126,7 @@ export default function RankingFilter({ places }: RankingFilterProps) {
   const FilterDialog = ({ title, items, selectedItem, onSelect }: { title: string, items: string[], selectedItem: string, onSelect: (item: string) => void }) => (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="link" className="font-normal text-3xl p-6 hover:no-underline hover:bg-lightgreen">
+        <Button variant="link" className="font-normal text-3xl p-6 hover:no-underline bg-lightgreen">
           <span className="text-green">{selectedItem}</span>
           <ChevronDown className="ml-1 h-4 w-4 text-green" />
         </Button>

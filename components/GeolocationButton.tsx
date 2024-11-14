@@ -77,7 +77,7 @@ export default function GeolocationButton() {
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Usar sua localização?</DialogTitle>
+            <DialogTitle>Podemos saber sua localização?</DialogTitle>
             <DialogDescription>
               Gostaríamos de usar sua localização para mostrar lugares próximos a você. 
               Isso ajudará a personalizar sua experiência no Sair pro Mundo.
