@@ -140,7 +140,6 @@ export default async function PlacePage({ params }: PlacePageProps) {
       <div className="min-h-screen bg-background">
         <PlaceHeader place={place} />
         <main className="container mx-auto px-4 py-8">
-          <h1 className="text-4xl font-bold mb-4">{place.name}</h1>
           <p className="text-lg mb-6">{place.description || `Explore ${place.name} with Sair pro Mundo`}</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
