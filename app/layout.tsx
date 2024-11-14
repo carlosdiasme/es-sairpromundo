@@ -7,6 +7,7 @@ import "./globals.css";
 
 const Header = lazy(() => import("@/components/Header"));
 const Footer = lazy(() => import("@/components/Footer"));
+const CookieBanner = lazy(() => import("@/components/CookieBanner"));
 
 const dmSans = Sora({
   subsets: ['latin'],
@@ -86,6 +87,9 @@ export default function RootLayout({
           <main>{children}</main>
           <Suspense fallback={<div>Carregando rodapé...</div>}>
             <Footer />
+          </Suspense>
+          <Suspense fallback={null}>
+            <CookieBanner />
           </Suspense>
         </AuthProvider>
         <GoogleTagManager gtmId="GTM-5GHQBP8" />
