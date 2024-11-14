@@ -12,12 +12,17 @@ if (!supabaseUrl || !supabaseKey) {
 const supabase = createClient(supabaseUrl, supabaseKey)
 
 export async function addUserRecord(name: string, email: string, userId: string) {
-  const { error } = await supabase
-    .from('users')
-    .insert({ name, email, user_id: userId })
+  try {
+    const { data, error } = await supabase
+      .from('users')
+      .insert({ id: userId, name, email })
+      .single()
 
-  if (error) {
+    if (error) throw error
+
+    return { success: true, data }
+  } catch (error) {
     console.error('Error adding user record:', error)
-    throw new Error('Failed to create user record')
+    return { success: false, error: error instanceof Error ? error.message : 'Unknown error occurred' }
   }
 }
