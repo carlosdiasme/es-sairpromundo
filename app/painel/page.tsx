@@ -26,7 +26,7 @@ export default async function PainelPage() {
 
   return (
     <div className="px-4 py-10 h-screen">
-      <h1 className="text-3xl font-bold mb-6 sr-only">Painel de Controle</h1>
+      <h1 className="text-3xl font-bold mb-6 sr-only">Painel de controle</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Card className="rounded-3xl">
           <CardHeader>
