@@ -8,9 +8,11 @@ import SearchInput from './SearchInput'
 import { Button } from '@/components/ui/button'
 import { Bars2Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import GeolocationButton from './GeolocationButton'
+import { useAuth } from '@/contexts/AuthContext'
 
 export default function ResponsiveNavbar() {
   const [isOpen, setIsOpen] = useState(false)
+  const { user } = useAuth()
 
   const toggleMenu = () => setIsOpen(!isOpen)
 
@@ -20,6 +22,20 @@ export default function ResponsiveNavbar() {
       document.body.style.paddingTop = '0'
     }
   }, [])
+
+  const AuthButtons = () => {
+    if (user) {
+      return (
+        <Button variant="default" onClick={() => window.location.href = "/painel"}>Painel</Button>
+      )
+    }
+    return (
+      <>
+        <Button variant="outline" onClick={() => window.location.href = "/entrar"}>Entrar</Button>
+        <Button variant="default" onClick={() => window.location.href = "/criar-conta"}>Criar conta</Button>
+      </>
+    )
+  }
 
   return (
     <nav className="bg-white fixed top-0 left-0 right-0 z-50">
@@ -44,8 +60,7 @@ export default function ResponsiveNavbar() {
           </nav>
           <div className="flex items-center space-x-2">
             <GeolocationButton />
-            <Button variant="outline" onClick={() => window.location.href = "/entrar"}>Entrar</Button>
-            <Button variant="default" onClick={() => window.location.href = "/criar-conta"}>Criar conta</Button>
+            <AuthButtons />
           </div>
         </div>
 
@@ -83,8 +98,14 @@ export default function ResponsiveNavbar() {
                 <hr className="border-gray-200" />
               </nav>
               <div className="mt-4 space-y-2 px-4">
-                <Button variant="outline" className="w-full" onClick={() => window.location.href = "/entrar"}>Entrar</Button>
-                <Button variant="default" className="w-full" onClick={() => window.location.href = "/criar-conta"}>Criar conta</Button>
+                {user ? (
+                  <Button variant="default" className="w-full" onClick={() => window.location.href = "/painel"}>Painel</Button>
+                ) : (
+                  <>
+                    <Button variant="outline" className="w-full" onClick={() => window.location.href = "/entrar"}>Entrar</Button>
+                    <Button variant="default" className="w-full" onClick={() => window.location.href = "/criar-conta"}>Criar conta</Button>
+                  </>
+                )}
               </div>
             </div>
           )}
