@@ -122,7 +122,7 @@ export default function HomePage() {
         </p>
         <Button size="lg" variant="outline" className="font-regular rounded-full" asChild>
           <Link href="/ranking">
-            Ver Todos os Lugares <ArrowRight className="ml-2 h-4 w-4" />
+            Ver todos os lugares <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
         </Button>
       </section>
