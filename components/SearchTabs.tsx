@@ -5,7 +5,6 @@ import { useSearchParams } from 'next/navigation'
 
 const tabs = [
   { name: 'Lugares', value: 'lugares' },
-  { name: 'Blog', value: 'blog' },
 
 ]
 

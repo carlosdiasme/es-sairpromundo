@@ -17,6 +17,7 @@ export interface Place {
   small_cover: string
   name: string
   title: string
+  tags: string
   tig_id: number
   size: number
   slug: string
@@ -57,13 +58,19 @@ export interface Place {
   claim: boolean
 }
 
-export async function fetchPlaces(page: number, itemsPerPage: number): Promise<{ places: Place[], totalCount: number }> {
+export async function fetchPlaces(page: number, itemsPerPage: number, query: string = ''): Promise<{ places: Place[], totalCount: number }> {
   const start = (page - 1) * itemsPerPage
   const end = start + itemsPerPage - 1
 
-  const { data, error, count } = await supabase
+  let queryBuilder = supabase
     .from('vw_places')
     .select('*', { count: 'exact' })
+
+  if (query) {
+    queryBuilder = queryBuilder.or(`name.ilike.%${query}%, tags.ilike.%${query}%`)
+  }
+
+  const { data, error, count } = await queryBuilder
     .range(start, end)
     .order('name')
 
@@ -72,7 +79,7 @@ export async function fetchPlaces(page: number, itemsPerPage: number): Promise<{
     throw new Error('Failed to fetch places')
   }
 
-  const places: Place[] = data ?? [] // Corrigido para usar 'places' em vez de 'organizations'
+  const places: Place[] = data ?? []
 
   return { 
     places,
