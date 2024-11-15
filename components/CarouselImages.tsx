@@ -17,7 +17,12 @@ interface CarouselImagesProps {
 }
 
 export function CarouselImages({ images = [], alt }: CarouselImagesProps) {
-  const carouselImages = images.length === 4 ? images : defaultImages
+  const carouselImages = Array(4).fill(null).map((_, index) => {
+    if (images[index] && images[index].trim() !== '') {
+      return images[index]
+    }
+    return defaultImages[index]
+  })
 
   return (
     <div className="w-full relative overflow-hidden pl-4">
@@ -44,10 +49,10 @@ export function CarouselImages({ images = [], alt }: CarouselImagesProps) {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <div className="absolute md:left-[5%] left-[12%] top-1/2 -translate-y-1/2 z-10">
+        <div className="absolute md:left-[5%] left-[13%] top-1/2 -translate-y-1/2 z-10">
           <CarouselPrevious />
         </div>
-        <div className="absolute md:right-[5%] right-[12%] top-1/2 -translate-y-1/2 z-10">
+        <div className="absolute md:right-[5%] right-[13%] top-1/2 -translate-y-1/2 z-10">
           <CarouselNext />
         </div>
       </Carousel>
