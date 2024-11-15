@@ -154,7 +154,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       </Script>
       <article className="container mx-auto px-4 py-8 max-w-3xl">
         <Link href="/blog">
-          <Button variant="ghost" className="mb-6 font-normal text-xs">
+          <Button variant="ghost" className="mb-16 font-normal text-sm">
             ← Voltar para o Blog
           </Button>
         </Link>
@@ -173,7 +173,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             alt={post.title}
             width={800}
             height={400}
-            className="w-full h-auto rounded-lg object-cover"
+            className="w-full h-auto rounded-3xl object-cover mb-24 mt-16"
             priority
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
           />
