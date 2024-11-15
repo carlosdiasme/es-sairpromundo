@@ -47,7 +47,7 @@ export default function PlaceHeader({ place }: PlaceHeaderProps) {
               />
             ) : (
               <div className="w-16 h-16 bg-lightgreen rounded-full flex items-center justify-center">
-                <span className="text-gray-400">📍</span>
+                <span className="text-gray-400">💚</span>
               </div>
             )}
           </div>
