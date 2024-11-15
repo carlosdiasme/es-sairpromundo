@@ -48,8 +48,8 @@ export default function ResponsiveNavbar() {
             </div>
           </Link>
           <nav className="flex flex-wrap justify-center gap-4 text-sm">
-            <Link href="/ranking" className="text-gray-800 hover:text-green transition-colors">
-              Ranking
+            <Link href="/explorar" className="text-gray-800 hover:text-green transition-colors">
+              Explorar
             </Link>
           </nav>
           <SearchInput placeholder="Procure por lugares" className="max-w-md" />
@@ -88,8 +88,8 @@ export default function ResponsiveNavbar() {
             <div className="pt-2 pb-4 w-full bg-white">
               <nav className="flex flex-col w-full">
                 <hr className="border-gray-200" />
-                <Link href="/ranking" className="text-gray-500 hover:green transition-colors py-3 text-center">
-                  Ranking
+                <Link href="/explorar" className="text-gray-500 hover:green transition-colors py-3 text-center">
+                  Explorar
                 </Link>
                 <hr className="border-gray-200" />
                 <Link href="/blog" className="text-gray-500 hover:text-green transition-colors py-3 text-center">

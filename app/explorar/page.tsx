@@ -1,4 +1,4 @@
-import RankingFilter from '@/components/RankingFilter'
+import RankingFilter from '@/components/ExploreFilter'
 import { fetchPlaces } from '@/app/actions/get_places'
 
 export default async function RankingPage() {

@@ -155,7 +155,7 @@ export default function RankingFilter({ places }: RankingFilterProps) {
   return (
     <div className="space-y-8">
       <h2 className="text-3xl font-normal text-center">
-        Ranking de{' '}
+        Explorar{' '}
         <FilterDialog
           title="Categoria"
           items={categories}
