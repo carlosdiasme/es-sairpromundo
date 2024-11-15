@@ -183,7 +183,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           className="prose prose-lg max-w-none
                      prose-headings:text-primary
                      prose-h1:text-4xl prose-h1:font-normal prose-text-regular prose-h1:mt-8 prose-h1:mb-4 
-                     prose-h2:text-2xl prose-h2:font-semibold prose-h2:mt-6 prose-h2:mb-3
+                     prose-h2:text-2xl prose-h2:font-semibold prose-h2:mt-6 prose-h2:mb-3 prose-h2:pt-24
                      prose-h3:text-xl prose-h3:font-semibold prose-h3:mt-5 prose-h3:mb-2
                      prose-h4:text-lg prose-h4:font-semibold prose-h4:mt-4 prose-h4:mb-2
                      prose-h5:text-base prose-h5:font-semibold prose-h5:mt-3 prose-h5:mb-1
