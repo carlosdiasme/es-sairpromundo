@@ -18,12 +18,11 @@ export interface Place {
   name: string
   title: string
   tags: string
-  tig_id: number
+  category_id: number
   size: number
   slug: string
   user_id: string
   updated_at: string
-  where: string
   about: string
   website: string
   instagram: string
@@ -41,8 +40,8 @@ export interface Place {
   image_2: string
   image_3: string
   image_4: string
-  tag_slug: string
-  tag_title: string
+  category_slug: string
+  category_title: string
   city_name: string
   city_slug: string
   city_region_id: number

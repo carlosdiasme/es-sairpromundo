@@ -106,7 +106,7 @@ export default function RankingFilter({ places }: RankingFilterProps) {
   const [cities, setCities] = useState<string[]>([])
 
   useEffect(() => {
-    const uniqueCategories = Array.from(new Set(places.map(place => place.tag_title)))
+    const uniqueCategories = Array.from(new Set(places.map(place => place.category_title)))
     const uniqueCities = Array.from(new Set(places.map(place => place.city_name)))
     setCategories(["Todas as Categorias", ...uniqueCategories])
     setCities(["Todas as Cidades", ...uniqueCities])
@@ -115,7 +115,7 @@ export default function RankingFilter({ places }: RankingFilterProps) {
   useEffect(() => {
     let filtered = places
     if (selectedCategory !== "Todas as Categorias") {
-      filtered = filtered.filter(place => place.tag_title === selectedCategory)
+      filtered = filtered.filter(place => place.category_title === selectedCategory)
     }
     if (selectedCity !== "Todas as Cidades") {
       filtered = filtered.filter(place => place.city_name === selectedCity)
