@@ -25,10 +25,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const cityComplete = data?.places[0]?.city_complete || cidade
 
   return {
-    title: `Explore ${categoryPlural} em ${cityComplete} | Sair pro Mundo`,
+    title: `Explore ${categoryPlural} em ${cityComplete}, com avaliações`,
     description: `Descubra os melhores ${categoryPlural} em ${cityComplete}. Explore ${placeName} e outros locais incríveis com o Sair pro Mundo.`,
     openGraph: {
-      title: `Explore ${categoryPlural} em ${cityComplete} | Sair pro Mundo`,
+      title: `Explore ${categoryPlural} em ${cityComplete}, com avaliações`,
       description: `Descubra os melhores ${categoryPlural} em ${cityComplete}. Explore ${placeName} e outros locais incríveis com o Sair pro Mundo.`,
       images: [data?.places[0]?.image_1 || '/default-og-image.jpg'],
     },

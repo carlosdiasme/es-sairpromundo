@@ -32,9 +32,16 @@ interface Place {
   country: string;
 }
 
+interface ExploreRoute {
+  category_slug: string;
+  city_slug: string;
+  place_count: number;
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const blogPosts = await fetchBlogPosts()
   const places = await fetchPlaces()
+  const exploreRoutes = await fetchExploreRoutes()
 
   const baseUrl = 'https://www.sairpromundo.com'
 
@@ -65,7 +72,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }))
 
-  return [...staticPages, ...blogRoutes, ...placeRoutes]
+  const explorePageRoutes = exploreRoutes
+    .filter(route => route.place_count >= 2)
+    .map(route => ({
+      url: `${baseUrl}/explorar/${route.category_slug}/${route.city_slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.9,
+    }))
+
+  return [...staticPages, ...blogRoutes, ...placeRoutes, ...explorePageRoutes]
 }
 
 async function fetchBlogPosts(): Promise<BlogView[]> {
@@ -92,4 +108,26 @@ async function fetchPlaces(): Promise<Place[]> {
   }
   
   return data
+}
+
+async function fetchExploreRoutes(): Promise<ExploreRoute[]> {
+  const { data, error } = await supabase
+    .from('vw_places')
+    .select('category_slug, city_slug')
+
+  if (error) {
+    console.error('Error fetching explore routes:', error)
+    return []
+  }
+
+  const countMap = data.reduce((acc, item) => {
+    const key = `${item.category_slug}|${item.city_slug}`
+    acc[key] = (acc[key] || 0) + 1
+    return acc
+  }, {} as Record<string, number>)
+
+  return Object.entries(countMap).map(([key, count]) => {
+    const [category_slug, city_slug] = key.split('|')
+    return { category_slug, city_slug, place_count: count }
+  })
 }
