@@ -50,7 +50,7 @@ export function ExploreCityHighlight({ place }: ExploreCityHighlightProps) {
         </div>
         <div className="mt-8 flex space-x-2 ">
           <Button variant="outline" asChild className='border-0 bg-green text-white'>
-            <Link href={`/lugar/${place.slug}`}>
+            <Link href={`/${place.slug}`}>
 
               Saiba mais
             </Link>

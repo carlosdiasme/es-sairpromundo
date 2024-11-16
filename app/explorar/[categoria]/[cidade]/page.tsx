@@ -2,9 +2,9 @@ import React from 'react'
 import { notFound } from 'next/navigation'
 import { ExploreCityDetails } from '@/components/ExploreCityDetails'
 import { ExploreCityHighlight } from '@/components/ExploreCityHighlight'
-import PlaceCardLogo from '@/components/PlaceCardLogo'
-import { Button } from "@/components/ui/button"
-import { explore, Place } from '@/app/actions/explore'
+import { ExploreCityMain } from '@/components/ExploreCityMain'
+import { ExploreCityRest } from '@/components/ExploreCityRest'
+import { explore } from '@/app/actions/explore'
 
 interface PageProps {
   params: {
@@ -21,26 +21,29 @@ export default async function Page({ params }: PageProps) {
     notFound()
   }
 
+  const highlightedPlace = data.places[0]
+  const otherPlaces = data.places.slice(1, 4)
+  const restOfPlaces = data.places.slice(4)
+
   return (
-    <main className=" px-4 py-8">
+    <main className="px-4 py-8">
       <ExploreCityDetails
-        place={data.places[0]}
+        place={highlightedPlace}
         placesCount={data.totalCount}
       />
 
       <div className="my-12">
-        <ExploreCityHighlight place={data.places[0]} />
+        <p className='text-xl mb-4 mt-16 bg-lightgreen py-2 px-4 border border-green inline-block rounded-full'>O mais amado da cidade</p>
+        <ExploreCityHighlight place={highlightedPlace} />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-        {data.places.map((place: Place) => (
-          <PlaceCardLogo key={place.place_id} place={place} />
-        ))}
-      </div>
+      <p className='text-xl mb-4  bg-lightgreen py-2 px-4 border border-green inline-block rounded-full'>Aclamados pelo público</p>
+      <ExploreCityMain places={otherPlaces} />
 
-      {data.totalCount > data.places.length && (
-        <div className="mt-8 text-center">
-          <Button variant="outline">Carregar mais</Button>
+      {restOfPlaces.length > 0 && (
+        <div className="mt-12">
+          <p className='text-xl mb-4 mt-16 bg-lightgreen py-2 px-4 border border-green inline-block rounded-full'>Outros</p>
+          <ExploreCityRest places={restOfPlaces} />
         </div>
       )}
     </main>
