@@ -57,7 +57,7 @@ export default function HomePage() {
           Explore destinos únicos e crie memórias inesquecíveis com o Sair pro Mundo.
         </p>
         <Button size="lg" className="bg-green hover:bg-darkgreen rounded-full" asChild>
-          <Link href="/ranking">
+          <Link href="/explorar">
             Comece a explorar <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
         </Button>
@@ -93,7 +93,7 @@ export default function HomePage() {
           Junte-se a milhares de viajantes e comece a explorar o mundo.
         </p>
         <Button size="lg" variant="outline" className="font-regular rounded-full" asChild>
-          <Link href="/ranking">
+          <Link href="/explorar">
             Ver todos os lugares <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
         </Button>

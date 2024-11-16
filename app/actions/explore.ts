@@ -43,11 +43,9 @@ export interface Place {
   category_title: string
   category_plural: string
   category_description: string
-  category_image: string
   city_name: string
   city_slug: string
   city_complete: string
-  city_image: string
   city_region_id: number
   region_name: string
   region_country_id: number
@@ -59,33 +57,31 @@ export interface Place {
   admin_email: string
   admin_linkedin: string
   claim: boolean
+  category_image: string
+  city_image: string
 }
 
-export async function fetchPlaces(page: number, itemsPerPage: number, query: string = ''): Promise<{ places: Place[], totalCount: number }> {
+export async function explore(category_slug: string, city_slug: string, page: number = 1, itemsPerPage: number = 50) {
   const start = (page - 1) * itemsPerPage
   const end = start + itemsPerPage - 1
 
-  let queryBuilder = supabase
+  const { data, error, count } = await supabase
     .from('vw_places')
-    .select('*', { count: 'exact' })
-
-  if (query) {
-    queryBuilder = queryBuilder.or(`name.ilike.%${query}%, tags.ilike.%${query}%`)
-  }
-
-  const { data, error, count } = await queryBuilder
+    .select('*, category_image, city_image', { count: 'exact' })
+    .eq('category_slug', category_slug)
+    .eq('city_slug', city_slug)
     .range(start, end)
     .order('name')
 
   if (error) {
     console.error('Error fetching places:', error)
-    throw new Error('Failed to fetch places')
+    throw new Error('Failed to fetch places for explore page')
   }
 
-  const places: Place[] = data ?? []
+  console.log('Dados retornados:', data?.[0])
 
-  return { 
-    places,
+  return {
+    places: data as Place[],
     totalCount: count ?? 0
   }
 }
