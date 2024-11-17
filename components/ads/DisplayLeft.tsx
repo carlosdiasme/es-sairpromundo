@@ -3,7 +3,7 @@
 import { useEffect } from 'react'
 import Script from 'next/script'
 
-export default function DisplayAdsVertical() {
+export default function DisplayLeft() {
   useEffect(() => {
     try {
       (window.adsbygoogle = window.adsbygoogle || []).push({})

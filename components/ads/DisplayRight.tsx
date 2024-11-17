@@ -3,12 +3,12 @@
 import React, { useEffect } from 'react'
 import Script from 'next/script'
 
-export default function InArticleAds(): React.ReactElement {
+export default function DisplayRight(): React.ReactElement {
   useEffect(() => {
     try {
       (window.adsbygoogle = window.adsbygoogle || []).push({})
     } catch (err) {
-      console.error('Error initializing InArticleAds:', err)
+      console.error('Error initializing AdSense DisplayVerticalRightBlog:', err)
     }
   }, [])
 
@@ -22,11 +22,11 @@ export default function InArticleAds(): React.ReactElement {
       />
       <ins
         className="adsbygoogle"
-        style={{ display: 'block', textAlign: 'center' }}
-        data-ad-layout="in-article"
-        data-ad-format="fluid"
+        style={{ display: 'block' }}
         data-ad-client="ca-pub-8387814928293821"
-        data-ad-slot="5646413695"
+        data-ad-slot="5862036114"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
       />
     </>
   )

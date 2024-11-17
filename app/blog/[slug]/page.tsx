@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -7,9 +7,29 @@ import { createClient } from '@supabase/supabase-js'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import Script from 'next/script'
-import DisplayAdsVertical from '@/components/ads/DisplayAdsVertical'
-import DisplayAdsHorizontal from '@/components/ads/DisplayAdsHorizontal'
-import Multiplex from '@/components/ads/Multiplex'
+import dynamic from 'next/dynamic'
+import { insertAdsInContent } from '@/lib/insertAds'
+
+// Lazy load ad components
+const DisplayLeft = dynamic(() => import('@/components/ads/DisplayLeft'), {
+  loading: () => <div className="min-h-[600px]" />,
+  ssr: false
+})
+
+const DisplayRight = dynamic(() => import('@/components/ads/DisplayRight'), {
+  loading: () => <div className="min-h-[600px]" />,
+  ssr: false
+})
+
+const DisplayAdsHorizontal = dynamic(() => import('@/components/ads/DisplayAdsHorizontal'), {
+  loading: () => <div className="min-h-[200px]" />,
+  ssr: false
+})
+
+const Multiplex = dynamic(() => import('@/components/ads/Multiplex'), {
+  loading: () => <div className="min-h-[250px]" />,
+  ssr: false
+})
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
@@ -147,6 +167,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     }
   }
 
+  const contentWithAds = insertAdsInContent(post.content, 8)
+
   return (
     <>
       <Script id="breadcrumb-structured-data" type="application/ld+json">
@@ -157,7 +179,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       </Script>
       <div className="flex justify-center">
         <div className="hidden lg:block lg:w-1/6">
-          <DisplayAdsVertical />
+          <Suspense fallback={<div className="min-h-[600px]" />}>
+            <DisplayLeft />
+          </Suspense>
         </div>
         <article className="container mx-auto px-4 py-8 max-w-3xl lg:w-4/6">
           <Link href="/blog">
@@ -188,7 +212,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
           {/* DisplayAdsHorizontal para mobile */}
           <div className="lg:hidden my-8">
-            <DisplayAdsHorizontal />
+            <Suspense fallback={<div className="min-h-[200px]" />}>
+              <DisplayAdsHorizontal />
+            </Suspense>
           </div>
 
           <div 
@@ -205,8 +231,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                        prose-ul:my-4 prose-ul:ml-6 prose-ol:my-4 prose-ol:ml-6
                        prose-li:mb-2
                        prose-blockquote:border-l-4 prose-blockquote:border-gray-300 prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:my-4"
-            dangerouslySetInnerHTML={{ __html: post.content }}
-          />
+          >
+            {contentWithAds}
+          </div>
 
           <Card className="mt-12 bg-lightgreen border-0">
             <CardContent className="flex items-center justify-between p-6">
@@ -224,11 +251,15 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
           {/* Multiplex component added below the article */}
           <div className="mt-12">
-            <Multiplex />
+            <Suspense fallback={<div className="min-h-[250px]" />}>
+              <Multiplex />
+            </Suspense>
           </div>
         </article>
         <div className="hidden lg:block lg:w-1/6">
-          <DisplayAdsVertical />
+          <Suspense fallback={<div className="min-h-[600px]" />}>
+            <DisplayRight />
+          </Suspense>
         </div>
       </div>
     </>
