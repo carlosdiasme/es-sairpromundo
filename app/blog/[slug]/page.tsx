@@ -7,6 +7,9 @@ import { createClient } from '@supabase/supabase-js'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import Script from 'next/script'
+import DisplayAdsVertical from '@/components/ads/DisplayAdsVertical'
+import DisplayAdsHorizontal from '@/components/ads/DisplayAdsHorizontal'
+import Multiplex from '@/components/ads/Multiplex'
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
@@ -152,64 +155,82 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <Script id="article-structured-data" type="application/ld+json">
         {JSON.stringify(articleData)}
       </Script>
-      <article className="container mx-auto px-4 py-8 max-w-3xl">
-        <Link href="/blog">
-          <Button variant="ghost" className="mb-16 font-normal text-sm">
-            ← Voltar para o Blog
-          </Button>
-        </Link>
-        
-        <h1 className="text-4xl sm:text-5xl font-regular mb-12 text-primary">{post.title}</h1>
-        
-        <div className="flex items-center text-sm text-muted-foreground mb-8">
-          <span>Por {post.user_name || 'Redação'}</span>
-          <span className="mx-2">•</span>
-          <time dateTime={post.created_at}>{formatDate(post.created_at)}</time>
+      <div className="flex justify-center">
+        <div className="hidden lg:block lg:w-1/6">
+          <DisplayAdsVertical />
         </div>
+        <article className="container mx-auto px-4 py-8 max-w-3xl lg:w-4/6">
+          <Link href="/blog">
+            <Button variant="ghost" className="mb-16 font-normal text-sm">
+              ← Voltar para o Blog
+            </Button>
+          </Link>
+          
+          <h1 className="text-4xl sm:text-5xl font-regular mb-12 text-primary">{post.title}</h1>
+          
+          <div className="flex items-center text-sm text-muted-foreground mb-8">
+            <span>Por {post.user_name || 'Redação'}</span>
+            <span className="mx-2">•</span>
+            <time dateTime={post.created_at}>{formatDate(post.created_at)}</time>
+          </div>
 
-        <div className="mb-8">
-          <Image
-            src={post.image || defaultImage}
-            alt={post.title}
-            width={800}
-            height={400}
-            className="w-full h-auto rounded-3xl object-cover mb-24 mt-16"
-            priority
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
+          <div className="mb-8">
+            <Image
+              src={post.image || defaultImage}
+              alt={post.title}
+              width={800}
+              height={400}
+              className="w-full h-auto rounded-3xl object-cover mb-24 mt-16"
+              priority
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
+            />
+          </div>
+
+          {/* DisplayAdsHorizontal para mobile */}
+          <div className="lg:hidden my-8">
+            <DisplayAdsHorizontal />
+          </div>
+
+          <div 
+            className="prose prose-lg max-w-none
+                       prose-headings:text-primary
+                       prose-h1:text-4xl prose-h1:font-normal prose-text-regular prose-h1:mt-8 prose-h1:mb-4 
+                       prose-h2:text-2xl prose-h2:font-semibold prose-h2:mt-6 prose-h2:mb-3 prose-h2:pt-24
+                       prose-h3:text-xl prose-h3:font-semibold prose-h3:mt-5 prose-h3:mb-2
+                       prose-h4:text-lg prose-h4:font-semibold prose-h4:mt-4 prose-h4:mb-2
+                       prose-h5:text-base prose-h5:font-semibold prose-h5:mt-3 prose-h5:mb-1
+                       prose-h6:text-sm prose-h6:font-semibold prose-h6:mt-2 prose-h6:mb-1
+                       prose-p:text-base prose-p:leading-relaxed prose-p:mb-4 prose-p:text-gray-700
+                       prose-a:text-green hover:prose-a:text-darkgreen
+                       prose-ul:my-4 prose-ul:ml-6 prose-ol:my-4 prose-ol:ml-6
+                       prose-li:mb-2
+                       prose-blockquote:border-l-4 prose-blockquote:border-gray-300 prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:my-4"
+            dangerouslySetInnerHTML={{ __html: post.content }}
           />
+
+          <Card className="mt-12 bg-lightgreen border-0">
+            <CardContent className="flex items-center justify-between p-6">
+              <div>
+                <h2 className="text-xl font-semibold mb-2">Sobre o autor</h2>
+                <p className="text-muted-foreground">{post.user_name || 'Redação'}</p>
+              </div>
+              {post.user_linkedin && (
+                <Link href={post.user_linkedin} target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline">Ver perfil no LinkedIn</Button>
+                </Link>
+              )}
+            </CardContent>
+          </Card>
+
+          {/* Multiplex component added below the article */}
+          <div className="mt-12">
+            <Multiplex />
+          </div>
+        </article>
+        <div className="hidden lg:block lg:w-1/6">
+          <DisplayAdsVertical />
         </div>
-
-        <div 
-          className="prose prose-lg max-w-none
-                     prose-headings:text-primary
-                     prose-h1:text-4xl prose-h1:font-normal prose-text-regular prose-h1:mt-8 prose-h1:mb-4 
-                     prose-h2:text-2xl prose-h2:font-semibold prose-h2:mt-6 prose-h2:mb-3 prose-h2:pt-24
-                     prose-h3:text-xl prose-h3:font-semibold prose-h3:mt-5 prose-h3:mb-2
-                     prose-h4:text-lg prose-h4:font-semibold prose-h4:mt-4 prose-h4:mb-2
-                     prose-h5:text-base prose-h5:font-semibold prose-h5:mt-3 prose-h5:mb-1
-                     prose-h6:text-sm prose-h6:font-semibold prose-h6:mt-2 prose-h6:mb-1
-                     prose-p:text-base prose-p:leading-relaxed prose-p:mb-4 prose-p:text-gray-700
-                     prose-a:text-green hover:prose-a:text-darkgreen
-                     prose-ul:my-4 prose-ul:ml-6 prose-ol:my-4 prose-ol:ml-6
-                     prose-li:mb-2
-                     prose-blockquote:border-l-4 prose-blockquote:border-gray-300 prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:my-4"
-          dangerouslySetInnerHTML={{ __html: post.content }}
-        />
-
-        <Card className="mt-12 bg-lightgreen border-0">
-          <CardContent className="flex items-center justify-between p-6">
-            <div>
-              <h2 className="text-xl font-semibold mb-2">Sobre o autor</h2>
-              <p className="text-muted-foreground">{post.user_name || 'Redação'}</p>
-            </div>
-            {post.user_linkedin && (
-              <Link href={post.user_linkedin} target="_blank" rel="noopener noreferrer">
-                <Button variant="outline">Ver perfil no LinkedIn</Button>
-              </Link>
-            )}
-          </CardContent>
-        </Card>
-      </article>
+      </div>
     </>
   )
 }
