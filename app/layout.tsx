@@ -3,6 +3,7 @@ import { Sora } from 'next/font/google';
 import { Suspense, lazy } from 'react';
 import { GoogleTagManager } from '@next/third-parties/google'
 import { AuthProvider } from '@/contexts/AuthContext';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import "./globals.css";
 
 const Header = lazy(() => import("@/components/Header"));
@@ -93,6 +94,7 @@ export default function RootLayout({
           </Suspense>
         </AuthProvider>
         <GoogleTagManager gtmId="GTM-5GHQBP8" />
+        <SpeedInsights />
       </body>
     </html>
   );
