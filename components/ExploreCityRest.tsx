@@ -42,7 +42,7 @@ export function ExploreCityRest({ places, itemsPerPage = 6 }: ExploreCityRestPro
     <div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
         {currentPlaces.map((place) => (
-          <Link key={place.place_id} href={`/lugar/${place.slug}`} className="block">
+          <Link key={place.place_id} href={`/${place.slug}`} className="block">
             <Card className="overflow-hidden hover:border hover:border-green rounded-3xl bg-lightgreen border-0">
               <div className="flex items-center p-4">
                 <div className="relative w-16 h-16 mr-4 flex-shrink-0">

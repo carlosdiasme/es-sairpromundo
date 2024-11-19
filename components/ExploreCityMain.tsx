@@ -12,7 +12,7 @@ export function ExploreCityMain({ places }: ExploreCityMainProps) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {places.map((place, index) => (
-        <Link key={place.place_id} href={`/lugar/${place.slug}`} className="block">
+        <Link key={place.place_id} href={`/${place.slug}`} className="block">
           <Card className="overflow-hidden border-0 bg-lightgreen rounded-3xl hover:border hover:border-green">
             <div className="relative aspect-[16/9]">
               {place.image_1 ? (
