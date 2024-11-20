@@ -5,6 +5,7 @@ import { CheckCircleIcon } from '@heroicons/react/24/solid'
 import { StarIcon } from '@heroicons/react/24/solid'
 import { Button } from "@/components/ui/button"
 import PlaceTabs from '@/components/PlaceTabs'
+import NavPlace from '@/components/nav/NavPlace'; // Import NavPlace component
 
 interface Place {
   image_1: string
@@ -33,6 +34,7 @@ export default function PlaceHeader({ place }: PlaceHeaderProps) {
 
   return (
     <div className="bg-background">
+      <NavPlace /> {/* Added NavPlace component */}
       <CarouselImages images={carouselImages} alt={place.name} />
       <div className="px-4 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center">
