@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { MapPin, AudioWaveform, ListFilter, Heart, ChevronDown } from 'lucide-react'
+import { MapPin, AudioWaveform, ListFilter, ChevronDown } from 'lucide-react'
 
 import {
   Dialog,
