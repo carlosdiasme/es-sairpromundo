@@ -59,6 +59,10 @@ export interface Place {
   admin_email: string
   admin_linkedin: string
   claim: boolean
+  specialty_title: string
+  specialty_slug: string
+  activity_slug: string
+  activity_title: string
 }
 
 export async function fetchPlaces(page: number, itemsPerPage: number, query: string = ''): Promise<{ places: Place[], totalCount: number }> {

@@ -5,7 +5,7 @@ import { CheckCircleIcon } from '@heroicons/react/24/solid'
 import { StarIcon } from '@heroicons/react/24/solid'
 import { Button } from "@/components/ui/button"
 import PlaceTabs from '@/components/PlaceTabs'
-import NavPlace from '@/components/nav/NavPlace'; // Import NavPlace component
+import NavPlace from '@/components/nav/NavPlace'
 
 interface Place {
   image_1: string
@@ -18,6 +18,11 @@ interface Place {
   slug: string
   rating_average?: number
   rating_count?: number
+  city_name: string
+  city_slug: string
+  category_name: string
+  category_slug: string
+  category_title: string // Added category_title
 }
 
 interface PlaceHeaderProps {
@@ -30,11 +35,16 @@ export default function PlaceHeader({ place }: PlaceHeaderProps) {
     place.image_2,
     place.image_3,
     place.image_4
-  ].filter(Boolean) // This will remove any falsy values (empty strings, null, undefined)
+  ].filter(Boolean)
 
   return (
     <div className="bg-background">
-      <NavPlace /> {/* Added NavPlace component */}
+      <NavPlace 
+        cityName={place.city_name}
+        citySlug={place.city_slug}
+        categoryName={place.category_title} // Updated to use category_title
+        categorySlug={place.category_slug}
+      />
       <CarouselImages images={carouselImages} alt={place.name} />
       <div className="px-4 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center">
