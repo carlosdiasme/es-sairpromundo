@@ -38,14 +38,7 @@ export default function NavPlace({ cityName, citySlug, categoryName, categorySlu
             <AudioWaveform className="h-3 w-3" />
             <span>{categoryName}</span>
           </Link>
-          <div className="h-4 w-px bg-border" aria-hidden="true" />
-          <Link 
-            href={`/cidades/${citySlug}/categorias/${categorySlug}/ranking`}
-            className="flex items-center gap-2 text-xs text-muted-foreground hover:text-primary"
-          >
-            <Heart className="h-3 w-3" />
-            <span>Ranking</span>
-          </Link>
+          
           <div className="h-4 w-px bg-border" aria-hidden="true" />
           <div className="flex items-center gap-6">
             <ListFilter className="h-3 w-3" />
