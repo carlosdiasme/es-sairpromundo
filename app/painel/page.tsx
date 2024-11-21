@@ -5,20 +5,27 @@ import { Button } from "@/components/ui/button"
 import { UserCircle, MapPin, Calendar, LogOut } from 'lucide-react'
 import { redirect } from 'next/navigation'
 
+async function logout() {
+  'use server'
+  const supabase = createServerComponentClient({ cookies })
+  await supabase.auth.signOut()
+  redirect('/entrar')
+}
+
 export default async function PainelPage() {
-  const handleLogout = async () => {
-    'use server'
-    const supabase = createServerComponentClient({ cookies })
-    await supabase.auth.signOut()
+  const supabase = createServerComponentClient({ cookies })
+  const { data: { session } } = await supabase.auth.getSession()
+
+  if (!session) {
     redirect('/entrar')
   }
 
   return (
     <div className="px-4 py-10 h-screen">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold sr-only">Painel de controle</h1>
-        <form action={handleLogout}>
-          <Button variant="outline" className="ml-auto">
+        <h1 className="text-3xl font-bold">Painel de controle</h1>
+        <form action={logout}>
+          <Button variant="outline" type="submit">
             <LogOut className="mr-2 h-4 w-4" /> Sair
           </Button>
         </form>
