@@ -16,9 +16,7 @@ export default async function PainelPage() {
   const supabase = createServerComponentClient({ cookies })
   const { data: { session } } = await supabase.auth.getSession()
 
-  if (!session) {
-    redirect('/entrar')
-  }
+
 
   return (
     <div className="px-4 py-10 h-screen">

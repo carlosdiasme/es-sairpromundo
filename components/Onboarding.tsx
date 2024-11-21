@@ -135,26 +135,37 @@ export default function Onboarding() {
       case 4:
         return (
           <div className="space-y-4">
-            <Label>Sol ou Lua?</Label>
-            <RadioGroup
-              name="preference"
-              value={formData.preference}
-              onValueChange={(value) => handleRadioChange('preference', value)}
-              className="flex justify-center space-x-8"
-            >
+            <Label>Qual você prefere?</Label>
+            <div className="grid grid-cols-2 gap-4">
               {[
-                { value: 'sol', label: 'Sol', icon: Sun },
-                { value: 'lua', label: 'Lua', icon: Moon },
-              ].map(({ value, label, icon: Icon }) => (
-                <div key={value} className="flex flex-col items-center space-y-2">
-                  <RadioGroupItem value={value} id={value} className="sr-only" />
-                  <Label htmlFor={value} className="flex flex-col items-center cursor-pointer">
-                    <Icon className="w-16 h-16" />
-                    <span>{label}</span>
-                  </Label>
-                </div>
+                { value: 'sol', label: 'Sol', icon: Sun, description: 'Dias ensolarados, praia, atividades ao ar livre' },
+                { value: 'lua', label: 'Lua', icon: Moon, description: 'Noites estreladas, ambiente tranquilo, reflexão' },
+              ].map(({ value, label, icon: Icon, description }) => (
+                <Card 
+                  key={value} 
+                  className={`cursor-pointer transition-all ${
+                    formData.preference === value 
+                      ? 'ring-2 ring-primary bg-primary/10' 
+                      : 'hover:bg-accent'
+                  }`}
+                  onClick={() => handleRadioChange('preference', value)}
+                >
+                  <CardContent className="flex flex-col items-center p-6">
+                    <Icon className={`w-16 h-16 mb-4 ${
+                      formData.preference === value 
+                        ? 'text-primary' 
+                        : 'text-muted-foreground'
+                    }`} />
+                    <h3 className={`text-lg font-semibold mb-2 ${
+                      formData.preference === value 
+                        ? 'text-primary' 
+                        : ''
+                    }`}>{label}</h3>
+                    <p className="text-sm text-center text-muted-foreground">{description}</p>
+                  </CardContent>
+                </Card>
               ))}
-            </RadioGroup>
+            </div>
           </div>
         )
       default:
@@ -163,7 +174,7 @@ export default function Onboarding() {
   }
 
   return (
-    <Card className="w-full max-w-lg mx-auto">
+    <Card className="w-full max-w-2xl mx-auto">
       <CardHeader>
         <CardTitle className="text-2xl font-bold text-center">Bem-vindo ao Sair pro Mundo</CardTitle>
       </CardHeader>
@@ -199,7 +210,7 @@ export default function Onboarding() {
             Próximo
           </Button>
         ) : (
-          <Button onClick={handleSubmit} className="ml-auto">
+          <Button type="submit" className="ml-auto">
             Concluir
           </Button>
         )}
