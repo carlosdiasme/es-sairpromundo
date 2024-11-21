@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import { notFound } from 'next/navigation'
 import PlaceHeader from '@/components/place/PlaceHeader'
+import PlaceAbout from '@/components/place/PlaceAbout'
 import { createClient } from '@supabase/supabase-js'
 import Script from 'next/script'
 import { useAuth } from '@/contexts/AuthContext'
@@ -22,34 +23,70 @@ interface PlacePageProps {
 
 interface Place {
   place_id: number
-  slug: string
+  created_at: string
   name: string
+  title: string
+  tags: string
+  category_id: number
+  size: number
+  slug: string
+  user_id: string
+  updated_at: string
+  about: string
+  website: string
+  instagram: string
+  tiktok: string
+  google_maps: string
+  zip_code: string
+  address: string
+  cnpj: string
+  admin: string
+  city_id: number
+  region_id: number
+  country_id: number
+  logo: string
+  image_1: string
+  image_2: string
+  image_3: string
+  image_4: string
+  category_slug: string
+  category_title: string
+  category_plural: string
+  category_description: string
+  category_image: string
+  city_name: string
+  city_slug: string
+  city_complete: string
+  city_image: string
+  city_region_id: number
+  region_name: string
+  region_country_id: number
+  country_name: string
+  country_continent_id: number
+  continent_name: string
+  admin_id: string
+  admin_name: string
+  admin_email: string
+  admin_linkedin: string
+  claim: boolean
+  specialty_title: string
+  specialty_slug: string
+  activity_slug: string
+  activity_title: string
   description?: string
-  address?: string
   city?: string
   state?: string
   zip?: string
   country?: string
   phone?: string
   email?: string
-  website?: string
   latitude?: number
   longitude?: number
   priceRange?: string
   image?: string
-  image_1: string
-  image_2: string
-  image_3: string
-  image_4: string
-  logo: string
-  claim: boolean
   rating_average?: number
   rating_count?: number
-  city_name: string
-  city_slug: string
   category_name: string
-  category_slug: string
-  category_title: string
 }
 
 interface Review {
@@ -184,29 +221,7 @@ export default function PlacePage({ params }: PlacePageProps) {
       <div className="min-h-screen bg-background">
         <PlaceHeader place={place} activeTab={activeTab} onTabChange={setActiveTab} />
         <main className="px-4 py-8">
-          {activeTab === 'about' && (
-            <>
-              <p className="text-lg mb-6">{place.description || `Explore ${place.name} with Sair pro Mundo`}</p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                  <h2 className="text-2xl font-semibold mb-2">Location</h2>
-                  <p>{place.address || "Address not available"}</p>
-                  <p>{place.city || "City not available"}, {place.state || "State not available"} {place.zip || "Postal code not available"}</p>
-                  <p>{place.country || "Country not available"}</p>
-                </div>
-                <div>
-                  <h2 className="text-2xl font-semibold mb-2">Contact</h2>
-                  <p>Phone: {place.phone || "Phone not available"}</p>
-                  <p>Email: {place.email || "Email not available"}</p>
-                  <p>Website: {place.website ? (
-                    <a href={place.website} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">{place.website}</a>
-                  ) : (
-                    "Website not available"
-                  )}</p>
-                </div>
-              </div>
-            </>
-          )}
+          {activeTab === 'about' && <PlaceAbout place={place} />}
           {activeTab === 'reviews' && (
             <ReviewList
               placeId={place.place_id}
