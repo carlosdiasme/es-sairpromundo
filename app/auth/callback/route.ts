@@ -1,7 +1,6 @@
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
-import { getUsers } from '@/app/actions/get-users'
 import { postUser } from '@/app/actions/post-users'
 
 export async function GET(request: Request) {
@@ -12,25 +11,26 @@ export async function GET(request: Request) {
     const supabase = createRouteHandlerClient({ cookies })
     await supabase.auth.exchangeCodeForSession(code)
 
-    // Check if user exists and create if not
-    const {
-      data: { user },
-    } = await supabase.auth.getUser()
+    // Get the user data
+    const { data: { user } } = await supabase.auth.getUser()
 
-    if (user) {
-      const { users } = await getUsers()
-      const existingUser = users.find(u => u.user_id === user.id)
-      
-      if (!existingUser) {
-        await postUser({
-          email: user.email || '',
-          // You can add more fields here if needed
+    if (user && user.email) {
+      // Create user profile in the background
+      try {
+        const result = await postUser({ 
+          email: user.email,
+          name: user.user_metadata.full_name
         })
+        if (!result.success) {
+          console.error('Error creating user profile:', result.error)
+        }
+      } catch (error) {
+        console.error('Error creating user profile:', error)
       }
     }
   }
 
-  // URL to redirect to after sign in process completes
-  return NextResponse.redirect(requestUrl.origin)
+  // Redirect to the home page after successful authentication
+  return NextResponse.redirect(new URL('/', requestUrl.origin))
 }
 
