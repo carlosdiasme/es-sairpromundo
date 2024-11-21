@@ -1,20 +1,16 @@
 'use client'
 
 import React from 'react'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 
 interface PlaceTabsProps {
-  placeName: string
-  placeSlug: string
+  activeTab: string
+  onTabChange: (tab: string) => void
 }
 
-export default function PlaceTabs({ placeSlug }: PlaceTabsProps) {
-  const pathname = usePathname()
-
+export default function PlaceTabs({ activeTab, onTabChange }: PlaceTabsProps) {
   const tabs = [
-    { name: `Sobre`, href: `/${placeSlug}` },
-
+    { name: 'Sobre', id: 'about' },
+    { name: 'Avaliações', id: 'reviews' },
   ]
 
   return (
@@ -22,17 +18,17 @@ export default function PlaceTabs({ placeSlug }: PlaceTabsProps) {
       <div className="max-w-full overflow-x-auto scrollbar-hide">
         <nav className="flex h-10 items-center w-max">
           {tabs.map((tab) => (
-            <Link
-              key={tab.name}
-              href={tab.href}
+            <button
+              key={tab.id}
+              onClick={() => onTabChange(tab.id)}
               className={`px-4 h-10 flex items-center whitespace-nowrap border-b-2 ${
-                pathname === tab.href
+                activeTab === tab.id
                   ? 'border-green text-green text-sm '
                   : 'border-transparent text-gray-600  text-sm hover:text-gray-800 hover:border-neongreen hover:border-b'
               }`}
             >
               {tab.name}
-            </Link>
+            </button>
           ))}
         </nav>
       </div>

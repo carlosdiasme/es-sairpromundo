@@ -92,7 +92,7 @@ export default function NavPlace({ cityName, citySlug, categoryName, categorySlu
             <ListFilter className="h-3 w-3" />
             <Dialog>
               <DialogTrigger asChild>
-                <Button variant="ghost" className="flex items-center gap-2 text-xs text-muted-foreground hover:text-primary p-0 h-auto">
+                <Button variant="ghost" className="flex items-center gap-2 text-xs text-muted-foreground hover:text-primary p-0 h-auto hover:bg-background">
                   <span>Categorias</span>
                   <ChevronDown className="h-3 w-3" />
                 </Button>
@@ -129,7 +129,7 @@ export default function NavPlace({ cityName, citySlug, categoryName, categorySlu
             </Dialog>
             <Dialog>
               <DialogTrigger asChild>
-                <Button variant="ghost" className="flex items-center gap-2 text-xs text-muted-foreground hover:text-primary p-0 h-auto">
+                <Button variant="ghost" className="flex items-center gap-2 text-xs text-muted-foreground hover:text-primary p-0 h-auto hover:bg-background">
                   <span>Especialidades</span>
                   <ChevronDown className="h-3 w-3" />
                 </Button>
@@ -166,7 +166,7 @@ export default function NavPlace({ cityName, citySlug, categoryName, categorySlu
             </Dialog>
             <Dialog>
               <DialogTrigger asChild>
-                <Button variant="ghost" className="flex items-center gap-2 text-xs text-muted-foreground hover:text-primary p-0 h-auto">
+                <Button variant="ghost" className="flex items-center gap-2 text-xs text-muted-foreground hover:text-primary p-0 h-auto hover:bg-background">
                   <span>Atividades</span>
                   <ChevronDown className="h-3 w-3" />
                 </Button>
