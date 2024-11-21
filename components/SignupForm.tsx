@@ -24,6 +24,7 @@ export function SignupForm() {
     setError(null)
 
     try {
+      // Sign up the user
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
@@ -35,6 +36,20 @@ export function SignupForm() {
       if (error) throw error
 
       if (data.user) {
+        // Add a record to the users table
+        const { error: insertError } = await supabase
+          .from('users')
+          .insert({
+            user_id: data.user.id,
+            email: data.user.email,
+            name: name
+          })
+
+        if (insertError) {
+          console.error('Error inserting user data:', insertError)
+          throw new Error('Failed to create user profile')
+        }
+
         setShowConfirmDialog(true)
       } else {
         throw new Error('Failed to create user')
@@ -173,3 +188,4 @@ export function SignupForm() {
     </div>
   )
 }
+

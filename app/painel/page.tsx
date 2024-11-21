@@ -12,9 +12,28 @@ async function logout() {
   redirect('/entrar')
 }
 
+async function ensureUserRecord(userId: string, email: string) {
+  const supabase = createServerComponentClient({ cookies })
+  
+  const { data, error } = await supabase
+    .from('users')
+    .upsert({ id: userId, email }, { onConflict: 'id' })
+    .select()
+
+  if (error) {
+    console.error('Erro ao criar/atualizar registro de usuário:', error)
+  } else {
+    console.log('Registro de usuário criado/atualizado com sucesso:', data)
+  }
+}
+
 export default async function PainelPage() {
   const supabase = createServerComponentClient({ cookies })
-  await supabase.auth.getSession()
+  const { data: { session } } = await supabase.auth.getSession()
+
+  if (session) {
+    await ensureUserRecord(session.user.id, session.user.email || '')
+  }
 
   return (
     <div className="px-4 py-10 h-screen">
