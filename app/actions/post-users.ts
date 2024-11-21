@@ -39,23 +39,6 @@ export async function postUser(newUser: NewUser): Promise<{ success: boolean; er
 
     const userId = session.user.id;
 
-    // Check if the user already exists in the users table
-    const { data: existingUser, error: checkError } = await supabase
-      .from('users')
-      .select('*')
-      .eq('user_id', userId)
-      .single();
-
-    if (checkError && checkError.code !== 'PGRST116') { // PGRST116 is the error code for "no rows returned"
-      console.error('Error checking existing user:', checkError);
-      return { success: false, error: 'Failed to check existing user' };
-    }
-
-    if (existingUser) {
-      console.log('User already exists:', existingUser);
-      return { success: true, user: existingUser as User };
-    }
-
     // Insert the user data into the public.users table
     const { data: userData, error: userError } = await supabase
       .from('users')
