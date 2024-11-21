@@ -27,10 +27,10 @@ export function LoginRequired() {
         </DialogHeader>
         <div className="flex justify-end space-x-4 mt-4">
           <Button asChild>
-            <Link href="/login">Entre</Link>
+            <Link href="/entrar">Entre</Link>
           </Button>
           <Button variant="outline" asChild>
-            <Link href="/signup">Crie sua conta</Link>
+            <Link href="/criar-conta">Crie sua conta</Link>
           </Button>
         </div>
       </DialogContent>

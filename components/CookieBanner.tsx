@@ -2,8 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { X } from 'lucide-react'
 
 export default function CookieBanner() {
   const [isVisible, setIsVisible] = useState(false)
@@ -23,16 +21,15 @@ export default function CookieBanner() {
   if (!isVisible) return null
 
   return (
-    <Card className="fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:max-w-md z-50">
-      <CardContent className="p-4 flex items-center justify-between">
-        <p className="text-sm text-gray-700 dark:text-gray-300 mr-4">
-          Nós usamos cookies para melhorar sua experiência no Sair pro Mundo. Ao continuar navegando, você concorda com nossa política de cookies.
+    <div className="fixed bottom-0 left-0 right-0 bg-background border-t border-border p-4 shadow-lg">
+      <div className="container mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p className="text-sm text-muted-foreground text-center sm:text-left">
+          Usamos cookies para melhorar sua experiência. Ao continuar, você concorda com nossa política de cookies.
         </p>
-        <Button onClick={handleAccept} variant="outline" size="sm" className="shrink-0">
-          <X className="h-4 w-4 mr-2" />
+        <Button onClick={handleAccept} variant="default" size="sm">
           Fechar
         </Button>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   )
 }

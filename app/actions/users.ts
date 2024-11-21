@@ -3,13 +3,27 @@
 import { createServerActionClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 
-export async function addUserRecord(name: string, email: string, userId: string) {
+export async function addUserRecord(
+  name: string,
+  email: string,
+  userId: string,
+  birthday: string,
+  gender: string,
+  preference: string
+) {
   const supabase = createServerActionClient({ cookies })
 
   try {
     const { data, error } = await supabase
       .from('users')
-      .insert({ id: userId, name, email })
+      .insert({ 
+        id: userId, 
+        name, 
+        email, 
+        birthday, 
+        gender, 
+        preference 
+      })
       .single()
 
     if (error) throw error
