@@ -67,7 +67,7 @@ export default function PlaceAbout({ place }: PlaceAboutProps) {
               {place.instagram && (
                 <li className="flex items-center gap-2">
                   <Instagram className="text-primary h-5 w-5" />
-                  <a href={`https://www.instagram.com/${place.instagram}`} target="_blank" rel="noopener noreferrer" className="text-sm text-primary hover:underline">
+                  <a href={`${place.instagram}`} target="_blank" rel="noopener noreferrer" className="text-sm text-primary hover:underline">
                     @{place.instagram}
                   </a>
                 </li>
