@@ -18,7 +18,13 @@ export interface City {
   region_id: number | null
   complete: string | null
   slug: string | null
-  image: string | null
+  cover: string | null
+  logo: string | null
+  description: string | null
+  image_1: string
+  image_2: string
+  image_3: string
+  image_4: string
 }
 
 export async function getCities(page: number = 1, itemsPerPage: number = 12) {
@@ -41,3 +47,19 @@ export async function getCities(page: number = 1, itemsPerPage: number = 12) {
     totalCount: count ?? 0
   }
 }
+
+export async function getCityBySlug(slug: string): Promise<(City & { regions: { name: string } }) | null> {
+  const { data, error } = await supabase
+    .from('cities')
+    .select('*, regions(name)')
+    .eq('slug', slug)
+    .single()
+
+  if (error) {
+    console.error('Error fetching city:', error)
+    throw new Error('Failed to fetch city')
+  }
+
+  return data
+}
+

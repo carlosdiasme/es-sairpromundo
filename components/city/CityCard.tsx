@@ -10,12 +10,12 @@ interface CityCardProps {
 
 const CityCard: React.FC<CityCardProps> = ({ city }) => {
   return (
-    <Link href={`/explorar/${city.slug || city.city_id}`} className="block">
+    <Link href={`/cidades/${city.slug || city.city_id}`} className="block">
       <Card className="overflow-hidden border-0 bg-lightgreen rounded-3xl hover:border hover:border-green">
         <div className="relative aspect-[8/9]">
-          {city.image ? (
+          {city.cover ? (
             <Image
-              src={city.image}
+              src={city.cover}
               alt={city.name}
               fill
               className="object-cover"
@@ -30,7 +30,6 @@ const CityCard: React.FC<CityCardProps> = ({ city }) => {
         <CardHeader>
           <CardTitle>{city.name}</CardTitle>
           <CardDescription>{city.regions.name}</CardDescription>
-          <CardDescription>{city.complete}</CardDescription>
         </CardHeader>
       </Card>
     </Link>
