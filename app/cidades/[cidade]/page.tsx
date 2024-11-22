@@ -4,6 +4,7 @@ import { CityHeader } from '@/components/city/CityHeader'
 import { CityImages } from '@/components/city/CityImages'
 import { CategoryCard } from '@/components/city/CategoryCard'
 import { CategoryBadge } from '@/components/city/CategoryBadge'
+import { CityAbout } from '@/components/city/CityAbout'
 import { getCityBySlug } from '@/app/actions/get-cities'
 import { getCategories } from '@/app/actions/get-categories'
 
@@ -63,8 +64,8 @@ export default async function CityPage({ params }: CityPageProps) {
         image_3={city.image_3}
         image_4={city.image_4}
       />
-      <div className="px-4 py-8">
-        <h2 className="text-base font-regular mb-6">Por categoria</h2>
+      <div className=" px-4 py-8">
+        <h2 className="text-xl font-semibold mb-6">Por categoria</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           {mainCategories.map((category) => (
             <CategoryCard 
@@ -74,7 +75,7 @@ export default async function CityPage({ params }: CityPageProps) {
             />
           ))}
         </div>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 mb-8">
           {otherCategories.map((category) => (
             <CategoryBadge 
               key={category.category_id} 
@@ -83,6 +84,7 @@ export default async function CityPage({ params }: CityPageProps) {
             />
           ))}
         </div>
+        <CityAbout city={city} />
       </div>
     </div>
   )

@@ -251,6 +251,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                          prose-a:text-green hover:prose-a:text-darkgreen
                          prose-ul:my-4 prose-ul:ml-6 prose-ol:my-4 prose-ol:ml-6
                          prose-li:mb-2
+                         prose-button:bg-green prose-button:text-white hover:prose-button:bg-darkgreen
                          prose-blockquote:border-l-4 prose-blockquote:border-gray-300 prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:my-4"
             >
               {contentWithAds}
