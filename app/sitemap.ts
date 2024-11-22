@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next'
+import { getCities, City } from './actions/get-cities'
 import { createClient } from '@supabase/supabase-js'
 
 const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!)
@@ -32,21 +33,15 @@ interface Place {
   country: string;
 }
 
-interface City {
-  slug: string;
-  updated_at: string;
-}
-
 interface Category {
   slug: string;
   updated_at: string;
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [blogPosts, places, cities, categories] = await Promise.all([
+  const [blogPosts, places, categories] = await Promise.all([
     fetchAllBlogPosts(),
     fetchAllPlaces(),
-    fetchAllCities(),
     fetchAllCategories(),
   ])
 
@@ -82,21 +77,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }))
 
-  const cityRoutes = cities.map(city => ({
-    url: `${baseUrl}/cidades/${city.slug}`,
-    lastModified: new Date(city.updated_at),
-    changeFrequency: 'weekly' as const,
-    priority: 0.9,
-  }))
-
-  const cityCategoryRoutes = cities.flatMap(city =>
-    categories.map(category => ({
-      url: `${baseUrl}/cidades/${city.slug}/categorias/${category.slug}`,
-      lastModified: new Date(Math.max(new Date(city.updated_at).getTime(), new Date(category.updated_at).getTime())),
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
-    }))
-  )
+  const cityRoutes = await generateCityRoutes(baseUrl)
+  const cityCategoryRoutes = await generateCityCategoryRoutes(baseUrl, categories)
 
   return [...staticPages, ...blogRoutes, ...placeRoutes, ...cityRoutes, ...cityCategoryRoutes]
 }
@@ -159,19 +141,6 @@ async function fetchAllPlaces(): Promise<Place[]> {
   return allPlaces
 }
 
-async function fetchAllCities(): Promise<City[]> {
-  const { data, error } = await supabase
-    .from('cities')
-    .select('slug, updated_at')
-  
-  if (error) {
-    console.error('Error fetching cities:', error)
-    return []
-  }
-  
-  return data || []
-}
-
 async function fetchAllCategories(): Promise<Category[]> {
   const { data, error } = await supabase
     .from('categories')
@@ -183,5 +152,49 @@ async function fetchAllCategories(): Promise<Category[]> {
   }
   
   return data || []
+}
+
+async function generateCityRoutes(baseUrl: string): Promise<MetadataRoute.Sitemap> {
+  const pageSize = 1000
+  let allCities: City[] = []
+  let page = 1
+  let hasMore = true
+
+  while (hasMore) {
+    const { cities, totalCount } = await getCities(page, pageSize)
+    allCities = allCities.concat(cities)
+    hasMore = allCities.length < totalCount
+    page++
+  }
+
+  return allCities.map(city => ({
+    url: `${baseUrl}/cidades/${city.slug}`,
+    lastModified: new Date(city.created_at),
+    changeFrequency: 'weekly' as const,
+    priority: 0.9,
+  }))
+}
+
+async function generateCityCategoryRoutes(baseUrl: string, categories: Category[]): Promise<MetadataRoute.Sitemap> {
+  const pageSize = 1000
+  let allCities: City[] = []
+  let page = 1
+  let hasMore = true
+
+  while (hasMore) {
+    const { cities, totalCount } = await getCities(page, pageSize)
+    allCities = allCities.concat(cities)
+    hasMore = allCities.length < totalCount
+    page++
+  }
+
+  return allCities.flatMap(city =>
+    categories.map(category => ({
+      url: `${baseUrl}/cidades/${city.slug}/categorias/${category.slug}`,
+      lastModified: new Date(Math.max(new Date(city.created_at).getTime(), new Date(category.updated_at).getTime())),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    }))
+  )
 }
 
