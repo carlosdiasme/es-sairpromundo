@@ -15,7 +15,6 @@ export interface Place {
   place_id: number
   created_at: string
   name: string
-  title: string
   tags: string
   category_id: number
   size: number

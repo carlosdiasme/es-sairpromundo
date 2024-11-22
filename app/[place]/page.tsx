@@ -207,7 +207,7 @@ export default function PlacePage({ params }: PlacePageProps) {
       }
     ],
     "priceRange": place.priceRange || "$$",
-    "description": place.description || `Explore ${place.name} with Sair pro Mundo`
+    "description": place.description || `Explore ${place.name} com Sair pro Mundo`
   }
 
   return (

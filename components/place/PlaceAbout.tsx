@@ -11,6 +11,10 @@ interface PlaceAboutProps {
 }
 
 export default function PlaceAbout({ place }: PlaceAboutProps) {
+  const hasTags = place.tags && place.tags.trim().length > 0
+  const hasAbout = place.about && place.about.trim().length > 0
+  const hasInformation = place.address || place.website || place.instagram || place.tiktok || place.google_maps
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
       {/* Left column - Summary */}
@@ -19,14 +23,22 @@ export default function PlaceAbout({ place }: PlaceAboutProps) {
           <CardTitle>Resumo</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-muted-foreground mb-4">{place.about}</p>
-          <div className="flex flex-wrap gap-2">
-            {place.tags.split(',').map((tag, index) => (
-              <Badge key={index} variant="secondary">
-                {tag.trim()}
-              </Badge>
-            ))}
-          </div>
+          {hasAbout ? (
+            <p className="text-muted-foreground mb-4">{place.about}</p>
+          ) : (
+            <p className="text-muted-foreground mb-4">Nenhum resumo disponível.</p>
+          )}
+          {hasTags ? (
+            <div className="flex flex-wrap gap-2">
+              {place.tags.split(',').map((tag, index) => (
+                <Badge key={index} variant="secondary">
+                  {tag.trim()}
+                </Badge>
+              ))}
+            </div>
+          ) : (
+            <p className="text-muted-foreground">Nenhuma tag disponível.</p>
+          )}
         </CardContent>
       </Card>
 
@@ -36,37 +48,42 @@ export default function PlaceAbout({ place }: PlaceAboutProps) {
           <CardTitle>Informações</CardTitle>
         </CardHeader>
         <CardContent>
-          <ul className="space-y-4">
-            <li className="flex items-center gap-2">
-              <MapPin className="text-primary h-5 w-5" />
-              <span className="text-sm">{place.address}, {place.zip_code}</span>
-            </li>
-            {place.website && (
-              <li className="flex items-center gap-2">
-                <Globe className="text-primary h-5 w-5" />
-                <a href={place.website} target="_blank" rel="noopener noreferrer" className="text-sm text-primary hover:underline">
-                  {place.website}
-                </a>
-              </li>
-            )}
-            {place.instagram && (
-              <li className="flex items-center gap-2">
-                <Instagram className="text-primary h-5 w-5" />
-                <a href={`https://www.instagram.com/${place.instagram}`} target="_blank" rel="noopener noreferrer" className="text-sm text-primary hover:underline">
-                  @{place.instagram}
-                </a>
-              </li>
-            )}
-            {place.tiktok && (
-              <li className="flex items-center gap-2">
-                <TikTok className="text-primary h-5 w-5" />
-                <a href={`https://www.tiktok.com/@${place.tiktok}`} target="_blank" rel="noopener noreferrer" className="text-sm text-primary hover:underline">
-                  @{place.tiktok}
-                </a>
-              </li>
-            )}
-            
-          </ul>
+          {hasInformation ? (
+            <ul className="space-y-4">
+              {place.address && (
+                <li className="flex items-center gap-2">
+                  <MapPin className="text-primary h-5 w-5" />
+                  <span className="text-sm">{place.address}, {place.zip_code}</span>
+                </li>
+              )}
+              {place.website && (
+                <li className="flex items-center gap-2">
+                  <Globe className="text-primary h-5 w-5" />
+                  <a href={place.website} target="_blank" rel="noopener noreferrer" className="text-sm text-primary hover:underline">
+                    {place.website}
+                  </a>
+                </li>
+              )}
+              {place.instagram && (
+                <li className="flex items-center gap-2">
+                  <Instagram className="text-primary h-5 w-5" />
+                  <a href={`https://www.instagram.com/${place.instagram}`} target="_blank" rel="noopener noreferrer" className="text-sm text-primary hover:underline">
+                    @{place.instagram}
+                  </a>
+                </li>
+              )}
+              {place.tiktok && (
+                <li className="flex items-center gap-2">
+                  <TikTok className="text-primary h-5 w-5" />
+                  <a href={`https://www.tiktok.com/@${place.tiktok}`} target="_blank" rel="noopener noreferrer" className="text-sm text-primary hover:underline">
+                    @{place.tiktok}
+                  </a>
+                </li>
+              )}
+            </ul>
+          ) : (
+            <p className="text-muted-foreground">Nenhuma informação disponível.</p>
+          )}
           {place.google_maps && (
             <div className="mt-6">
               <Button variant="outline" className="w-full" asChild>
@@ -87,3 +104,4 @@ export default function PlaceAbout({ place }: PlaceAboutProps) {
     </div>
   )
 }
+

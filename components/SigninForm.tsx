@@ -106,15 +106,15 @@ export function SigninForm() {
       )}
       <div className="relative">
         <div className="absolute inset-0 flex items-center">
-          <span className="w-full border-t" />
+          <span className="w-full border-t sr-only" />
         </div>
-        <div className="relative flex justify-center text-xs uppercase">
-          <span className="bg-background px-2 text-muted-foreground">
+        <div className="relative flex justify-center text-xs uppercase sr-only">
+          <span className="bg-background px-2 text-muted-foreground sr-only">
             Ou continue com
           </span>
         </div>
       </div>
-      <Button variant="outline" type="button" onClick={handleGoogleSignin} disabled={isLoading} className="flex items-center justify-center">
+      <Button variant="outline" type="button" onClick={handleGoogleSignin} disabled={isLoading} className="flex items-center justify-center sr-only">
         {isLoading ? (
           "Carregando..."
         ) : (
