@@ -75,7 +75,7 @@ export default function PlaceAbout({ place }: PlaceAboutProps) {
               {place.tiktok && (
                 <li className="flex items-center gap-2">
                   <TikTok className="text-primary h-5 w-5" />
-                  <a href={`https://www.tiktok.com/@${place.tiktok}`} target="_blank" rel="noopener noreferrer" className="text-sm text-primary hover:underline">
+                  <a href={`${place.tiktok}`} target="_blank" rel="noopener noreferrer" className="text-sm text-primary hover:underline">
                     @{place.tiktok}
                   </a>
                 </li>
