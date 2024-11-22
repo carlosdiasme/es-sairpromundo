@@ -32,25 +32,35 @@ interface Place {
   country: string;
 }
 
-interface ExploreRoute {
-  category_slug: string;
-  city_slug: string;
-  place_count: number;
+interface City {
+  slug: string;
+  updated_at: string;
+}
+
+interface Category {
+  slug: string;
+  updated_at: string;
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const blogPosts = await fetchBlogPosts()
-  const places = await fetchPlaces()
-  const exploreRoutes = await fetchExploreRoutes()
+  const [blogPosts, places, cities, categories] = await Promise.all([
+    fetchAllBlogPosts(),
+    fetchAllPlaces(),
+    fetchAllCities(),
+    fetchAllCategories(),
+  ])
 
-  const baseUrl = 'https://www.sairpromundo.com'
+  const baseUrl = 'https://sairpromundo.com'
 
   const staticPages = [
     '',
+    '/sobre',
+    '/termos',
+    '/privacidade',
+    '/explorar',
+    '/cidades',
+    '/entrar',
     '/blog',
-    '/places',
-    '/about',
-    '/contact',
   ].map(route => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
@@ -66,68 +76,112 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }))
 
   const placeRoutes = places.map(place => ({
-    url: `${baseUrl}/places/${place.slug}`,
+    url: `${baseUrl}/${place.slug}`,
     lastModified: new Date(place.created_at),
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }))
 
-  const explorePageRoutes = exploreRoutes
-    .filter(route => route.place_count >= 2)
-    .map(route => ({
-      url: `${baseUrl}/explorar/${route.category_slug}/${route.city_slug}`,
-      lastModified: new Date(),
+  const cityRoutes = cities.map(city => ({
+    url: `${baseUrl}/cidades/${city.slug}`,
+    lastModified: new Date(city.updated_at),
+    changeFrequency: 'weekly' as const,
+    priority: 0.9,
+  }))
+
+  const cityCategoryRoutes = cities.flatMap(city =>
+    categories.map(category => ({
+      url: `${baseUrl}/cidades/${city.slug}/categorias/${category.slug}`,
+      lastModified: new Date(Math.max(new Date(city.updated_at).getTime(), new Date(category.updated_at).getTime())),
       changeFrequency: 'weekly' as const,
-      priority: 0.9,
+      priority: 0.8,
     }))
+  )
 
-  return [...staticPages, ...blogRoutes, ...placeRoutes, ...explorePageRoutes]
+  return [...staticPages, ...blogRoutes, ...placeRoutes, ...cityRoutes, ...cityCategoryRoutes]
 }
 
-async function fetchBlogPosts(): Promise<BlogView[]> {
+async function fetchAllBlogPosts(): Promise<BlogView[]> {
+  const pageSize = 1000
+  let allPosts: BlogView[] = []
+  let page = 0
+  let hasMore = true
+
+  while (hasMore) {
+    const { data, error } = await supabase
+      .from('vw_blogs')
+      .select('*')
+      .range(page * pageSize, (page + 1) * pageSize - 1)
+    
+    if (error) {
+      console.error('Error fetching blog posts:', error)
+      return allPosts
+    }
+    
+    if (data) {
+      allPosts = allPosts.concat(data)
+      hasMore = data.length === pageSize
+      page++
+    } else {
+      hasMore = false
+    }
+  }
+  
+  return allPosts
+}
+
+async function fetchAllPlaces(): Promise<Place[]> {
+  const pageSize = 1000
+  let allPlaces: Place[] = []
+  let page = 0
+  let hasMore = true
+
+  while (hasMore) {
+    const { data, error } = await supabase
+      .from('places')
+      .select('*')
+      .range(page * pageSize, (page + 1) * pageSize - 1)
+    
+    if (error) {
+      console.error('Error fetching places:', error)
+      return allPlaces
+    }
+    
+    if (data) {
+      allPlaces = allPlaces.concat(data)
+      hasMore = data.length === pageSize
+      page++
+    } else {
+      hasMore = false
+    }
+  }
+  
+  return allPlaces
+}
+
+async function fetchAllCities(): Promise<City[]> {
   const { data, error } = await supabase
-    .from('vw_blogs')
-    .select('*')
+    .from('cities')
+    .select('slug, updated_at')
   
   if (error) {
-    console.error('Error fetching blog posts:', error)
+    console.error('Error fetching cities:', error)
     return []
   }
   
-  return data
+  return data || []
 }
 
-async function fetchPlaces(): Promise<Place[]> {
+async function fetchAllCategories(): Promise<Category[]> {
   const { data, error } = await supabase
-    .from('places')
-    .select('*')
+    .from('categories')
+    .select('slug, updated_at')
   
   if (error) {
-    console.error('Error fetching places:', error)
+    console.error('Error fetching categories:', error)
     return []
   }
   
-  return data
+  return data || []
 }
 
-async function fetchExploreRoutes(): Promise<ExploreRoute[]> {
-  const { data, error } = await supabase
-    .from('vw_places')
-    .select('category_slug, city_slug')
-
-  if (error) {
-    console.error('Error fetching explore routes:', error)
-    return []
-  }
-
-  const countMap = data.reduce((acc, item) => {
-    const key = `${item.category_slug}|${item.city_slug}`
-    acc[key] = (acc[key] || 0) + 1
-    return acc
-  }, {} as Record<string, number>)
-
-  return Object.entries(countMap).map(([key, count]) => {
-    const [category_slug, city_slug] = key.split('|')
-    return { category_slug, city_slug, place_count: count }
-  })
-}
