@@ -26,13 +26,13 @@ export default function ResponsiveNavbar() {
   const AuthButtons = () => {
     if (user) {
       return (
-        <Button variant="default" onClick={() => window.location.href = "/painel"}>Painel</Button>
+        <Button variant="default" onClick={() => window.location.href = "/painel"}>Dashboard</Button>
       )
     }
     return (
       <>
-        <Button variant="outline" onClick={() => window.location.href = "/entrar"}>Entrar</Button>
-        <Button variant="default" onClick={() => window.location.href = "/criar-conta"}>Criar conta</Button>
+        <Button variant="outline" onClick={() => window.location.href = "/sign-in"}>Sign in</Button>
+        <Button variant="default" onClick={() => window.location.href = "/sign-up"}>Sign up</Button>
       </>
     )
   }
@@ -48,11 +48,11 @@ export default function ResponsiveNavbar() {
             </div>
           </Link>
           <nav className="flex flex-wrap justify-center gap-4 text-sm">
-            <Link href="/explorar" className="text-gray-800 hover:text-green transition-colors">
-              Explorar
+            <Link href="/explore" className="text-gray-800 hover:text-green transition-colors">
+              Explore
             </Link>
           </nav>
-          <SearchInput placeholder="Procure por lugares" className="max-w-md" />
+          <SearchInput placeholder="Search for places" className="max-w-md" />
           <nav className="flex flex-wrap justify-center gap-4 text-sm">
             <Link href="/blog" className="text-gray-800 hover:text-green transition-colors">
               Blog
@@ -88,8 +88,8 @@ export default function ResponsiveNavbar() {
             <div className="pt-2 pb-4 w-full bg-white">
               <nav className="flex flex-col w-full">
                 <hr className="border-gray-200" />
-                <Link href="/explorar" className="text-gray-500 hover:green transition-colors py-3 text-center">
-                  Explorar
+                <Link href="/explore" className="text-gray-500 hover:green transition-colors py-3 text-center">
+                  Explore
                 </Link>
                 <hr className="border-gray-200" />
                 <Link href="/blog" className="text-gray-500 hover:text-green transition-colors py-3 text-center">
@@ -99,11 +99,11 @@ export default function ResponsiveNavbar() {
               </nav>
               <div className="mt-4 space-y-2 px-4">
                 {user ? (
-                  <Button variant="default" className="w-full" onClick={() => window.location.href = "/painel"}>Painel</Button>
+                  <Button variant="default" className="w-full" onClick={() => window.location.href = "/painel"}>Dashboard</Button>
                 ) : (
                   <>
-                    <Button variant="outline" className="w-full" onClick={() => window.location.href = "/entrar"}>Entrar</Button>
-                    <Button variant="default" className="w-full" onClick={() => window.location.href = "/criar-conta"}>Criar conta</Button>
+                    <Button variant="outline" className="w-full" onClick={() => window.location.href = "/sign-in"}>Sign in</Button>
+                    <Button variant="default" className="w-full" onClick={() => window.location.href = "/sign-up"}>Sign up</Button>
                   </>
                 )}
               </div>

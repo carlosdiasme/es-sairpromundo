@@ -27,11 +27,11 @@ export function ReviewDialog({ placeId, isOpen, onOpenChange }: ReviewDialogProp
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!user) {
-      console.error('Usuário não está logado');
+      console.error('User is not logged in');
       toast({
         variant: "destructive",
-        title: "Erro",
-        description: "Você precisa estar logado para enviar uma avaliação.",
+        title: "Error",
+        description: "You must be logged in to submit a review.",
       })
       return;
     }
@@ -46,16 +46,16 @@ export function ReviewDialog({ placeId, isOpen, onOpenChange }: ReviewDialogProp
       feedback
     };
 
-    console.log('Tentando enviar review:', reviewData);
+    console.log('Trying to submit review:', reviewData);
 
     try {
       const result = await postPlaceReview(reviewData)
-      console.log('Resultado da submissão:', result);
+      console.log('Submission result:', result);
       
       if (result.success) {
         toast({
-          title: "Avaliação enviada",
-          description: "Sua avaliação foi enviada com sucesso. Obrigado!",
+          title: "Review sent",
+          description: "Your review has been sent successfully. Thank you!",
         })
         onOpenChange(false)
         setRating(0)
@@ -83,9 +83,9 @@ export function ReviewDialog({ placeId, isOpen, onOpenChange }: ReviewDialogProp
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Avalie este lugar</DialogTitle>
+          <DialogTitle>Rate this place</DialogTitle>
           <DialogDescription>
-            Compartilhe sua experiência sobre este lugar.
+          Share your experience about this place.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -101,11 +101,11 @@ export function ReviewDialog({ placeId, isOpen, onOpenChange }: ReviewDialogProp
           {['good', 'bad', 'feedback'].map((field) => (
             <div key={field}>
               <label htmlFor={field} className="block text-sm font-medium text-gray-700 mb-1">
-                {field === 'good' ? 'O que gostou?' : field === 'bad' ? 'O que não gostou?' : 'O que indica à gerência?'}
+                {field === 'good' ? 'What did you like?' : field === 'bad' ? 'What did not you like?' : 'What does it indicate to management?'}
               </label>
               <Textarea
                 id={field}
-                placeholder={`${field === 'good' ? 'O que gostou?' : field === 'bad' ? 'O que não gostou?' : 'O que indica à gerência?'} (8-200 palavras)`}
+                placeholder={`${field === 'good' ? 'What did you like?' : field === 'bad' ? 'What did not you like?' : 'What does it indicate to management?'} (8-200 words)`}
                 value={eval(field)}
                 onChange={(e) => {
                   const value = e.target.value
@@ -118,7 +118,7 @@ export function ReviewDialog({ placeId, isOpen, onOpenChange }: ReviewDialogProp
                 maxLength={200}
               />
               <p className="text-xs text-gray-500 mt-1">
-                {eval(field).length}/200 caracteres
+                {eval(field).length}/200 characters
               </p>
             </div>
           ))}
@@ -126,7 +126,7 @@ export function ReviewDialog({ placeId, isOpen, onOpenChange }: ReviewDialogProp
             type="submit"
             disabled={isSubmitting || !isFormValid}
           >
-            {isSubmitting ? "Enviando..." : "Enviar avaliação"}
+            {isSubmitting ? "Sending..." : "Submit review"}
           </Button>
         </form>
       </DialogContent>

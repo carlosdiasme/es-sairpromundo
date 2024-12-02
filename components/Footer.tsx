@@ -13,14 +13,14 @@ export default function Footer() {
 
           {/* Part 2: Links */}
           <nav className="flex flex-wrap justify-center gap-4 text-sm">
-            <Link href="/sobre" className="text-gray-500 hover:text-green transition-colors">
-              Sobre
+            <Link href="/about" className="text-gray-500 hover:text-green transition-colors">
+              About
             </Link>
-            <Link href="/privacidade" className="text-gray-500 hover:text-green transition-colors">
-              Privacidade
+            <Link href="/privacy" className="text-gray-500 hover:text-green transition-colors">
+              Privacy
             </Link>
-            <Link href="/termos" className="text-gray-500 hover:text-green transition-colors">
-              Termos
+            <Link href="/terms" className="text-gray-500 hover:text-green transition-colors">
+              Terms
             </Link>
             <Link href="https://mail.google.com" target="_blank" className="text-gray-500 hover:text-green transition-colors">
               sairpromundo@gmail.com

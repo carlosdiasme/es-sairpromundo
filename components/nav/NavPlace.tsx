@@ -93,13 +93,13 @@ export default function NavPlace({ cityName, citySlug, categoryName, categorySlu
             <Dialog>
               <DialogTrigger asChild>
                 <Button variant="ghost" className="flex items-center gap-2 text-xs text-muted-foreground hover:text-primary p-0 h-auto hover:bg-background">
-                  <span>Categorias</span>
+                  <span>Categories</span>
                   <ChevronDown className="h-3 w-3" />
                 </Button>
               </DialogTrigger>
               <DialogContent>
                 <DialogHeader>
-                  <DialogTitle>Categorias em {cityName}</DialogTitle>
+                  <DialogTitle>Categories in {cityName}</DialogTitle>
                 </DialogHeader>
                 <Input
                   placeholder="Filtrar categorias..."
@@ -130,13 +130,13 @@ export default function NavPlace({ cityName, citySlug, categoryName, categorySlu
             <Dialog>
               <DialogTrigger asChild>
                 <Button variant="ghost" className="flex items-center gap-2 text-xs text-muted-foreground hover:text-primary p-0 h-auto hover:bg-background sr-only">
-                  <span>Especialidades</span>
+                  <span>Specialties</span>
                   <ChevronDown className="h-3 w-3" />
                 </Button>
               </DialogTrigger>
               <DialogContent>
                 <DialogHeader>
-                  <DialogTitle>Especialidades em {cityName}</DialogTitle>
+                  <DialogTitle>Specialties in {cityName}</DialogTitle>
                 </DialogHeader>
                 <Input
                   placeholder="Filtrar especialidades..."
@@ -167,13 +167,13 @@ export default function NavPlace({ cityName, citySlug, categoryName, categorySlu
             <Dialog>
               <DialogTrigger asChild>
                 <Button variant="ghost" className="flex items-center gap-2 text-xs text-muted-foreground hover:text-primary p-0 h-auto hover:bg-background sr-only">
-                  <span>Atividades</span>
+                  <span>Activities</span>
                   <ChevronDown className="h-3 w-3" />
                 </Button>
               </DialogTrigger>
               <DialogContent>
                 <DialogHeader>
-                  <DialogTitle>Atividades em {cityName}</DialogTitle>
+                  <DialogTitle>Activities in {cityName}</DialogTitle>
                 </DialogHeader>
                 <Input
                   placeholder="Filtrar atividades..."

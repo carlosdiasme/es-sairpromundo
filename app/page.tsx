@@ -52,13 +52,13 @@ export default function HomePage() {
       </div>
       {/* Hero Section */}
       <section className="text-center space-y-6">
-        <h1 className="text-4xl font-regular tracking-tighter pt-8 sm:text-5xl">Descubra lugares incríveis</h1>
+        <h1 className="text-4xl font-regular tracking-tighter pt-8 sm:text-5xl">Discover amazing places</h1>
         <p className="text-sm text-muted-foreground max-w-[600px] mx-auto">
-          Explore destinos únicos e crie memórias inesquecíveis com o Sair pro Mundo.
+          Explore unique destinations and create unforgettable memories with Sair pro Mundo.
         </p>
         <Button size="lg" className="bg-green hover:bg-darkgreen rounded-full" asChild>
-          <Link href="/explorar">
-            Comece a explorar <ArrowRight className="ml-2 h-4 w-4" />
+          <Link href="/explore">
+            Start exploring <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
         </Button>
       </section>
@@ -88,13 +88,13 @@ export default function HomePage() {
 
       {/* Call to Action */}
       <section className="text-center space-y-6">
-        <h2 className="text-2xl font-regular tracking-tighter">Pronto para sua próxima aventura?</h2>
+        <h2 className="text-2xl font-regular tracking-tighter">Ready for your next adventure?</h2>
         <p className="text-sm text-muted-foreground max-w-[600px] mx-auto">
-          Junte-se a milhares de viajantes e comece a explorar o mundo.
+          Join thousands of travelers and start exploring the world.
         </p>
         <Button size="lg" variant="outline" className="font-regular rounded-full" asChild>
-          <Link href="/explorar">
-            Ver todos os lugares <ArrowRight className="ml-2 h-4 w-4" />
+          <Link href="/explore">
+            See all places <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
         </Button>
       </section>
@@ -103,12 +103,12 @@ export default function HomePage() {
           {
             "@context": "https://schema.org",
             "@type": "WebSite",
-            "url": "https://sairpromundo.com/",
+            "url": "https://en.sairpromundo.com/",
             "potentialAction": {
               "@type": "SearchAction",
               "target": {
                 "@type": "EntryPoint",
-                "urlTemplate": "https://sairpromundo.com/search?q={search_term_string}"
+                "urlTemplate": "https://en.sairpromundo.com/search?q={search_term_string}"
               },
               "query-input": "required name=search_term_string"
             }
@@ -118,3 +118,4 @@ export default function HomePage() {
     </div>
   )
 }
+

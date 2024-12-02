@@ -36,18 +36,18 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
   }
 
   return {
-    title: `Conheça e avalie ${place.name}, em ${place.city_complete}`,
-    description: place.about ? place.about.slice(0, 160) : `Explore ${place.name} com Sair pro Mundo.`,
+    title: `Discover and rate ${place.name}, in ${place.city_complete}`,
+    description: place.about ? place.about.slice(0, 160) : `Explore ${place.name} with Sair pro Mundo.`,
     openGraph: {
-      title: `Conheça e avalie ${place.name}, em ${place.city_complete}`,
-      description: place.about ? place.about.slice(0, 160) : `Explore ${place.name} com Sair pro Mundo.`,
-      images: [place.image_1 || 'https://www.sairpromundo.com/default-place-image.jpg'],
+      title: `Discover and rate ${place.name}, in ${place.city_complete}`,
+      description: place.about ? place.about.slice(0, 160) : `Explore ${place.name} with Sair pro Mundo.`,
+      images: [place.image_1 || 'https://en.sairpromundo.com/default-place-image.jpg'],
     },
     twitter: {
       card: 'summary_large_image',
-      title: `Conheça e avalie ${place.name}, em ${place.city_complete}`,
-      description: place.about ? place.about.slice(0, 160) : `Explore ${place.name} com Sair pro Mundo.`,
-      images: [place.image_1 || 'https://www.sairpromundo.com/default-place-image.jpg'],
+      title: `Discover and rate ${place.name}, in ${place.city_complete}`,
+      description: place.about ? place.about.slice(0, 160) : `Explore ${place.name} with Sair pro Mundo.`,
+      images: [place.image_1 || 'https://en.sairpromundo.com/default-place-image.jpg'],
     },
   }
 }

@@ -153,19 +153,19 @@ export default function PlacePage({ params }: PlacePageProps) {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://www.sairpromundo.com"
+        "item": "https://en.sairpromundo.com"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Places",
-        "item": "https://www.sairpromundo.com/places"
+        "item": "https://en.sairpromundo.com/places"
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": place.name,
-        "item": `https://www.sairpromundo.com/${place.slug}`
+        "item": `https://en.sairpromundo.com/${place.slug}`
       }
     ]
   }
@@ -174,7 +174,7 @@ export default function PlacePage({ params }: PlacePageProps) {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": place.name,
-    "image": place.image || 'https://www.sairpromundo.com/default-place-image.jpg',
+    "image": place.image || 'https://en.sairpromundo.com/default-place-image.jpg',
     "address": {
       "@type": "PostalAddress",
       "streetAddress": place.address || "Address not available",
@@ -188,7 +188,7 @@ export default function PlacePage({ params }: PlacePageProps) {
       "latitude": place.latitude || 0,
       "longitude": place.longitude || 0
     },
-    "url": `https://www.sairpromundo.com/${place.slug}`,
+    "url": `https://en.sairpromundo.com/${place.slug}`,
     "telephone": place.phone || "Phone not available",
     "openingHoursSpecification": [
       {
@@ -207,7 +207,7 @@ export default function PlacePage({ params }: PlacePageProps) {
       }
     ],
     "priceRange": place.priceRange || "$$",
-    "description": place.description || `Explore ${place.name} com Sair pro Mundo`
+    "description": place.description || `Explore ${place.name} with Sair pro Mundo`
   }
 
   return (

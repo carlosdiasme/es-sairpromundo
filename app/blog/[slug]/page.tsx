@@ -3,13 +3,13 @@ import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Metadata } from 'next'
-import { createClient } from '@supabase/supabase-js'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"
 import Script from 'next/script'
 import dynamic from 'next/dynamic'
 import { insertAdsInContent } from '@/lib/insertAds'
+import { getBlogPost } from '@/app/actions/vw_blogs'
 
 // Lazy load ad components
 const DisplayLeft = dynamic(() => import('@/components/ads/DisplayLeft'), {
@@ -32,34 +32,14 @@ const Multiplex = dynamic(() => import('@/components/ads/Multiplex'), {
   ssr: false
 })
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-
-const supabase = createClient(supabaseUrl, supabaseAnonKey)
-
 interface BlogPostPageProps {
   params: {
     slug: string
   }
 }
 
-async function getBlogPostData(slug: string) {
-  const { data, error } = await supabase
-    .from('vw_blogs')
-    .select('*')
-    .eq('slug', slug)
-    .single()
-
-  if (error) {
-    console.error('Error fetching blog post:', error)
-    return null
-  }
-
-  return data
-}
-
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
-  const post = await getBlogPostData(params.slug)
+  const post = await getBlogPost(params.slug)
 
   if (!post) {
     return {
@@ -71,13 +51,13 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 
   return {
     title: `${post.title}`,
-    description: post.excerpt || `${post.title} `,
+    description: post.content.substring(0, 160) || `${post.title}`,
     openGraph: {
       title: post.title,
-      description: post.excerpt || `${post.title}`,
+      description: post.content.substring(0, 160) || `${post.title}`,
       type: 'article',
       publishedTime: post.created_at,
-      authors: [post.user_name || 'Redação'],
+      authors: [post.user_name || 'Editorial Team'],
       images: [
         {
           url: post.image || defaultImage,
@@ -90,7 +70,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     twitter: {
       card: 'summary_large_image',
       title: post.title,
-      description: post.excerpt || `${post.title}`,
+      description: post.content.substring(0, 160) || `${post.title}`,
       images: [post.image || defaultImage],
     },
   }
@@ -117,14 +97,14 @@ function LoadingSkeleton() {
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = params
-  const post = await getBlogPostData(slug)
+  const post = await getBlogPost(slug)
 
   if (!post) {
     notFound()
   }
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('pt-BR', {
+    return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',
       day: 'numeric'
@@ -141,19 +121,19 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://www.sairpromundo.com"
+        "item": "https://en.sairpromundo.com"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Blog",
-        "item": "https://www.sairpromundo.com/blog"
+        "item": "https://en.sairpromundo.com/blog"
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": post.title,
-        "item": `https://www.sairpromundo.com/blog/${post.slug}`
+        "item": `https://en.sairpromundo.com/blog/${post.slug}`
       }
     ]
   }
@@ -169,21 +149,21 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     "dateModified": post.updated_at || post.created_at,
     "author": [{
       "@type": "Person",
-      "name": post.user_name || "Redação",
-      "url": post.user_linkedin || "https://www.sairpromundo.com/about"
+      "name": post.user_name || "Editorial Team",
+      "url": post.user_linkedin || "https://en.sairpromundo.com/about"
     }],
     "publisher": {
       "@type": "Organization",
       "name": "Sair pro Mundo",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://www.sairpromundo.com/logo.png"
+        "url": "https://en.sairpromundo.com/logo.png"
       }
     },
-    "description": post.excerpt || `Read ${post.title} on Sair pro Mundo Blog`,
+    "description": post.content.substring(0, 160) || `Read ${post.title} on Sair pro Mundo Blog`,
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://www.sairpromundo.com/blog/${post.slug}`
+      "@id": `https://en.sairpromundo.com/blog/${post.slug}`
     }
   }
 
@@ -206,7 +186,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <article className="container mx-auto px-4 py-8 max-w-3xl lg:w-4/6">
           <Link href="/blog">
             <Button variant="ghost" className="mb-16 font-normal text-sm">
-              ← Voltar para o Blog
+              ← Back to Blog
             </Button>
           </Link>
           
@@ -214,7 +194,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <h1 className="text-4xl sm:text-5xl font-regular mb-12 text-primary">{post.title}</h1>
             
             <div className="flex items-center text-sm text-muted-foreground mb-8">
-              <span>Por {post.user_name || 'Redação'}</span>
+              <span>By {post.user_name || 'Editorial Team'}</span>
               <span className="mx-2">•</span>
               <time dateTime={post.created_at}>{formatDate(post.created_at)}</time>
             </div>
@@ -231,7 +211,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               />
             </div>
 
-            {/* DisplayAdsHorizontal para mobile */}
+            {/* DisplayAdsHorizontal for mobile */}
             <div className="lg:hidden my-8">
               <Suspense fallback={<Skeleton className="h-[200px] w-full" />}>
                 <DisplayAdsHorizontal />
@@ -260,12 +240,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <Card className="mt-12 bg-lightgreen border-0">
               <CardContent className="flex items-center justify-between p-6">
                 <div>
-                  <h2 className="text-xl font-semibold mb-2">Sobre o autor</h2>
-                  <p className="text-muted-foreground">{post.user_name || 'Redação'}</p>
+                  <h2 className="text-xl font-semibold mb-2">About the author</h2>
+                  <p className="text-muted-foreground">{post.user_name || 'Editorial Team'}</p>
                 </div>
                 {post.user_linkedin && (
                   <Link href={post.user_linkedin} target="_blank" rel="noopener noreferrer">
-                    <Button variant="outline">Ver perfil no LinkedIn</Button>
+                    <Button variant="outline">View LinkedIn Profile</Button>
                   </Link>
                 )}
               </CardContent>
@@ -288,3 +268,4 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     </>
   )
 }
+

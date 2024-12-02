@@ -17,14 +17,14 @@ const dmSans = Sora({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.sairpromundo.com'),
+  metadataBase: new URL('https://en.sairpromundo.com'),
   title: {
     default: 'Sair pro Mundo',
-    template: '%s',
+    template: '%s | Sair pro Mundo',
   },
-  description: "Explore o mundo com dicas de viagem, roteiros e experiências únicas.",
-  keywords: ['viagem', 'turismo', 'dicas de viagem', 'roteiros', 'experiências'],
-  authors: [{ name: 'Equipe Sair pro Mundo' }],
+  description: "Explore the world with travel tips, itineraries, and unique experiences.",
+  keywords: ['travel', 'tourism', 'travel tips', 'itineraries', 'experiences'],
+  authors: [{ name: 'Sair pro Mundo Team' }],
   creator: 'Sair pro Mundo',
   publisher: 'Sair pro Mundo',
   formatDetection: {
@@ -38,14 +38,14 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    locale: 'pt_BR',
-    url: 'https://www.sairpromundo.com/',
+    locale: 'en_US',
+    url: 'https://en.sairpromundo.com/',
     siteName: 'Sair pro Mundo',
     title: 'Sair pro Mundo',
-    description: 'Para onde quer ir agora? Não importa o lugar, vá!',
+    description: 'Where do you want to go now? No matter the place, go!',
     images: [
       {
-        url: 'https://www.sairpromundo.com/og-image.jpg',
+        url: 'https://en.sairpromundo.com/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'Sair pro Mundo',
@@ -57,8 +57,8 @@ export const metadata: Metadata = {
     site: '@sairpromundo',
     creator: '@sairpromundo',
     title: 'Sair pro Mundo',
-    description: 'Para onde quer ir agora? Não importa o lugar, vá!',
-    images: ['https://www.sairpromundo.com/twitter-image.jpg'],
+    description: 'Where do you want to go now? No matter the place, go!',
+    images: ['https://en.sairpromundo.com/twitter-image.jpg'],
   },
   robots: {
     index: true,
@@ -79,14 +79,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className={dmSans.variable}>
+    <html lang="en" className={dmSans.variable}>
       <body className="font-sans antialiased">
         <AuthProvider>
-          <Suspense fallback={<div>Carregando cabeçalho...</div>}>
+          <Suspense fallback={<div className="sr-only">Loading header...</div>}>
             <Header />
           </Suspense>
           <main>{children}</main>
-          <Suspense fallback={<div>Carregando rodapé...</div>}>
+          <Suspense fallback={<div className="sr-only">Loading footer...</div>}>
             <Footer />
           </Suspense>
           <Suspense fallback={null}>
@@ -99,3 +99,4 @@ export default function RootLayout({
     </html>
   );
 }
+

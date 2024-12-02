@@ -145,14 +145,14 @@ export default function PlaceHeader({ place, activeTab, onTabChange }: PlaceHead
                   <span className="ml-1 text-foreground/60 text-xs">({ratingCount} avaliações)</span>
                 </>
               ) : (
-                <span className="text-foreground/60 text-xs">Sem avaliações</span>
+                <span className="text-foreground/60 text-xs">No reviews</span>
               )}
             </div>
           </div>
         </div>
         <div className="flex space-x-2 mt-4 sm:mt-0 pt-4">
           <Button variant="outline" className="flex-1 sm:flex-none" onClick={handleShareClick}>
-            Compartilhar
+            Share
           </Button>
           {loading ? (
             <Button disabled className="flex-1 sm:flex-none">Carregando...</Button>
@@ -162,7 +162,7 @@ export default function PlaceHeader({ place, activeTab, onTabChange }: PlaceHead
               onClick={handleReviewClick}
               disabled={hasUserReviewed}
             >
-              {hasUserReviewed ? "Avaliado" : "Avaliar"}
+              {hasUserReviewed ? "Rated" : "Rate"}
             </Button>
           ) : (
             <LoginRequired />

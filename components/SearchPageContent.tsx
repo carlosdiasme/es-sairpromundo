@@ -31,7 +31,7 @@ export default function SearchPageContent() {
 
   return (
     <div className="px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6 sr-only">Resultados da busca</h1>
+      <h1 className="text-3xl font-bold mb-6 sr-only">Search results</h1>
       <div className="mb-6">
         <SearchTabs />
       </div>

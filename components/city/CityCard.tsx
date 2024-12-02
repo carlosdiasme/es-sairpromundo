@@ -23,7 +23,7 @@ const CityCard: React.FC<CityCardProps> = ({ city }) => {
             />
           ) : (
             <div className="absolute inset-0 bg-lightgreen flex items-center justify-center">
-              <span className="text-muted-foreground">Sem imagem</span>
+              <span className="text-muted-foreground">No image</span>
             </div>
           )}
         </div>

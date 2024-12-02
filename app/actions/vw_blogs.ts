@@ -27,12 +27,12 @@ export interface BlogView {
   user_linkedin: string;
 }
 
-export async function Blog (page: number, itemsPerPage: number, tagSlug?: string): Promise<{ blogs: BlogView[], totalCount: number }> {
+export async function Blog(page: number, itemsPerPage: number, tagSlug?: string): Promise<{ blogs: BlogView[], totalCount: number }> {
   const start = (page - 1) * itemsPerPage;
   const end = start + itemsPerPage - 1;
 
   let query = supabase
-    .from('vw_blogs')
+    .from('vw_en_blogs')
     .select('*', { count: 'exact' })
     .order('created_at', { ascending: false })
     .range(start, end);
@@ -55,3 +55,19 @@ export async function Blog (page: number, itemsPerPage: number, tagSlug?: string
     totalCount: count ?? 0
   };
 }
+
+export async function getBlogPost(slug: string): Promise<BlogView | null> {
+  const { data, error } = await supabase
+    .from('vw_en_blogs')
+    .select('*')
+    .eq('slug', slug)
+    .single();
+
+  if (error) {
+    console.error('Error fetching blog post:', error);
+    return null;
+  }
+
+  return data;
+}
+

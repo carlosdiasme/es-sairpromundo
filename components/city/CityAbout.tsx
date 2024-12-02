@@ -8,7 +8,7 @@ interface CityAboutProps {
 export function CityAbout({ city }: CityAboutProps) {
   return (
     <div className="bg-lightgreen rounded-3xl p-8 mb-8 mt-16">
-      <h2 className="text-2xl font-regular mb-4">Sobre {city.complete}</h2>
+      <h2 className="text-2xl font-regular mb-4">About {city.complete}</h2>
       <div 
         className="prose prose-lg max-w-none
                    prose-headings:text-primary

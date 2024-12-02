@@ -29,16 +29,16 @@ export default function GeolocationButton() {
         // Here you would typically send the location to your server or update your app's state
         console.log(position.coords.latitude, position.coords.longitude)
         toast({
-          title: "Localização obtida com sucesso!",
-          description: "Agora podemos mostrar lugares próximos a você.",
+          title: "Location obtained successfully!",
+          description: "We can now show places near you.",
         })
       },
       () => {
         setIsLoading(false)
         setHasLocation(false)
         toast({
-          title: "Erro ao obter localização",
-          description: "Não foi possível acessar sua localização. Por favor, tente novamente.",
+          title: "Error obtaining location",
+          description: "We couldn't access your location. Please try again.",
           variant: "destructive",
         })
       },
@@ -66,7 +66,7 @@ export default function GeolocationButton() {
         size="icon"
         onClick={() => setIsOpen(true)}
         disabled={isLoading}
-        aria-label="Usar minha localização"
+        aria-label="Use my location"
       >
         {isLoading ? (
           <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-gray-900" />
@@ -77,16 +77,16 @@ export default function GeolocationButton() {
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Podemos saber sua localização?</DialogTitle>
+            <DialogTitle>Can we know your location?</DialogTitle>
             <DialogDescription>
-              Gostaríamos de usar sua localização para mostrar lugares próximos a você. 
-              Isso ajudará a personalizar sua experiência no Sair pro Mundo.
+              We&apos;d like to use your location to show places near you. 
+              This will help personalize your experience on Sair pro Mundo.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setIsOpen(false)}>Não, obrigado</Button>
+            <Button variant="outline" onClick={() => setIsOpen(false)}>No, thanks</Button>
             <Button onClick={handleAllowLocation}>
-              Permitir
+              Allow
             </Button>
           </DialogFooter>
         </DialogContent>
@@ -94,3 +94,4 @@ export default function GeolocationButton() {
     </>
   )
 }
+

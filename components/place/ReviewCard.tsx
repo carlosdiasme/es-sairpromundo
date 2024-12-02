@@ -7,9 +7,9 @@ import {
   AccordionTrigger 
 } from "@/components/ui/accordion"
 import dayjs from 'dayjs'
-import 'dayjs/locale/pt-br'
+import 'dayjs/locale/en'
 
-dayjs.locale('pt-br')
+dayjs.locale('en')
 
 interface ReviewCardProps {
   review: {
@@ -27,7 +27,7 @@ interface ReviewCardProps {
 
 export default function ReviewCard({ review }: ReviewCardProps) {
   const formatDate = (dateString: string) => {
-    return dayjs(dateString).format('D [de] MMMM [de] YYYY')
+    return dayjs(dateString).format('MMMM D, YYYY')
   }
 
   return (
@@ -56,7 +56,7 @@ export default function ReviewCard({ review }: ReviewCardProps) {
               <div className="flex items-center justify-between w-full">
                 <div className="flex items-center space-x-2">
                   <Smile className="h-4 w-4 text-foreground/60" />
-                  <span>O que gostou</span>
+                  <span>What did you like?</span>
                 </div>
               </div>
             </AccordionTrigger>
@@ -69,7 +69,7 @@ export default function ReviewCard({ review }: ReviewCardProps) {
               <div className="flex items-center justify-between w-full">
                 <div className="flex items-center space-x-2">
                   <Frown className="h-4 w-4 text-foreground/60" />
-                  <span>O que não gostou</span>
+                  <span>What you didn&apos;t like</span>
                 </div>
               </div>
             </AccordionTrigger>
@@ -82,7 +82,7 @@ export default function ReviewCard({ review }: ReviewCardProps) {
               <div className="flex items-center justify-between w-full">
                 <div className="flex items-center space-x-2">
                   <Info className="h-4 w-4 text-foreground/60" />
-                  <span>Feedback para o local</span>
+                  <span>Feedback for the location</span>
                 </div>
               </div>
             </AccordionTrigger>
@@ -95,3 +95,4 @@ export default function ReviewCard({ review }: ReviewCardProps) {
     </Card>
   )
 }
+

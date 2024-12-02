@@ -9,7 +9,7 @@ async function logout() {
   'use server'
   const supabase = createServerComponentClient({ cookies })
   await supabase.auth.signOut()
-  redirect('/entrar')
+  redirect('/login')
 }
 
 async function ensureUserRecord(userId: string, email: string) {
@@ -21,13 +21,13 @@ async function ensureUserRecord(userId: string, email: string) {
     .select()
 
   if (error) {
-    console.error('Erro ao criar/atualizar registro de usuário:', error)
+    console.error('Error creating/updating user record:', error)
   } else {
-    console.log('Registro de usuário criado/atualizado com sucesso:', data)
+    console.log('User record created/updated successfully:', data)
   }
 }
 
-export default async function PainelPage() {
+export default async function DashboardPage() {
   const supabase = createServerComponentClient({ cookies })
   const { data: { session } } = await supabase.auth.getSession()
 
@@ -38,10 +38,10 @@ export default async function PainelPage() {
   return (
     <div className="px-4 py-10 h-screen">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">Painel de controle</h1>
+        <h1 className="text-3xl font-bold">Dashboard</h1>
         <form action={logout}>
           <Button variant="outline" type="submit">
-            <LogOut className="mr-2 h-4 w-4" /> Sair
+            <LogOut className="mr-2 h-4 w-4" /> Log out
           </Button>
         </form>
       </div>
@@ -50,14 +50,14 @@ export default async function PainelPage() {
           <CardHeader>
             <CardTitle className="flex items-center">
               <UserCircle className="mr-2" />
-              Conta pessoal
+              Personal Account
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p>Gerencie suas informações pessoais e preferências de conta.</p>
+            <p>Manage your personal information and account preferences.</p>
           </CardContent>
           <CardFooter>
-            <Button>Gerenciar conta</Button>
+            <Button>Manage Account</Button>
           </CardFooter>
         </Card>
 
@@ -65,14 +65,14 @@ export default async function PainelPage() {
           <CardHeader>
             <CardTitle className="flex items-center">
               <MapPin className="mr-2" />
-              Gerenciamento de locais
+              Location Management
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p>Adicione, edite ou remova locais que você gerencia. Em breve.</p>
+            <p>Add, edit, or remove locations you manage. Coming soon.</p>
           </CardContent>
           <CardFooter>
-            <Button variant="outline">Gerenciar locais</Button>
+            <Button variant="outline">Manage Locations</Button>
           </CardFooter>
         </Card>
 
@@ -80,17 +80,18 @@ export default async function PainelPage() {
           <CardHeader>
             <CardTitle className="flex items-center">
               <Calendar className="mr-2" />
-              Divulgação de eventos
+              Event Promotion
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p>Crie e gerencie eventos para promover seus locais. Em breve.</p>
+            <p>Create and manage events to promote your locations. Coming soon.</p>
           </CardContent>
           <CardFooter>
-            <Button variant="outline">Gerenciar eventos</Button>
+            <Button variant="outline">Manage Events</Button>
           </CardFooter>
         </Card>
       </div>
     </div>
   )
 }
+

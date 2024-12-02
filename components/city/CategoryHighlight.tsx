@@ -30,7 +30,7 @@ export function ExploreCityHighlight({ place }: ExploreCityHighlightProps) {
             {place.logo ? (
               <Image
                 src={place.logo}
-                alt={`Logo do lugar ${place.name}`}
+                alt={`${place.name}`}
                 width={64}
                 height={64}
                 className="rounded-2xl"
@@ -52,7 +52,7 @@ export function ExploreCityHighlight({ place }: ExploreCityHighlightProps) {
           <Button variant="outline" asChild className='border-0 bg-green text-white'>
             <Link href={`/${place.slug}`}>
 
-              Saiba mais
+            See more
             </Link>
           </Button>
           <Button variant="outline" asChild className='border-0 bg-green/10 ' >

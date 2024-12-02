@@ -50,11 +50,11 @@ export function ReviewList({ placeId, initialReviews, totalReviews }: ReviewList
         setReviews(result.data)
         setCurrentPage(page)
       } else {
-        setError('Não foi possível carregar as avaliações.')
+        setError('Unable to load reviews.')
       }
     } catch (error) {
       console.error('Error fetching reviews:', error)
-      setError('Ocorreu um erro ao carregar as avaliações.')
+      setError('There was an error loading reviews.')
     } finally {
       setIsLoading(false)
     }
@@ -91,7 +91,7 @@ export function ReviewList({ placeId, initialReviews, totalReviews }: ReviewList
       </h2>
 
       {isLoading ? (
-        <p>Carregando avaliações...</p>
+        <p>Loading reviews...</p>
       ) : error ? (
         <p className="text-red-500">{error}</p>
       ) : (

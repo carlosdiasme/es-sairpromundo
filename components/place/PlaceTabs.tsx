@@ -9,8 +9,8 @@ interface PlaceTabsProps {
 
 export default function PlaceTabs({ activeTab, onTabChange }: PlaceTabsProps) {
   const tabs = [
-    { name: 'Sobre', id: 'about' },
-    { name: 'Avaliações', id: 'reviews' },
+    { name: 'About', id: 'about' },
+    { name: 'Reviews', id: 'reviews' },
   ]
 
   return (

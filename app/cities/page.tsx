@@ -34,8 +34,8 @@ export default function CitiesPage() {
   }
 
   return (
-    <div className=" px-4 py-8">
-      <h1 className="text-4xl font-regular mb-8">Explore as Cidades</h1>
+    <div className="px-4 py-8">
+      <h1 className="text-4xl font-regular mb-8">Explore Cities</h1>
       <CityList
         cities={cities}
         currentPage={currentPage}

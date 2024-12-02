@@ -26,18 +26,18 @@ export function ExploreCityDetails({ place, placesCount }: ExploreCityDetailsPro
       <div className="flex flex-col lg:flex-row lg:space-x-8 p-4 sm:p-16">
         <div className="lg:w-1/2 mb-8 lg:mb-0 p-4 mr-8 ">
           <h1 className="text-4xl text-white font-normal mb-12 leading-snug">
-            Descubra {place.category_plural} em {place.city_complete}
+          Discover {place.category_plural} in {place.city_complete}
           </h1>
           <p className="text-base text-white/60 mb-6">{place.category_description}</p>
           <p className="text-md text-white/60">
-            Encontramos {placesCount} {placesCount === 1 ? 'lugar' : 'lugares'}
+          We found {placesCount} {placesCount === 1 ? 'place' : 'places'}
           </p>
         </div>
         <div className="flex lg:w-1/2 space-x-4">
           <div className="w-1/2 relative aspect-[3/4]">
             <Image
               src={categoryImage}
-              alt={`Imagem de ${place.category_plural}`}
+              alt={`Image of ${place.category_plural}`}
               fill
               sizes="(max-width: 768px) 50vw, 33vw"
               className="object-cover rounded-full "
@@ -47,7 +47,7 @@ export function ExploreCityDetails({ place, placesCount }: ExploreCityDetailsPro
           <div className="w-1/2 relative aspect-[3/4]">
             <Image
               src={cityImage}
-              alt={`Imagem de ${place.city_complete}`}
+              alt={`Image of ${place.city_complete}`}
               fill
               sizes="(max-width: 768px) 50vw, 33vw"
               className="object-cover rounded-full"
