@@ -7,7 +7,7 @@ import Link from 'next/link'
 import SearchInput from './SearchInput'
 import { Button } from '@/components/ui/button'
 import { Bars2Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import GeolocationButton from './GeolocationButton'
+import GeolocationButton from './LanguageSelector'
 import { useAuth } from '@/contexts/AuthContext'
 
 export default function ResponsiveNavbar() {
@@ -72,7 +72,7 @@ export default function ResponsiveNavbar() {
                 <Icon />
               </div>
             </Link>
-            <SearchInput placeholder="Procure por lugares" className="flex-1 max-w-[240px]" />
+            <SearchInput placeholder="Search for places" className="flex-1 max-w-[240px]" />
             <GeolocationButton />
             <button onClick={toggleMenu} className="p-2 ml-4" aria-label={isOpen ? "Close menu" : "Open menu"}>
               {isOpen ? (
