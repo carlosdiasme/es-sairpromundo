@@ -6,14 +6,14 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '/admin/', '/dashboard', '/dashboard/*'],
+        disallow: ['/api/', '/admin/', '/panel', '/panel/*'],
       },
     ],
     sitemap: [
-      'https://en.sairpromundo.com/sitemap.xml',
-      'https://en.sairpromundo.com/sitemap-places.xml',
-      'https://en.sairpromundo.com/sitemap-blogs.xml',
+      'https://es.sairpromundo.com/sitemap.xml',
+      'https://es.sairpromundo.com/sitemap-places.xml',
+      'https://es.sairpromundo.com/sitemap-blogs.xml',
     ],
-    host: 'https://en.sairpromundo.com',
+    host: 'https://es.sairpromundo.com',
   }
 }
