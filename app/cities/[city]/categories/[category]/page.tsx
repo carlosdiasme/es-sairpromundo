@@ -17,25 +17,25 @@ const ExploreCityRest = dynamic(() => import('@/components/city/CategoryRest').t
 
 interface PageProps {
   params: {
-    categoria: string
-    cidade: string
+    category: string
+    city: string
   }
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { categoria, cidade } = params
-  const { places } = await explore(categoria, cidade, 1, 1)
+  const { category, city } = params
+  const { places } = await explore(category, city, 1, 1)
   
   if (places.length === 0) {
     return {
       title: 'Category not found',
-      description: `Unable to find information for ${categoria} in ${cidade}.`,
+      description: `Unable to find information for ${category} in ${city}.`,
     }
   }
 
   const placeName = places[0]?.name || ''
-  const categoryPlural = places[0]?.category_plural || categoria
-  const cityComplete = places[0]?.city_complete || cidade
+  const categoryPlural = places[0]?.category_plural || category
+  const cityComplete = places[0]?.city_complete || city
 
   return {
     title: `Discover ${categoryPlural} in ${cityComplete}, with reviews`,
@@ -49,14 +49,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function Page({ params }: PageProps) {
-  const { categoria, cidade } = params
-  const { places, totalCount } = await explore(categoria, cidade)
+  const { category, city } = params
+  const { places, totalCount } = await explore(category, city)
 
   if (places.length === 0) {
     return (
       <main className="px-4 py-8 container mx-auto">
         <h1 className="text-3xl font-bold mb-4">Category not found</h1>
-        <p className="mb-4">Unable to find information for {categoria} in {cidade}.</p>
+        <p className="mb-4">Unable to find information for {category} in {city}.</p>
         <p className="mb-4">This may happen for the following reasons:</p>
         <ul className="list-disc list-inside mb-4">
           <li>The category does not exist in our database</li>
@@ -100,7 +100,7 @@ export default async function Page({ params }: PageProps) {
         "@type": "ListItem",
         "position": 3,
         "name": highlightedPlace.city_complete,
-        "item": `https://en.sairpromundo.com/explore/${categoria}/${cidade}`
+        "item": `https://en.sairpromundo.com/cities/${city}/categories/${category}`
       }
     ]
   }
