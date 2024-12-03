@@ -19,23 +19,23 @@ export async function generateMetadata({ params }: CityPageProps): Promise<Metad
 
   if (!city) {
     return {
-      title: 'City not found',
+      title: 'Ciudad no encontrada',
     }
   }
 
   return {
-    title: `What to do in ${city.complete}? Discover places and reviews`,
-    description: city.description || `Explore ${city.name} with Sair pro Mundo.`,
+    title: `¿Qué hacer en ${city.complete}? Descubre lugares y reseñas`,
+    description: city.description || `Explora ${city.name} con Sair pro Mundo.`,
     openGraph: {
-      title: `What to do in ${city.complete}? Discover places and reviews`,
-      description: city.description || `Explore ${city.name} with Sair pro Mundo.`,
-      images: [city.image_1 || '/default-city-image.jpg'],
+      title: `¿Qué hacer en ${city.complete}? Descubre lugares y reseñas`,
+      description: city.description || `Explora ${city.name} con Sair pro Mundo.`,
+      images: [city.image_1 || '/imagen-ciudad-predeterminada.jpg'],
     },
     twitter: {
       card: 'summary_large_image',
-      title: `What to do in ${city.complete}? Discover places and reviews`,
-      description: city.description || `Explore ${city.name} with Sair pro Mundo.`,
-      images: [city.image_1 || '/default-city-image.jpg'],
+      title: `¿Qué hacer en ${city.complete}? Descubre lugares y reseñas`,
+      description: city.description || `Explora ${city.name} con Sair pro Mundo.`,
+      images: [city.image_1 || '/imagen-ciudad-predeterminada.jpg'],
     },
   }
 }
@@ -66,7 +66,7 @@ export default async function CityPage({ params }: CityPageProps) {
         image_4={city.image_4}
       />
       <div className="px-4 py-8">
-        <h2 className="text-xl font-semibold mb-6">By category</h2>
+        <h2 className="text-xl font-semibold mb-6">Por categoría</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           {mainCategories.map((category) => (
             <CategoryCard 

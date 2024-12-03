@@ -10,7 +10,7 @@ export function CityHeader({ cityName, logo }: CityHeaderProps) {
     <div className="relative w-full bg-background px-6 py-12">
       <div className="container flex flex-col-reverse items-center justify-between gap-6 md:flex-row md:items-center">
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-regular tracking-tight text-foreground text-center md:text-left">
-        What to do in {cityName}?
+        ¿Qué hacer en {cityName}?
         </h1>
         <div className="relative aspect-square w-32 sm:w-40 md:w-48 overflow-hidden rounded-lg">
           <Image

@@ -51,19 +51,16 @@ export function ExploreCityHighlight({ place }: ExploreCityHighlightProps) {
         <div className="mt-8 flex space-x-2 ">
           <Button variant="outline" asChild className='border-0 bg-green text-white'>
             <Link href={`/${place.slug}`}>
-
-            See more
+              Ver más
             </Link>
           </Button>
           <Button variant="outline" asChild className='border-0 bg-green/10 ' >
             <a href={place.google_maps} target="_blank" rel="noopener noreferrer">
-
               Google Maps
             </a>
           </Button>
           <Button variant="outline" asChild className='border-0 bg-green/10 '>
             <a href={`https://www.instagram.com/${place.instagram}`} target="_blank" rel="noopener noreferrer">
-
               Instagram
             </a>
           </Button>
@@ -75,3 +72,4 @@ export function ExploreCityHighlight({ place }: ExploreCityHighlightProps) {
     </Card>
   )
 }
+

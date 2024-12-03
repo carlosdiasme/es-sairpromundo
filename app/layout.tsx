@@ -17,14 +17,14 @@ const dmSans = Sora({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://en.sairpromundo.com'),
+  metadataBase: new URL('https://es.sairpromundo.com'),
   title: {
-    default: 'Sair pro Mundo | Discover amazing places',
+    default: 'Sair pro Mundo | Descubre lugares increíbles',
     template: '%s | Sair pro Mundo',
   },
-  description: "Explore the world with travel tips, itineraries, and unique experiences.",
-  keywords: ['travel', 'tourism', 'travel tips', 'itineraries', 'experiences'],
-  authors: [{ name: 'Sair pro Mundo Team' }],
+  description: "Explora el mundo con consejos de viaje, itinerarios y experiencias únicas.",
+  keywords: ['viaje', 'turismo', 'consejos de viaje', 'itinerarios', 'experiencias'],
+  authors: [{ name: 'Equipo de Sair pro Mundo' }],
   creator: 'Sair pro Mundo',
   publisher: 'Sair pro Mundo',
   formatDetection: {
@@ -38,14 +38,14 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    locale: 'en_US',
-    url: 'https://en.sairpromundo.com/',
+    locale: 'es_ES',
+    url: 'https://es.sairpromundo.com/',
     siteName: 'Sair pro Mundo',
     title: 'Sair pro Mundo',
-    description: 'Where do you want to go now? No matter the place, go!',
+    description: '¿A dónde quieres ir ahora? No importa el lugar, ¡ve!',
     images: [
       {
-        url: 'https://en.sairpromundo.com/og-image.jpg',
+        url: 'https://es.sairpromundo.com/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'Sair pro Mundo',
@@ -57,8 +57,8 @@ export const metadata: Metadata = {
     site: '@sairpromundo',
     creator: '@sairpromundo',
     title: 'Sair pro Mundo',
-    description: 'Where do you want to go now? No matter the place, go!',
-    images: ['https://en.sairpromundo.com/twitter-image.jpg'],
+    description: '¿A dónde quieres ir ahora? No importa el lugar, ¡ve!',
+    images: ['https://es.sairpromundo.com/twitter-image.jpg'],
   },
   robots: {
     index: true,
@@ -79,14 +79,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={dmSans.variable}>
+    <html lang="es" className={dmSans.variable}>
       <body className="font-sans antialiased">
         <AuthProvider>
-          <Suspense fallback={<div className="sr-only">Loading header...</div>}>
+          <Suspense fallback={<div className="sr-only">Cargando encabezado...</div>}>
             <Header />
           </Suspense>
           <main>{children}</main>
-          <Suspense fallback={<div className="sr-only">Loading footer...</div>}>
+          <Suspense fallback={<div className="sr-only">Cargando pie de página...</div>}>
             <Footer />
           </Suspense>
           <Suspense fallback={null}>

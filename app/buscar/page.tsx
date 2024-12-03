@@ -1,10 +1,11 @@
 import React, { Suspense } from 'react'
 import SearchPageContent from '@/components/SearchPageContent'
 
-export default function SearchPage() {
+export default function PaginaBusqueda() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<div>Cargando...</div>}>
       <SearchPageContent />
     </Suspense>
   )
 }
+

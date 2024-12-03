@@ -4,8 +4,7 @@ import React from 'react'
 import { useSearchParams } from 'next/navigation'
 
 const tabs = [
-  { name: 'Places', value: 'lugares' },
-
+  { name: 'Lugares', value: 'lugares' },
 ]
 
 export default function SearchTabs() {
@@ -39,3 +38,4 @@ export default function SearchTabs() {
     </div>
   )
 }
+

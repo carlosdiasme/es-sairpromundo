@@ -16,7 +16,7 @@ export function ExploreCityMain({ places }: ExploreCityMainProps) {
           <Card className="overflow-hidden hover:border hover:border-green rounded-3xl bg-lightgreen border-0">
             <div className="relative h-48">
               <Image
-                src={place.image_1 || '/placeholder.jpg'}
+                src={place.image_1 || '/imagen-predeterminada.jpg'}
                 alt={place.name}
                 fill
                 className="object-cover"

@@ -5,14 +5,14 @@ import { Button } from "@/components/ui/button"
 import { UserCircle, MapPin, Calendar, LogOut } from 'lucide-react'
 import { redirect } from 'next/navigation'
 
-async function logout() {
+async function cerrarSesion() {
   'use server'
   const supabase = createServerComponentClient({ cookies })
   await supabase.auth.signOut()
-  redirect('/login')
+  redirect('/iniciar-sesion')
 }
 
-async function ensureUserRecord(userId: string, email: string) {
+async function asegurarRegistroUsuario(userId: string, email: string) {
   const supabase = createServerComponentClient({ cookies })
   
   const { data, error } = await supabase
@@ -21,27 +21,27 @@ async function ensureUserRecord(userId: string, email: string) {
     .select()
 
   if (error) {
-    console.error('Error creating/updating user record:', error)
+    console.error('Error al crear/actualizar el registro del usuario:', error)
   } else {
-    console.log('User record created/updated successfully:', data)
+    console.log('Registro de usuario creado/actualizado con éxito:', data)
   }
 }
 
-export default async function DashboardPage() {
+export default async function PaginaPanel() {
   const supabase = createServerComponentClient({ cookies })
   const { data: { session } } = await supabase.auth.getSession()
 
   if (session) {
-    await ensureUserRecord(session.user.id, session.user.email || '')
+    await asegurarRegistroUsuario(session.user.id, session.user.email || '')
   }
 
   return (
     <div className="px-4 py-10 h-screen">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">Dashboard</h1>
-        <form action={logout}>
+        <h1 className="text-3xl font-bold">Panel de Control</h1>
+        <form action={cerrarSesion}>
           <Button variant="outline" type="submit">
-            <LogOut className="mr-2 h-4 w-4" /> Log out
+            <LogOut className="mr-2 h-4 w-4" /> Cerrar sesión
           </Button>
         </form>
       </div>
@@ -50,14 +50,14 @@ export default async function DashboardPage() {
           <CardHeader>
             <CardTitle className="flex items-center">
               <UserCircle className="mr-2" />
-              Personal Account
+              Cuenta Personal
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p>Manage your personal information and account preferences.</p>
+            <p>Gestiona tu información personal y las preferencias de tu cuenta.</p>
           </CardContent>
           <CardFooter>
-            <Button>Manage Account</Button>
+            <Button>Gestionar Cuenta</Button>
           </CardFooter>
         </Card>
 
@@ -65,14 +65,14 @@ export default async function DashboardPage() {
           <CardHeader>
             <CardTitle className="flex items-center">
               <MapPin className="mr-2" />
-              Location Management
+              Gestión de Ubicaciones
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p>Add, edit, or remove locations you manage. Coming soon.</p>
+            <p>Añade, edita o elimina las ubicaciones que gestionas. Próximamente.</p>
           </CardContent>
           <CardFooter>
-            <Button variant="outline">Manage Locations</Button>
+            <Button variant="outline">Gestionar Ubicaciones</Button>
           </CardFooter>
         </Card>
 
@@ -80,14 +80,14 @@ export default async function DashboardPage() {
           <CardHeader>
             <CardTitle className="flex items-center">
               <Calendar className="mr-2" />
-              Event Promotion
+              Promoción de Eventos
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p>Create and manage events to promote your locations. Coming soon.</p>
+            <p>Crea y gestiona eventos para promocionar tus ubicaciones. Próximamente.</p>
           </CardContent>
           <CardFooter>
-            <Button variant="outline">Manage Events</Button>
+            <Button variant="outline">Gestionar Eventos</Button>
           </CardFooter>
         </Card>
       </div>

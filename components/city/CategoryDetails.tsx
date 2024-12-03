@@ -8,32 +8,32 @@ interface ExploreCityDetailsProps {
   defaultImages: string[];
 }
 
-export function ExploreCityDetails({ place, placesCount, defaultImages = ['/default-category.jpg', '/default-city.jpg'] }: ExploreCityDetailsProps) {
-  console.log('Place received:', place)
+export function ExploreCityDetails({ place, placesCount, defaultImages = ['/categoria-predeterminada.jpg', '/ciudad-predeterminada.jpg'] }: ExploreCityDetailsProps) {
+  console.log('Lugar recibido:', place)
 
   const categoryImage = place.category_image || defaultImages[0]
   const cityImage = place.city_image || defaultImages[1]
 
-  console.log('Category Image:', categoryImage)
-  console.log('City Image:', cityImage)
+  console.log('Imagen de Categoría:', categoryImage)
+  console.log('Imagen de Ciudad:', cityImage)
 
   return (
     <div className="mb-8 py-8 bg-darkgreen rounded-3xl border ">
       <div className="flex flex-col lg:flex-row lg:space-x-8 p-4 sm:p-16">
         <div className="lg:w-1/2 mb-8 lg:mb-0 p-4 mr-8 ">
           <h1 className="text-4xl text-white font-normal mb-12 leading-snug">
-            Discover {place.en_category_plural} in {place.city_complete}
+            Descubre {place.es_category_plural} en {place.city_complete}
           </h1>
-          <p className="text-base text-white/60 mb-6">{place.en_category_description}</p>
+          <p className="text-base text-white/60 mb-6">{place.es_category_description}</p>
           <p className="text-md text-white/60">
-            We found {placesCount} {placesCount === 1 ? 'place' : 'places'}
+            Encontramos {placesCount} {placesCount === 1 ? 'lugar' : 'lugares'}
           </p>
         </div>
         <div className="flex lg:w-1/2 space-x-4">
           <div className="w-1/2 relative aspect-[3/4]">
             <Image
               src={categoryImage}
-              alt={`Image of ${place.en_category_plural}`}
+              alt={`Imagen de ${place.es_category_plural}`}
               fill
               sizes="(max-width: 768px) 50vw, 33vw"
               className="object-cover rounded-full "
@@ -43,7 +43,7 @@ export function ExploreCityDetails({ place, placesCount, defaultImages = ['/defa
           <div className="w-1/2 relative aspect-[3/4]">
             <Image
               src={cityImage}
-              alt={`Image of ${place.city_complete}`}
+              alt={`Imagen de ${place.city_complete}`}
               fill
               sizes="(max-width: 768px) 50vw, 33vw"
               className="object-cover rounded-full"

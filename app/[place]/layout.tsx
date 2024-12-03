@@ -19,7 +19,7 @@ async function getPlaceData(slug: string) {
     .single()
 
   if (error) {
-    console.error('Error fetching place:', error)
+    console.error('Error al obtener el lugar:', error)
     return null
   }
 
@@ -31,23 +31,23 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
 
   if (!place) {
     return {
-      title: 'Place Not Found',
+      title: 'Lugar no encontrado',
     }
   }
 
   return {
-    title: `Discover and rate ${place.name}, in ${place.city_complete}`,
-    description: place.about ? place.about.slice(0, 160) : `Explore ${place.name} with Sair pro Mundo.`,
+    title: `Descubre y califica ${place.name}, en ${place.city_complete}`,
+    description: place.about ? place.about.slice(0, 160) : `Explora ${place.name} con Sair pro Mundo.`,
     openGraph: {
-      title: `Discover and rate ${place.name}, in ${place.city_complete}`,
-      description: place.about ? place.about.slice(0, 160) : `Explore ${place.name} with Sair pro Mundo.`,
-      images: [place.image_1 || 'https://en.sairpromundo.com/default-place-image.jpg'],
+      title: `Descubre y califica ${place.name}, en ${place.city_complete}`,
+      description: place.about ? place.about.slice(0, 160) : `Explora ${place.name} con Sair pro Mundo.`,
+      images: [place.image_1 || 'https://es.sairpromundo.com/imagen-lugar-predeterminada.jpg'],
     },
     twitter: {
       card: 'summary_large_image',
-      title: `Discover and rate ${place.name}, in ${place.city_complete}`,
-      description: place.about ? place.about.slice(0, 160) : `Explore ${place.name} with Sair pro Mundo.`,
-      images: [place.image_1 || 'https://en.sairpromundo.com/default-place-image.jpg'],
+      title: `Descubre y califica ${place.name}, en ${place.city_complete}`,
+      description: place.about ? place.about.slice(0, 160) : `Explora ${place.name} con Sair pro Mundo.`,
+      images: [place.image_1 || 'https://es.sairpromundo.com/imagen-lugar-predeterminada.jpg'],
     },
   }
 }

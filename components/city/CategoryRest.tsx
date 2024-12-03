@@ -49,7 +49,7 @@ export function ExploreCityRest({ places, itemsPerPage = 6 }: ExploreCityRestPro
                   {place.logo ? (
                     <Image
                       src={place.logo}
-                      alt={`${place.name} logo`}
+                      alt={`Logo de ${place.name}`}
                       width={64}
                       height={64}
                       className="rounded-full object-cover"
@@ -130,3 +130,4 @@ export function ExploreCityRest({ places, itemsPerPage = 6 }: ExploreCityRestPro
     </div>
   )
 }
+

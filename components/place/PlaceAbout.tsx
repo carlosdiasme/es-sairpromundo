@@ -20,13 +20,13 @@ export default function PlaceAbout({ place }: PlaceAboutProps) {
       {/* Left column - Summary */}
       <Card className="md:col-span-1">
         <CardHeader>
-          <CardTitle>Summary</CardTitle>
+          <CardTitle>Resumen</CardTitle>
         </CardHeader>
         <CardContent>
           {hasAbout ? (
-            <p className="text-muted-foreground mb-4">{place.en_about}</p>
+            <p className="text-muted-foreground mb-4">{place.es_about}</p>
           ) : (
-            <p className="text-muted-foreground mb-4">No summary available.</p>
+            <p className="text-muted-foreground mb-4">No hay resumen disponible.</p>
           )}
           {hasTags ? (
             <div className="flex flex-wrap gap-2">
@@ -37,7 +37,7 @@ export default function PlaceAbout({ place }: PlaceAboutProps) {
               ))}
             </div>
           ) : (
-            <p className="text-muted-foreground">No tags available.</p>
+            <p className="text-muted-foreground">No hay etiquetas disponibles.</p>
           )}
         </CardContent>
       </Card>
@@ -45,7 +45,7 @@ export default function PlaceAbout({ place }: PlaceAboutProps) {
       {/* Middle column - Information */}
       <Card className="md:col-span-1">
         <CardHeader>
-          <CardTitle>Information</CardTitle>
+          <CardTitle>Información</CardTitle>
         </CardHeader>
         <CardContent>
           {hasInformation ? (
@@ -82,14 +82,14 @@ export default function PlaceAbout({ place }: PlaceAboutProps) {
               )}
             </ul>
           ) : (
-            <p className="text-muted-foreground">No information available.</p>
+            <p className="text-muted-foreground">No hay información disponible.</p>
           )}
           {place.google_maps && (
             <div className="mt-6">
               <Button variant="outline" className="w-full" asChild>
                 <a href={place.google_maps} target="_blank" rel="noopener noreferrer">
                   <MapIcon className="mr-2 h-4 w-4" />
-                  View on Google Maps
+                  Ver en Google Maps
                 </a>
               </Button>
             </div>

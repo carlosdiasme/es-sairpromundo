@@ -26,13 +26,13 @@ export default function ResponsiveNavbar() {
   const AuthButtons = () => {
     if (user) {
       return (
-        <Button variant="default" onClick={() => window.location.href = "/painel"}>Dashboard</Button>
+        <Button variant="default" onClick={() => window.location.href = "/panel"}>Panel de control</Button>
       )
     }
     return (
       <>
-        <Button variant="outline" onClick={() => window.location.href = "/sign-in"}>Sign in</Button>
-        <Button variant="default" onClick={() => window.location.href = "/sign-up"}>Sign up</Button>
+        <Button variant="outline" onClick={() => window.location.href = "/iniciar-sesion"}>Iniciar sesión</Button>
+        <Button variant="default" onClick={() => window.location.href = "/registrarse"}>Registrarse</Button>
       </>
     )
   }
@@ -48,11 +48,11 @@ export default function ResponsiveNavbar() {
             </div>
           </Link>
           <nav className="flex flex-wrap justify-center gap-4 text-sm">
-            <Link href="/explore" className="text-gray-800 hover:text-green transition-colors">
-              Explore
+            <Link href="/explorar" className="text-gray-800 hover:text-green transition-colors">
+              Explorar
             </Link>
           </nav>
-          <SearchInput placeholder="Search for places" className="max-w-md" />
+          <SearchInput placeholder="Buscar lugares" className="max-w-md" />
           <nav className="flex flex-wrap justify-center gap-4 text-sm">
             <Link href="/blog" className="text-gray-800 hover:text-green transition-colors">
               Blog
@@ -72,9 +72,9 @@ export default function ResponsiveNavbar() {
                 <Icon />
               </div>
             </Link>
-            <SearchInput placeholder="Search for places" className="flex-1 max-w-[240px]" />
+            <SearchInput placeholder="Buscar lugares" className="flex-1 max-w-[240px]" />
             <GeolocationButton />
-            <button onClick={toggleMenu} className="p-2 ml-4" aria-label={isOpen ? "Close menu" : "Open menu"}>
+            <button onClick={toggleMenu} className="p-2 ml-4" aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}>
               {isOpen ? (
                 <XMarkIcon className="h-6 w-6" aria-hidden="true" />
               ) : (
@@ -88,8 +88,8 @@ export default function ResponsiveNavbar() {
             <div className="pt-2 pb-4 w-full bg-white">
               <nav className="flex flex-col w-full">
                 <hr className="border-gray-200" />
-                <Link href="/explore" className="text-gray-500 hover:green transition-colors py-3 text-center">
-                  Explore
+                <Link href="/explorar" className="text-gray-500 hover:green transition-colors py-3 text-center">
+                  Explorar
                 </Link>
                 <hr className="border-gray-200" />
                 <Link href="/blog" className="text-gray-500 hover:text-green transition-colors py-3 text-center">
@@ -99,11 +99,11 @@ export default function ResponsiveNavbar() {
               </nav>
               <div className="mt-4 space-y-2 px-4">
                 {user ? (
-                  <Button variant="default" className="w-full" onClick={() => window.location.href = "/painel"}>Dashboard</Button>
+                  <Button variant="default" className="w-full" onClick={() => window.location.href = "/panel"}>Panel de control</Button>
                 ) : (
                   <>
-                    <Button variant="outline" className="w-full" onClick={() => window.location.href = "/sign-in"}>Sign in</Button>
-                    <Button variant="default" className="w-full" onClick={() => window.location.href = "/sign-up"}>Sign up</Button>
+                    <Button variant="outline" className="w-full" onClick={() => window.location.href = "/iniciar-sesion"}>Iniciar sesión</Button>
+                    <Button variant="default" className="w-full" onClick={() => window.location.href = "/registrarse"}>Registrarse</Button>
                   </>
                 )}
               </div>
@@ -114,3 +114,4 @@ export default function ResponsiveNavbar() {
     </nav>
   )
 }
+

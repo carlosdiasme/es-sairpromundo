@@ -8,11 +8,11 @@ import { explore, Place } from '@/app/actions/explore'
 import { SectionTitle } from '@/components/SectionTitle'
 
 const ExploreCityMain = dynamic(() => import('@/components/city/CategoryCityMain').then(mod => mod.ExploreCityMain), {
-  loading: () => <p>Loading acclaimed places...</p>
+  loading: () => <p>Cargando lugares aclamados...</p>
 }) as React.ComponentType<{ places: Place[] }>
 
 const ExploreCityRest = dynamic(() => import('@/components/city/CategoryRest').then(mod => mod.ExploreCityRest), {
-  loading: () => <p>Loading more places...</p>
+  loading: () => <p>Cargando más lugares...</p>
 }) as React.ComponentType<{ places: Place[] }>
 
 interface PageProps {
@@ -28,22 +28,22 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   
   if (places.length === 0) {
     return {
-      title: 'Category not found',
-      description: `Unable to find information for ${category} in ${city}.`,
+      title: 'Categoría no encontrada',
+      description: `No se pudo encontrar información para ${category} en ${city}.`,
     }
   }
 
   const placeName = places[0]?.name || ''
-  const categoryPlural = places[0]?.en_category_plural || category
+  const categoryPlural = places[0]?.es_category_plural || category
   const cityComplete = places[0]?.city_complete || city
 
   return {
-    title: `Discover ${categoryPlural} in ${cityComplete}, with reviews`,
-    description: `Discover the best ${categoryPlural} in ${cityComplete}. Explore ${placeName} and other amazing locations with Sair pro Mundo.`,
+    title: `Descubre ${categoryPlural} en ${cityComplete}, con reseñas`,
+    description: `Descubre los mejores ${categoryPlural} en ${cityComplete}. Explora ${placeName} y otros lugares increíbles con Sair pro Mundo.`,
     openGraph: {
-      title: `Discover ${categoryPlural} in ${cityComplete}, with reviews`,
-      description: `Discover the best ${categoryPlural} in ${cityComplete}. Explore ${placeName} and other amazing locations with Sair pro Mundo.`,
-      images: [places[0]?.image_1 || '/default-og-image.jpg'],
+      title: `Descubre ${categoryPlural} en ${cityComplete}, con reseñas`,
+      description: `Descubre los mejores ${categoryPlural} en ${cityComplete}. Explora ${placeName} y otros lugares increíbles con Sair pro Mundo.`,
+      images: [places[0]?.image_1 || '/imagen-og-predeterminada.jpg'],
     },
   }
 }
@@ -55,22 +55,22 @@ export default async function Page({ params }: PageProps) {
   if (places.length === 0) {
     return (
       <main className="px-4 py-8 container mx-auto">
-        <h1 className="text-3xl font-bold mb-4">Category not found</h1>
-        <p className="mb-4">Unable to find information for {category} in {city}.</p>
-        <p className="mb-4">This may happen for the following reasons:</p>
+        <h1 className="text-3xl font-bold mb-4">Categoría no encontrada</h1>
+        <p className="mb-4">No se pudo encontrar información para {category} en {city}.</p>
+        <p className="mb-4">Esto puede suceder por las siguientes razones:</p>
         <ul className="list-disc list-inside mb-4">
-          <li>The category does not exist in our database</li>
-          <li>There are no places registered in this category for this city</li>
-          <li>There was an error in typing the category or city name in the URL</li>
+          <li>La categoría no existe en nuestra base de datos</li>
+          <li>No hay lugares registrados en esta categoría para esta ciudad</li>
+          <li>Hubo un error al escribir el nombre de la categoría o la ciudad en la URL</li>
         </ul>
-        <p className="mb-4">Suggestions:</p>
+        <p className="mb-4">Sugerencias:</p>
         <ul className="list-disc list-inside mb-4">
-          <li>Check if the category and city names are correct in the URL</li>
-          <li>Try searching for other categories in this city</li>
-          <li>Explore other cities on our platform</li>
+          <li>Verifica si los nombres de la categoría y la ciudad son correctos en la URL</li>
+          <li>Intenta buscar otras categorías en esta ciudad</li>
+          <li>Explora otras ciudades en nuestra plataforma</li>
         </ul>
-        <Link href="/explore" className="text-blue-600 hover:underline">
-          Return to the exploration page
+        <Link href="/explorar" className="text-blue-600 hover:underline">
+          Volver a la página de exploración
         </Link>
       </main>
     )
@@ -87,20 +87,20 @@ export default async function Page({ params }: PageProps) {
       {
         "@type": "ListItem",
         "position": 1,
-        "name": "Explore",
-        "item": "https://en.sairpromundo.com/explore"
+        "name": "Explorar",
+        "item": "https://es.sairpromundo.com/explorar"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": highlightedPlace.category_title,
-        "item": `https://en.sairpromundo.com/explore`
+        "item": `https://es.sairpromundo.com/explorar`
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": highlightedPlace.city_complete,
-        "item": `https://en.sairpromundo.com/cities/${city}/categories/${category}`
+        "item": `https://es.sairpromundo.com/ciudades/${city}/categorias/${category}`
       }
     ]
   }
@@ -122,16 +122,16 @@ export default async function Page({ params }: PageProps) {
       />
 
       <div className="my-12">
-        <SectionTitle>Most loved in the city</SectionTitle>
+        <SectionTitle>Los más queridos de la ciudad</SectionTitle>
         <ExploreCityHighlight place={highlightedPlace} />
       </div>
 
-      <SectionTitle>Acclaimed by the public</SectionTitle>
+      <SectionTitle>Aclamados por el público</SectionTitle>
       <ExploreCityMain places={otherPlaces} />
 
       {restOfPlaces.length > 0 && (
         <div className="mt-12">
-          <SectionTitle>Others</SectionTitle>
+          <SectionTitle>Otros</SectionTitle>
           <ExploreCityRest places={restOfPlaces} />
         </div>
       )}

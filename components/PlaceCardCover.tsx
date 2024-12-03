@@ -23,7 +23,7 @@ const PlaceCardCover: React.FC<PlaceCardCoverProps> = ({ place }) => {
             />
           ) : (
             <div className="absolute inset-0 bg-lightgreen flex items-center justify-center">
-              <span className="text-muted-foreground">Sem imagem</span>
+              <span className="text-muted-foreground">Sin imagen</span>
             </div>
           )}
         </div>

@@ -4,12 +4,12 @@ import dynamic from 'next/dynamic'
 import { ComponentType } from 'react'
 
 const SigninForm = dynamic(() => import("@/components/SigninForm").then(mod => mod.SigninForm as ComponentType), {
-  loading: () => <p>Loading form...</p>,
+  loading: () => <p>Cargando formulario...</p>,
 })
 
 export const metadata: Metadata = {
-  title: "Sign In",
-  description: "Sign in to your Sair pro Mundo account",
+  title: "Iniciar Sesión",
+  description: "Inicia sesión en tu cuenta de Sair pro Mundo",
 }
 
 export default function SigninPage() {
@@ -18,10 +18,10 @@ export default function SigninPage() {
       <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
         <div className="flex flex-col space-y-2 text-center">
           <h1 className="text-2xl font-normal tracking-tight">
-            Welcome back
+            Bienvenido de nuevo
           </h1>
           <p className="text-sm text-muted-foreground">
-            Sign in to your account to continue
+            Inicia sesión en tu cuenta para continuar
           </p>
         </div>
         <SigninForm />
@@ -30,7 +30,7 @@ export default function SigninPage() {
             href="/create-account"
             className="hover:text-brand underline underline-offset-4"
           >
-            Don&apos;t have an account? Create one now
+            ¿No tienes una cuenta? Crea una ahora
           </Link>
         </p>
       </div>

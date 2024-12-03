@@ -16,24 +16,25 @@ export function LoginRequired() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Rate</Button>
+        <Button variant="outline">Calificar</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>You must be logged in to post reviews.</DialogTitle>
+          <DialogTitle>Debes iniciar sesión para publicar reseñas.</DialogTitle>
           <DialogDescription>
-          Log in or create an account to rate this place.
+          Inicia sesión o crea una cuenta para calificar este lugar.
           </DialogDescription>
         </DialogHeader>
         <div className="flex justify-end space-x-4 mt-4">
           <Button asChild>
-            <Link href="/entrar">Sign in</Link>
+            <Link href="/iniciar-sesion">Iniciar sesión</Link>
           </Button>
           <Button variant="outline" asChild>
-            <Link href="/criar-conta">Sign up</Link>
+            <Link href="/crear-cuenta">Registrarse</Link>
           </Button>
         </div>
       </DialogContent>
     </Dialog>
   )
 }
+

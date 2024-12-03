@@ -49,7 +49,7 @@ function OrganizationList({ places, startIndex }: { places: Place[], startIndex:
                 {place.logo && (
                   <Image
                     src={place.logo}
-                    alt={`${place.name} logo`}
+                    alt={`Logo de ${place.name}`}
                     width={40}
                     height={40}
                     className="rounded-xl border border-neongreen"
@@ -100,24 +100,24 @@ function OrganizationList({ places, startIndex }: { places: Place[], startIndex:
 
 export default function RankingFilter({ places }: RankingFilterProps) {
   const [filteredPlaces, setFilteredPlaces] = useState<Place[]>(places)
-  const [selectedCategory, setSelectedCategory] = useState<string>("Todas as Categorias")
-  const [selectedCity, setSelectedCity] = useState<string>("Todas as Cidades")
+  const [selectedCategory, setSelectedCategory] = useState<string>("Todas las Categorías")
+  const [selectedCity, setSelectedCity] = useState<string>("Todas las Ciudades")
   const [categories, setCategories] = useState<string[]>([])
   const [cities, setCities] = useState<string[]>([])
 
   useEffect(() => {
     const uniqueCategories = Array.from(new Set(places.map(place => place.category_title)))
     const uniqueCities = Array.from(new Set(places.map(place => place.city_name)))
-    setCategories(["All Categories", ...uniqueCategories])
-    setCities(["Todas as Cidades", ...uniqueCities])
+    setCategories(["Todas las Categorías", ...uniqueCategories])
+    setCities(["Todas las Ciudades", ...uniqueCities])
   }, [places])
 
   useEffect(() => {
     let filtered = places
-    if (selectedCategory !== "All Categories") {
+    if (selectedCategory !== "Todas las Categorías") {
       filtered = filtered.filter(place => place.category_title === selectedCategory)
     }
-    if (selectedCity !== "All Cities") {
+    if (selectedCity !== "Todas las Ciudades") {
       filtered = filtered.filter(place => place.city_name === selectedCity)
     }
     setFilteredPlaces(filtered)
@@ -133,7 +133,7 @@ export default function RankingFilter({ places }: RankingFilterProps) {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Selecione {title}</DialogTitle>
+          <DialogTitle>Seleccionar {title}</DialogTitle>
         </DialogHeader>
         <ScrollArea className="h-[300px] pr-4">
           {items.map(item => (
@@ -157,14 +157,14 @@ export default function RankingFilter({ places }: RankingFilterProps) {
       <h2 className="text-3xl font-normal text-center my-24">
         Explorar{' '}
         <FilterDialog
-          title="Categoria"
+          title="Categoría"
           items={categories}
           selectedItem={selectedCategory}
           onSelect={setSelectedCategory}
         />
-        {' '}em{' '}
+        {' '}en{' '}
         <FilterDialog
-          title="Cidade"
+          title="Ciudad"
           items={cities}
           selectedItem={selectedCity}
           onSelect={setSelectedCity}
@@ -174,3 +174,4 @@ export default function RankingFilter({ places }: RankingFilterProps) {
     </div>
   )
 }
+

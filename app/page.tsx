@@ -36,7 +36,7 @@ export default function HomePage() {
         const { places } = await fetchPlaces(1, 6)
         setPlaces(places)
       } catch (error) {
-        console.error('Failed to fetch places:', error)
+        console.error('Error al cargar lugares:', error)
       } finally {
         setLoading(false)
       }
@@ -50,20 +50,20 @@ export default function HomePage() {
       <div className="fixed inset-0 -z-10 bg-white">
         <AnimatedLines />
       </div>
-      {/* Hero Section */}
+      {/* Sección Hero */}
       <section className="text-center space-y-6">
-        <h1 className="text-4xl font-regular tracking-tighter pt-8 sm:text-5xl">Discover amazing places</h1>
+        <h1 className="text-4xl font-regular tracking-tighter pt-8 sm:text-5xl">Descubre lugares increíbles</h1>
         <p className="text-sm text-muted-foreground max-w-[600px] mx-auto">
-          Explore unique destinations and create unforgettable memories with Sair pro Mundo.
+          Explora destinos únicos y crea recuerdos inolvidables con Sair pro Mundo.
         </p>
         <Button size="lg" className="bg-green hover:bg-darkgreen rounded-full" asChild>
-          <Link href="/explore">
-            Start exploring <ArrowRight className="ml-2 h-4 w-4" />
+          <Link href="/explorar">
+            Empieza a explorar <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
         </Button>
       </section>
 
-      {/* Featured Places */}
+      {/* Lugares Destacados */}
       <section className="space-y-8">
         {loading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -86,15 +86,15 @@ export default function HomePage() {
         )}
       </section>
 
-      {/* Call to Action */}
+      {/* Llamada a la Acción */}
       <section className="text-center space-y-6">
-        <h2 className="text-2xl font-regular tracking-tighter">Ready for your next adventure?</h2>
+        <h2 className="text-2xl font-regular tracking-tighter">¿Listo para tu próxima aventura?</h2>
         <p className="text-sm text-muted-foreground max-w-[600px] mx-auto">
-          Join thousands of travelers and start exploring the world.
+          Únete a miles de viajeros y comienza a explorar el mundo.
         </p>
         <Button size="lg" variant="outline" className="font-regular rounded-full" asChild>
-          <Link href="/explore">
-            See all places <ArrowRight className="ml-2 h-4 w-4" />
+          <Link href="/explorar">
+            Ver todos los lugares <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
         </Button>
       </section>
@@ -103,12 +103,12 @@ export default function HomePage() {
           {
             "@context": "https://schema.org",
             "@type": "WebSite",
-            "url": "https://en.sairpromundo.com/",
+            "url": "https://es.sairpromundo.com/",
             "potentialAction": {
               "@type": "SearchAction",
               "target": {
                 "@type": "EntryPoint",
-                "urlTemplate": "https://en.sairpromundo.com/search?q={search_term_string}"
+                "urlTemplate": "https://es.sairpromundo.com/buscar?q={search_term_string}"
               },
               "query-input": "required name=search_term_string"
             }

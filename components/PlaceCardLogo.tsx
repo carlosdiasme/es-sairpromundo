@@ -24,7 +24,7 @@ const PlaceCardLogo: React.FC<PlaceCardLogoProps> = ({ place }) => {
               />
             ) : (
               <div className="w-full h-full bg-muted rounded-full flex items-center justify-center">
-                <span className="text-muted-foreground text-xs">Sem logo</span>
+                <span className="text-muted-foreground text-xs">Sin logotipo</span>
               </div>
             )}
           </div>

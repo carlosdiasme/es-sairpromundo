@@ -13,14 +13,14 @@ export default function Footer() {
 
           {/* Part 2: Links */}
           <nav className="flex flex-wrap justify-center gap-4 text-sm">
-            <Link href="/about" className="text-gray-500 hover:text-green transition-colors">
-              About
+            <Link href="/acerca" className="text-gray-500 hover:text-green transition-colors">
+              Acerca
             </Link>
-            <Link href="/privacy" className="text-gray-500 hover:text-green transition-colors">
-              Privacy
+            <Link href="/privacidad" className="text-gray-500 hover:text-green transition-colors">
+              Privacidad
             </Link>
-            <Link href="/terms" className="text-gray-500 hover:text-green transition-colors">
-              Terms
+            <Link href="/terminos" className="text-gray-500 hover:text-green transition-colors">
+              Términos
             </Link>
             <Link href="https://mail.google.com" target="_blank" className="text-gray-500 hover:text-green transition-colors">
               sairpromundo@gmail.com
@@ -47,3 +47,4 @@ export default function Footer() {
     </footer>
   )
 }
+

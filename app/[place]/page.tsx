@@ -111,7 +111,7 @@ async function getPlaceData(slug: string): Promise<Place | null> {
     .single()
 
   if (error) {
-    console.error('Error fetching place:', error)
+    console.error('Error al obtener el lugar:', error)
     return null
   }
 
@@ -130,7 +130,7 @@ export default function PlacePage({ params }: PlacePageProps) {
       const placeData = await getPlaceData(params.place)
       if (placeData) {
         setPlace(placeData)
-        // Fetch initial reviews
+        // Obtener reseñas iniciales
         const reviewsResult = await getReviews(placeData.place_id)
         if (reviewsResult.success && reviewsResult.data) {
           setReviews(reviewsResult.data)
@@ -144,7 +144,7 @@ export default function PlacePage({ params }: PlacePageProps) {
   }, [params.place])
 
   if (!place || loading) {
-    return <div>Loading...</div>
+    return <div>Cargando...</div>
   }
 
   const breadcrumbData = {
@@ -154,20 +154,20 @@ export default function PlacePage({ params }: PlacePageProps) {
       {
         "@type": "ListItem",
         "position": 1,
-        "name": "Home",
-        "item": "https://en.sairpromundo.com"
+        "name": "Inicio",
+        "item": "https://es.sairpromundo.com"
       },
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "Places",
-        "item": "https://en.sairpromundo.com/places"
+        "name": "Lugares",
+        "item": "https://es.sairpromundo.com/lugares"
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": place.name,
-        "item": `https://en.sairpromundo.com/${place.slug}`
+        "item": `https://es.sairpromundo.com/${place.slug}`
       }
     ]
   }
@@ -176,40 +176,40 @@ export default function PlacePage({ params }: PlacePageProps) {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": place.name,
-    "image": place.image || 'https://en.sairpromundo.com/default-place-image.jpg',
+    "image": place.image || 'https://es.sairpromundo.com/imagen-lugar-predeterminada.jpg',
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": place.address || "Address not available",
-      "addressLocality": place.city || "City not available",
-      "addressRegion": place.state || "State not available",
-      "postalCode": place.zip || "Postal code not available",
-      "addressCountry": place.country || "Country not available"
+      "streetAddress": place.address || "Dirección no disponible",
+      "addressLocality": place.city || "Ciudad no disponible",
+      "addressRegion": place.state || "Estado no disponible",
+      "postalCode": place.zip || "Código postal no disponible",
+      "addressCountry": place.country || "País no disponible"
     },
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": place.latitude || 0,
       "longitude": place.longitude || 0
     },
-    "url": `https://en.sairpromundo.com/${place.slug}`,
-    "telephone": place.phone || "Phone not available",
+    "url": `https://es.sairpromundo.com/${place.slug}`,
+    "telephone": place.phone || "Teléfono no disponible",
     "openingHoursSpecification": [
       {
         "@type": "OpeningHoursSpecification",
         "dayOfWeek": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday",
-          "Sunday"
+          "Lunes",
+          "Martes",
+          "Miércoles",
+          "Jueves",
+          "Viernes",
+          "Sábado",
+          "Domingo"
         ],
         "opens": "00:00",
         "closes": "23:59"
       }
     ],
     "priceRange": place.priceRange || "$$",
-    "description": place.description || `Explore ${place.name} with Sair pro Mundo`
+    "description": place.description || `Explora ${place.name} con Sair pro Mundo`
   }
 
   return (

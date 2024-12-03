@@ -50,11 +50,11 @@ export function ReviewList({ placeId, initialReviews, totalReviews }: ReviewList
         setReviews(result.data)
         setCurrentPage(page)
       } else {
-        setError('Unable to load reviews.')
+        setError('No se pudieron cargar las reseñas.')
       }
     } catch (error) {
-      console.error('Error fetching reviews:', error)
-      setError('There was an error loading reviews.')
+      console.error('Error al obtener las reseñas:', error)
+      setError('Hubo un error al cargar las reseñas.')
     } finally {
       setIsLoading(false)
     }
@@ -86,12 +86,12 @@ export function ReviewList({ placeId, initialReviews, totalReviews }: ReviewList
     <div className="space-y-6">
       <h2 className="text-sm font-regular text-foreground/60">
         {totalReviews !== undefined
-          ? `${totalReviews} ${totalReviews === 1 ? 'review' : 'reviews'}`
-          : 'reviews'}
+          ? `${totalReviews} ${totalReviews === 1 ? 'reseña' : 'reseñas'}`
+          : 'reseñas'}
       </h2>
 
       {isLoading ? (
-        <p>Loading reviews...</p>
+        <p>Cargando reseñas...</p>
       ) : error ? (
         <p className="text-red-500">{error}</p>
       ) : (
@@ -137,3 +137,4 @@ export function ReviewList({ placeId, initialReviews, totalReviews }: ReviewList
     </div>
   )
 }
+

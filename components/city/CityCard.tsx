@@ -10,7 +10,7 @@ interface CityCardProps {
 
 const CityCard: React.FC<CityCardProps> = ({ city }) => {
   return (
-    <Link href={`/cidades/${city.slug || city.city_id}`} className="block">
+    <Link href={`/ciudades/${city.slug || city.city_id}`} className="block">
       <Card className="overflow-hidden border-0 bg-lightgreen rounded-3xl hover:border hover:border-green">
         <div className="relative aspect-[8/9]">
           {city.cover ? (
@@ -23,7 +23,7 @@ const CityCard: React.FC<CityCardProps> = ({ city }) => {
             />
           ) : (
             <div className="absolute inset-0 bg-lightgreen flex items-center justify-center">
-              <span className="text-muted-foreground">No image</span>
+              <span className="text-muted-foreground">Sin imagen</span>
             </div>
           )}
         </div>
@@ -37,3 +37,4 @@ const CityCard: React.FC<CityCardProps> = ({ city }) => {
 }
 
 export default CityCard
+

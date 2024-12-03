@@ -46,17 +46,17 @@ export function SignupForm() {
           })
 
         if (insertError) {
-          console.error('Error inserting user data:', insertError)
-          throw new Error('Failed to create user profile')
+          console.error('Error al insertar datos del usuario:', insertError)
+          throw new Error('No se pudo crear el perfil del usuario')
         }
 
         setShowConfirmDialog(true)
       } else {
-        throw new Error('Failed to create user')
+        throw new Error('No se pudo crear el usuario')
       }
     } catch (error) {
-      setError(error instanceof Error ? error.message : 'An unexpected error occurred')
-      console.error('Signup error:', error)
+      setError(error instanceof Error ? error.message : 'Ocurrió un error inesperado')
+      console.error('Error de registro:', error)
     } finally {
       setIsLoading(false)
     }
@@ -78,8 +78,8 @@ export function SignupForm() {
 
       // The user will be redirected to Google for authentication
     } catch (error) {
-      setError(error instanceof Error ? error.message : 'An unexpected error occurred with Google signup')
-      console.error('Google signup error:', error)
+      setError(error instanceof Error ? error.message : 'Ocurrió un error inesperado con el registro de Google')
+      console.error('Error de registro con Google:', error)
     } finally {
       setIsLoading(false)
     }
@@ -91,11 +91,11 @@ export function SignupForm() {
         <div className="grid gap-2">
           <div className="grid gap-1">
             <Label className="sr-only" htmlFor="name">
-              Name
+              Nombre
             </Label>
             <Input
               id="name"
-              placeholder="Your name"
+              placeholder="Tu nombre"
               type="text"
               autoCapitalize="words"
               autoComplete="name"
@@ -108,11 +108,11 @@ export function SignupForm() {
           </div>
           <div className="grid gap-1">
             <Label className="sr-only" htmlFor="email">
-              Email
+              Correo electrónico
             </Label>
             <Input
               id="email"
-              placeholder="nome@exemplo.com"
+              placeholder="nombre@ejemplo.com"
               type="email"
               autoCapitalize="none"
               autoComplete="email"
@@ -125,11 +125,11 @@ export function SignupForm() {
           </div>
           <div className="grid gap-1">
             <Label className="sr-only" htmlFor="password">
-              Senha
+              Contraseña
             </Label>
             <Input
               id="password"
-              placeholder="Password"
+              placeholder="Contraseña"
               type="password"
               autoCapitalize="none"
               autoComplete="new-password"
@@ -140,7 +140,7 @@ export function SignupForm() {
             />
           </div>
           <Button disabled={isLoading}>
-            {isLoading ? "Carregando..." : "Sign up"}
+            {isLoading ? "Cargando..." : "Registrarse"}
           </Button>
         </div>
       </form>
@@ -155,13 +155,13 @@ export function SignupForm() {
         </div>
         <div className="relative flex justify-center text-xs uppercase sr-only">
           <span className="bg-background px-2 text-muted-foreground sr-only">
-            Ou continue com
+            O continuar con
           </span>
         </div>
       </div>
       <Button variant="outline" type="button" onClick={handleGoogleSignup} disabled={isLoading} className="flex items-center justify-center sr-only">
         {isLoading ? (
-          "Loading..."
+          "Cargando..."
         ) : (
           <>
             <svg className="mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
@@ -170,19 +170,19 @@ export function SignupForm() {
               <path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/>
               <path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/>
             </svg>
-            Create account with Google
+            Crear cuenta con Google
           </>
         )}
       </Button>
       <Dialog open={showConfirmDialog} onOpenChange={setShowConfirmDialog}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Check your email</DialogTitle>
+            <DialogTitle>Revisa tu correo electrónico</DialogTitle>
             <DialogDescription>
-            Please check your email and click the confirmation link to complete your registration.
+              Por favor, revisa tu correo electrónico y haz clic en el enlace de confirmación para completar tu registro.
             </DialogDescription>
           </DialogHeader>
-          <Button onClick={() => router.push('/')}>Okay</Button>
+          <Button onClick={() => router.push('/')}>Aceptar</Button>
         </DialogContent>
       </Dialog>
     </div>

@@ -15,8 +15,8 @@ interface CategoryBadgeProps {
 
 export function CategoryBadge({ category, citySlug }: CategoryBadgeProps) {
   const href = citySlug
-    ? `/cities/${citySlug}/categories/${category.en_slug}`
-    : `/categories/${category.en_slug}`
+    ? `/ciudades/${citySlug}/categorias/${category.en_slug}`
+    : `/categorias/${category.en_slug}`
 
   return (
     <Link href={href}>

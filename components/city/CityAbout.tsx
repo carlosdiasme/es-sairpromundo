@@ -8,7 +8,7 @@ interface CityAboutProps {
 export function CityAbout({ city }: CityAboutProps) {
   return (
     <div className="bg-lightgreen rounded-3xl p-8 mb-8 mt-16">
-      <h2 className="text-2xl font-regular mb-4">About {city.complete}</h2>
+      <h2 className="text-2xl font-regular mb-4">Acerca de {city.complete}</h2>
       <div 
         className="prose prose-lg max-w-none
                    prose-headings:text-primary
@@ -24,14 +24,14 @@ export function CityAbout({ city }: CityAboutProps) {
                    prose-li:mb-2
                    prose-button:bg-green prose-button:text-white hover:prose-button:bg-darkgreen
                    prose-blockquote:border-l-4 prose-blockquote:border-gray-300 prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:my-4"
-        dangerouslySetInnerHTML={{ __html: city.en_description || `Explore ${city.name} com Sair pro Mundo.` }}
+        dangerouslySetInnerHTML={{ __html: city.es_description || `Explora ${city.name} con Sair pro Mundo.` }}
       />
       <div className="flex items-center text-sm text-gray-500">
         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
         </svg>
-        <span>{city.regions?.name || 'Região não especificada'}</span>
+        <span>{city.regions?.name || 'Región no especificada'}</span>
       </div>
     </div>
   )

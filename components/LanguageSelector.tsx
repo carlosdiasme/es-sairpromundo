@@ -49,7 +49,7 @@ export default function LanguageSelector() {
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
             <DialogTitle className="text-center text-xl">
-              Choose a language
+            Elija un idioma
             </DialogTitle>
           </DialogHeader>
           <div className="grid gap-4 py-4">

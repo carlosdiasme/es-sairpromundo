@@ -18,8 +18,8 @@ interface CategoryCardProps {
 
 export function CategoryCard({ category, citySlug }: CategoryCardProps) {
   const href = citySlug 
-    ? `/cities/${citySlug}/categories/${category.en_slug}`
-    : `/categories/${category.en_slug}`
+    ? `/ciudades/${citySlug}/categorias/${category.en_slug}`
+    : `/categorias/${category.en_slug}`
 
   return (
     <Link href={href} className="block flex-shrink-0">
@@ -35,7 +35,7 @@ export function CategoryCard({ category, citySlug }: CategoryCardProps) {
             />
           ) : (
             <div className="absolute inset-0 bg-lightgreen flex items-center justify-center">
-              <span className="text-muted-foreground">No image</span>
+              <span className="text-muted-foreground">Sin imagen</span>
             </div>
           )}
         </div>

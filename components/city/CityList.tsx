@@ -66,7 +66,7 @@ export function CityList({ cities, currentPage, totalPages, onPageChange, isLoad
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-8">
         {isLoading ? (
-          <div className="col-span-full text-center">Loading...</div>
+          <div className="col-span-full text-center">Cargando...</div>
         ) : (
           cities.map((city) => (
             <CityCard key={city.city_id} city={city} />

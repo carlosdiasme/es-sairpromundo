@@ -47,7 +47,7 @@ export default function OrganizationList({ places, itemsPerPage = 10 }: Organiza
                 {place.logo && (
                   <Image
                     src={place.logo}
-                    alt={`${place.name} logo`}
+                    alt={`Logo de ${place.name}`}
                     width={40}
                     height={40}
                     className="rounded-xl border border-neongreen"
@@ -96,3 +96,4 @@ export default function OrganizationList({ places, itemsPerPage = 10 }: Organiza
     </div>
   )
 }
+

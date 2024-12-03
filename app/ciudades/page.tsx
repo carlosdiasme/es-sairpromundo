@@ -20,7 +20,7 @@ export default function CitiesPage() {
         setCities(result.cities)
         setTotalPages(Math.ceil(result.totalCount / ITEMS_PER_PAGE))
       } catch (error) {
-        console.error('Error fetching cities:', error)
+        console.error('Error al obtener las ciudades:', error)
       } finally {
         setIsLoading(false)
       }
@@ -35,7 +35,7 @@ export default function CitiesPage() {
 
   return (
     <div className="px-4 py-8">
-      <h1 className="text-4xl font-regular mb-8">Explore Cities</h1>
+      <h1 className="text-4xl font-regular mb-8">Explora Ciudades</h1>
       <CityList
         cities={cities}
         currentPage={currentPage}

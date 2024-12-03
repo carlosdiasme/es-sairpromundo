@@ -72,7 +72,7 @@ export default function NavPlace({ cityName, citySlug, categoryName, categorySlu
       <div className="overflow-x-auto scrollbar-hide">
         <nav className="flex h-14 items-center gap-4 px-4 min-w-max">
           <Link
-            href={`/cidades/${citySlug}`}
+            href={`/ciudades/${citySlug}`}
             className="flex items-center gap-2 text-xs text-muted-foreground hover:text-primary"
           >
             <MapPin className="h-3 w-3" />
@@ -80,7 +80,7 @@ export default function NavPlace({ cityName, citySlug, categoryName, categorySlu
           </Link>
           <div className="h-4 w-px bg-border" aria-hidden="true" />
           <Link 
-            href={`/cidades/${citySlug}/categorias/${categorySlug}`}
+            href={`/ciudades/${citySlug}/categorias/${categorySlug}`}
             className="flex items-center gap-2 text-xs text-muted-foreground hover:text-primary"
           >
             <AudioWaveform className="h-3 w-3" />
@@ -93,16 +93,16 @@ export default function NavPlace({ cityName, citySlug, categoryName, categorySlu
             <Dialog>
               <DialogTrigger asChild>
                 <Button variant="ghost" className="flex items-center gap-2 text-xs text-muted-foreground hover:text-primary p-0 h-auto hover:bg-background">
-                  <span>Categories</span>
+                  <span>Categorías</span>
                   <ChevronDown className="h-3 w-3" />
                 </Button>
               </DialogTrigger>
               <DialogContent>
                 <DialogHeader>
-                  <DialogTitle>Categories in {cityName}</DialogTitle>
+                  <DialogTitle>Categorías en {cityName}</DialogTitle>
                 </DialogHeader>
                 <Input
-                  placeholder="Filter categories..."
+                  placeholder="Filtrar categorías..."
                   value={categoryFilter}
                   onChange={(e) => setCategoryFilter(e.target.value)}
                   className="mb-4"
@@ -119,7 +119,7 @@ export default function NavPlace({ cityName, citySlug, categoryName, categorySlu
                         className="justify-start"
                         asChild
                       >
-                        <Link href={`/cidades/${citySlug}/categorias/${category.en_slug}`}>
+                        <Link href={`/ciudades/${citySlug}/categorias/${category.en_slug}`}>
                           {category.en_title}
                         </Link>
                       </Button>
@@ -130,16 +130,16 @@ export default function NavPlace({ cityName, citySlug, categoryName, categorySlu
             <Dialog>
               <DialogTrigger asChild>
                 <Button variant="ghost" className="flex items-center gap-2 text-xs text-muted-foreground hover:text-primary p-0 h-auto hover:bg-background sr-only">
-                  <span>Specialties</span>
+                  <span>Especialidades</span>
                   <ChevronDown className="h-3 w-3" />
                 </Button>
               </DialogTrigger>
               <DialogContent>
                 <DialogHeader>
-                  <DialogTitle>Specialties in {cityName}</DialogTitle>
+                  <DialogTitle>Especialidades en {cityName}</DialogTitle>
                 </DialogHeader>
                 <Input
-                  placeholder="Filter specialties..."
+                  placeholder="Filtrar especialidades..."
                   value={specialtyFilter}
                   onChange={(e) => setSpecialtyFilter(e.target.value)}
                   className="mb-4"
@@ -156,7 +156,7 @@ export default function NavPlace({ cityName, citySlug, categoryName, categorySlu
                         className="justify-start"
                         asChild
                       >
-                        <Link href={`/cidades/${citySlug}/especialidades/${specialty.slug}`}>
+                        <Link href={`/ciudades/${citySlug}/especialidades/${specialty.slug}`}>
                           {specialty.title}
                         </Link>
                       </Button>
@@ -167,16 +167,16 @@ export default function NavPlace({ cityName, citySlug, categoryName, categorySlu
             <Dialog>
               <DialogTrigger asChild>
                 <Button variant="ghost" className="flex items-center gap-2 text-xs text-muted-foreground hover:text-primary p-0 h-auto hover:bg-background sr-only">
-                  <span>Activities</span>
+                  <span>Actividades</span>
                   <ChevronDown className="h-3 w-3" />
                 </Button>
               </DialogTrigger>
               <DialogContent>
                 <DialogHeader>
-                  <DialogTitle>Activities in {cityName}</DialogTitle>
+                  <DialogTitle>Actividades en {cityName}</DialogTitle>
                 </DialogHeader>
                 <Input
-                  placeholder="Filter activities..."
+                  placeholder="Filtrar actividades..."
                   value={activityFilter}
                   onChange={(e) => setActivityFilter(e.target.value)}
                   className="mb-4"
@@ -193,7 +193,7 @@ export default function NavPlace({ cityName, citySlug, categoryName, categorySlu
                         className="justify-start"
                         asChild
                       >
-                        <Link href={`/cidades/${citySlug}/atividades/${activity.slug}`}>
+                        <Link href={`/ciudades/${citySlug}/actividades/${activity.slug}`}>
                           {activity.title}
                         </Link>
                       </Button>
@@ -216,3 +216,4 @@ export default function NavPlace({ cityName, citySlug, categoryName, categorySlu
     </div>
   )
 }
+

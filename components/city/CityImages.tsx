@@ -44,7 +44,7 @@ export function CityImages({ cityName, image_1, image_2, image_3, image_4 }: Cit
               <div className="relative aspect-[16/9]">
                 <Image
                   src={src}
-                  alt={`${cityName} - Imagem ${index + 1}`}
+                  alt={`${cityName} - Imagen ${index + 1}`}
                   fill
                   className="object-cover rounded-2xl md:rounded-3xl"
                   sizes="(max-width: 768px) 80vw, (max-width: 1200px) 75vw, 60vw"

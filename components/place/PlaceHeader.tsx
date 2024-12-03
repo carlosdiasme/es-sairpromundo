@@ -67,7 +67,7 @@ export default function PlaceHeader({ place, activeTab, onTabChange }: PlaceHead
         setRatingAverage(result.data.length > 0 ? totalRating / result.data.length : undefined)
         setRatingCount(result.totalReviews)
         
-        // Check if the current user has already reviewed
+        // Verificar si el usuario actual ya ha hecho una reseña
         if (user) {
           const userReview = result.data.find(review => review.user_id === user.id)
           setHasUserReviewed(!!userReview)
@@ -89,7 +89,7 @@ export default function PlaceHeader({ place, activeTab, onTabChange }: PlaceHead
       setIsShareDialogOpen(true)
       setTimeout(() => setIsShareDialogOpen(false), 2000)
     }).catch((err) => {
-      console.error('Falha ao copiar o link: ', err)
+      console.error('Error al copiar el enlace: ', err)
     })
   }
 
@@ -121,7 +121,7 @@ export default function PlaceHeader({ place, activeTab, onTabChange }: PlaceHead
             {place.logo ? (
               <Image
                 src={place.logo}
-                alt={`Logo do lugar ${place.name}`}
+                alt={`Logo del lugar ${place.name}`}
                 width={64}
                 height={64}
                 className="rounded-2xl"
@@ -142,27 +142,27 @@ export default function PlaceHeader({ place, activeTab, onTabChange }: PlaceHead
                 <>
                   <div className="flex mr-2">{renderHearts()}</div>
                   <span className='text-foreground/60 text-xs'>{ratingAverage.toFixed(1)}</span>
-                  <span className="ml-1 text-foreground/60 text-xs">({ratingCount} avaliações)</span>
+                  <span className="ml-1 text-foreground/60 text-xs">({ratingCount} reseñas)</span>
                 </>
               ) : (
-                <span className="text-foreground/60 text-xs">No reviews</span>
+                <span className="text-foreground/60 text-xs">Sin reseñas</span>
               )}
             </div>
           </div>
         </div>
         <div className="flex space-x-2 mt-4 sm:mt-0 pt-4">
           <Button variant="outline" className="flex-1 sm:flex-none" onClick={handleShareClick}>
-            Share
+            Compartir
           </Button>
           {loading ? (
-            <Button disabled className="flex-1 sm:flex-none">Carregando...</Button>
+            <Button disabled className="flex-1 sm:flex-none">Cargando...</Button>
           ) : user ? (
             <Button 
               className="flex-1 sm:flex-none" 
               onClick={handleReviewClick}
               disabled={hasUserReviewed}
             >
-              {hasUserReviewed ? "Rated" : "Rate"}
+              {hasUserReviewed ? "Calificado" : "Calificar"}
             </Button>
           ) : (
             <LoginRequired />
@@ -182,9 +182,9 @@ export default function PlaceHeader({ place, activeTab, onTabChange }: PlaceHead
       <Dialog open={isShareDialogOpen} onOpenChange={setIsShareDialogOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Link copiado!</DialogTitle>
+            <DialogTitle>¡Enlace copiado!</DialogTitle>
             <DialogDescription>
-              O link foi copiado para a área de transferência.
+              El enlace ha sido copiado al portapapeles.
             </DialogDescription>
           </DialogHeader>
         </DialogContent>
@@ -192,3 +192,4 @@ export default function PlaceHeader({ place, activeTab, onTabChange }: PlaceHead
     </div>
   )
 }
+
