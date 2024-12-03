@@ -177,7 +177,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <Script id="article-structured-data" type="application/ld+json">
         {JSON.stringify(articleData)}
       </Script>
-      <div className="flex justify-center"> {/* Updated class name */}
+      <div className="flex justify-between"> {/* Updated class name */}
         <div className="hidden lg:block lg:w-1/6 max-w-[200px]">
           <Suspense fallback={<Skeleton className="h-[600px] w-full" />}>
             <DisplayLeft />
