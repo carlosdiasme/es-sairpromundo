@@ -3,17 +3,13 @@ import Image from 'next/image'
 import { Place } from '@/app/actions/explore'
 
 interface ExploreCityDetailsProps {
-  place: Place
-  placesCount: number
+  place: Place;
+  placesCount: number;
+  defaultImages: string[];
 }
 
-const defaultImages = [
-  "https://pmiomzmwjvbnvfkdgivd.supabase.co/storage/v1/object/public/sairpromundo/destaques/template-5.png",
-  "https://pmiomzmwjvbnvfkdgivd.supabase.co/storage/v1/object/public/sairpromundo/destaques/template-6.png"
-]
-
-export function ExploreCityDetails({ place, placesCount }: ExploreCityDetailsProps) {
-  console.log('Place recebido:', place)
+export function ExploreCityDetails({ place, placesCount, defaultImages = ['/default-category.jpg', '/default-city.jpg'] }: ExploreCityDetailsProps) {
+  console.log('Place received:', place)
 
   const categoryImage = place.category_image || defaultImages[0]
   const cityImage = place.city_image || defaultImages[1]
@@ -26,18 +22,18 @@ export function ExploreCityDetails({ place, placesCount }: ExploreCityDetailsPro
       <div className="flex flex-col lg:flex-row lg:space-x-8 p-4 sm:p-16">
         <div className="lg:w-1/2 mb-8 lg:mb-0 p-4 mr-8 ">
           <h1 className="text-4xl text-white font-normal mb-12 leading-snug">
-          Discover {place.category_plural} in {place.city_complete}
+            Discover {place.en_category_plural} in {place.city_complete}
           </h1>
-          <p className="text-base text-white/60 mb-6">{place.category_description}</p>
+          <p className="text-base text-white/60 mb-6">{place.en_category_description}</p>
           <p className="text-md text-white/60">
-          We found {placesCount} {placesCount === 1 ? 'place' : 'places'}
+            We found {placesCount} {placesCount === 1 ? 'place' : 'places'}
           </p>
         </div>
         <div className="flex lg:w-1/2 space-x-4">
           <div className="w-1/2 relative aspect-[3/4]">
             <Image
               src={categoryImage}
-              alt={`Image of ${place.category_plural}`}
+              alt={`Image of ${place.en_category_plural}`}
               fill
               sizes="(max-width: 768px) 50vw, 33vw"
               className="object-cover rounded-full "
@@ -58,3 +54,4 @@ export function ExploreCityDetails({ place, placesCount }: ExploreCityDetailsPro
     </div>
   )
 }
+

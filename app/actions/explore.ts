@@ -42,7 +42,11 @@ export interface Place {
   category_slug: string
   category_title: string
   category_plural: string
+  en_category_plural: string
+  es_category_plural: string
   category_description: string
+  en_category_description: string
+  es_category_description: string
   city_name: string
   city_slug: string
   city_complete: string

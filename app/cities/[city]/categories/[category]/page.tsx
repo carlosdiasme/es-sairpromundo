@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const placeName = places[0]?.name || ''
-  const categoryPlural = places[0]?.category_plural || category
+  const categoryPlural = places[0]?.en_category_plural || category
   const cityComplete = places[0]?.city_complete || city
 
   return {
@@ -115,6 +115,10 @@ export default async function Page({ params }: PageProps) {
       <ExploreCityDetails
         place={highlightedPlace}
         placesCount={totalCount}
+        defaultImages={[
+          "https://pmiomzmwjvbnvfkdgivd.supabase.co/storage/v1/object/public/sairpromundo/destaques/template-5.png",
+          "https://pmiomzmwjvbnvfkdgivd.supabase.co/storage/v1/object/public/sairpromundo/destaques/template-6.png"
+        ]}
       />
 
       <div className="my-12">

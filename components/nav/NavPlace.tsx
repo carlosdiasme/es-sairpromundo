@@ -21,8 +21,8 @@ import { getActivities } from "@/app/actions/get-activities"
 // Import or define the types
 type Category = {
   category_id: number
-  title: string
-  slug: string
+  en_title: string
+  en_slug: string
   // Add other fields as necessary
 }
 
@@ -102,7 +102,7 @@ export default function NavPlace({ cityName, citySlug, categoryName, categorySlu
                   <DialogTitle>Categories in {cityName}</DialogTitle>
                 </DialogHeader>
                 <Input
-                  placeholder="Filtrar categorias..."
+                  placeholder="Filter categories..."
                   value={categoryFilter}
                   onChange={(e) => setCategoryFilter(e.target.value)}
                   className="mb-4"
@@ -110,7 +110,7 @@ export default function NavPlace({ cityName, citySlug, categoryName, categorySlu
                 <div className="grid gap-4 py-4 max-h-[300px] overflow-y-auto">
                   {categories
                     .filter((category) =>
-                      category.title.toLowerCase().includes(categoryFilter.toLowerCase())
+                      category.en_title.toLowerCase().includes(categoryFilter.toLowerCase())
                     )
                     .map((category) => (
                       <Button
@@ -119,8 +119,8 @@ export default function NavPlace({ cityName, citySlug, categoryName, categorySlu
                         className="justify-start"
                         asChild
                       >
-                        <Link href={`/cidades/${citySlug}/categorias/${category.slug}`}>
-                          {category.title}
+                        <Link href={`/cidades/${citySlug}/categorias/${category.en_slug}`}>
+                          {category.en_title}
                         </Link>
                       </Button>
                     ))}
@@ -139,7 +139,7 @@ export default function NavPlace({ cityName, citySlug, categoryName, categorySlu
                   <DialogTitle>Specialties in {cityName}</DialogTitle>
                 </DialogHeader>
                 <Input
-                  placeholder="Filtrar especialidades..."
+                  placeholder="Filter specialties..."
                   value={specialtyFilter}
                   onChange={(e) => setSpecialtyFilter(e.target.value)}
                   className="mb-4"
@@ -176,7 +176,7 @@ export default function NavPlace({ cityName, citySlug, categoryName, categorySlu
                   <DialogTitle>Activities in {cityName}</DialogTitle>
                 </DialogHeader>
                 <Input
-                  placeholder="Filtrar atividades..."
+                  placeholder="Filter activities..."
                   value={activityFilter}
                   onChange={(e) => setActivityFilter(e.target.value)}
                   className="mb-4"

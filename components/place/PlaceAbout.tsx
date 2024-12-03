@@ -24,7 +24,7 @@ export default function PlaceAbout({ place }: PlaceAboutProps) {
         </CardHeader>
         <CardContent>
           {hasAbout ? (
-            <p className="text-muted-foreground mb-4">{place.about}</p>
+            <p className="text-muted-foreground mb-4">{place.en_about}</p>
           ) : (
             <p className="text-muted-foreground mb-4">No summary available.</p>
           )}

@@ -11,7 +11,11 @@ type Category = {
   en_title: string
   es_title: string
   plural: string | null
+  en_plural: string | null
+  es_plural: string | null
   description: string | null
+  en_description: string | null
+  es_description: string | null
   image: string | null
 }
 

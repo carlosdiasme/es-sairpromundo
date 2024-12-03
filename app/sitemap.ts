@@ -11,7 +11,7 @@ interface BlogView {
   updated_at: string;
   title: string;
   slug: string;
-  excerpt: string | null;
+  description: string | null;
   content: string;
   image: string | null;
   user_id: string;
@@ -27,7 +27,7 @@ interface Place {
   created_at: string;
   name: string;
   slug: string;
-  description: string | null;
+  en_description: string | null;
   image: string | null;
   city: string;
   state: string;
@@ -42,16 +42,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     getAllCityCategories(),
   ])
 
-  const baseUrl = 'https://sairpromundo.com'
+  const baseUrl = 'https://en.sairpromundo.com'
 
   const staticPages = [
     '',
-    '/sobre',
-    '/termos',
-    '/privacidade',
-    '/explorar',
-    '/cidades',
-    '/entrar',
+    '/about',
+    '/terms',
+    '/privacy',
+    '/explore',
+    '/cities',
+    '/sign-in',
     '/blog',
   ].map(route => ({
     url: `${baseUrl}${route}`,
@@ -75,14 +75,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }))
 
   const cityRoutes = cities.map(city => ({
-    url: `${baseUrl}/cidades/${city.slug}`,
+    url: `${baseUrl}/cities/${city.slug}`,
     lastModified: new Date(city.created_at),
     changeFrequency: 'weekly' as const,
     priority: 0.9,
   }))
 
   const cityCategoryRoutes = cityCategories.map(cc => ({
-    url: `${baseUrl}/cidades/${cc.city_slug}/categorias/${cc.category_slug}`,
+    url: `${baseUrl}/cities/${cc.city_slug}/categories/${cc.category_en_slug}`,
     lastModified: new Date(), // You might want to fetch or calculate a more accurate last modified date
     changeFrequency: 'weekly' as const,
     priority: 0.8,
@@ -99,7 +99,7 @@ async function fetchAllBlogPosts(): Promise<BlogView[]> {
 
   while (hasMore) {
     const { data, error } = await supabase
-      .from('vw_blogs')
+      .from('vw_en_blogs')
       .select('*')
       .range(page * pageSize, (page + 1) * pageSize - 1)
     

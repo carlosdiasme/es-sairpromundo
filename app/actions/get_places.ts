@@ -22,6 +22,8 @@ export interface Place {
   user_id: string
   updated_at: string
   about: string
+  en_about: string
+  es_about: string
   website: string
   instagram: string
   tiktok: string

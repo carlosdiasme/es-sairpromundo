@@ -86,8 +86,8 @@ export function ReviewList({ placeId, initialReviews, totalReviews }: ReviewList
     <div className="space-y-6">
       <h2 className="text-sm font-regular text-foreground/60">
         {totalReviews !== undefined
-          ? `${totalReviews} ${totalReviews === 1 ? 'avaliação' : 'avaliações'}`
-          : 'avaliações'}
+          ? `${totalReviews} ${totalReviews === 1 ? 'review' : 'reviews'}`
+          : 'reviews'}
       </h2>
 
       {isLoading ? (
