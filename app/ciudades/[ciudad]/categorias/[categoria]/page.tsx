@@ -17,25 +17,25 @@ const ExploreCityRest = dynamic(() => import('@/components/city/CategoryRest').t
 
 interface PageProps {
   params: {
-    category: string
-    city: string
+    categoria: string
+    ciudad: string
   }
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { category, city } = params
-  const { places } = await explore(category, city, 1, 1)
+  const { categoria, ciudad } = params
+  const { places } = await explore(categoria, ciudad, 1, 1)
   
   if (places.length === 0) {
     return {
       title: 'Categoría no encontrada',
-      description: `No se pudo encontrar información para ${category} en ${city}.`,
+      description: `No se pudo encontrar información para ${categoria} en ${ciudad}.`,
     }
   }
 
   const placeName = places[0]?.name || ''
-  const categoryPlural = places[0]?.es_category_plural || category
-  const cityComplete = places[0]?.city_complete || city
+  const categoryPlural = places[0]?.es_category_plural || categoria
+  const cityComplete = places[0]?.city_complete || ciudad
 
   return {
     title: `Descubre ${categoryPlural} en ${cityComplete}, con reseñas`,
@@ -49,14 +49,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function Page({ params }: PageProps) {
-  const { category, city } = params
-  const { places, totalCount } = await explore(category, city)
+  const { categoria, ciudad } = params
+  const { places, totalCount } = await explore(categoria, ciudad)
 
   if (places.length === 0) {
     return (
       <main className="px-4 py-8 container mx-auto">
         <h1 className="text-3xl font-bold mb-4">Categoría no encontrada</h1>
-        <p className="mb-4">No se pudo encontrar información para {category} en {city}.</p>
+        <p className="mb-4">No se pudo encontrar información para {categoria} en {ciudad}.</p>
         <p className="mb-4">Esto puede suceder por las siguientes razones:</p>
         <ul className="list-disc list-inside mb-4">
           <li>La categoría no existe en nuestra base de datos</li>
@@ -100,7 +100,7 @@ export default async function Page({ params }: PageProps) {
         "@type": "ListItem",
         "position": 3,
         "name": highlightedPlace.city_complete,
-        "item": `https://es.sairpromundo.com/ciudades/${city}/categorias/${category}`
+        "item": `https://es.sairpromundo.com/ciudades/${ciudad}/categorias/${categoria}`
       }
     ]
   }

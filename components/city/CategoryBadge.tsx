@@ -4,8 +4,8 @@ import { Badge } from "@/components/ui/badge"
 
 interface Category {
   category_id: number
-  en_slug: string
-  en_title: string
+  es_slug: string
+  es_title: string
 }
 
 interface CategoryBadgeProps {
@@ -15,13 +15,13 @@ interface CategoryBadgeProps {
 
 export function CategoryBadge({ category, citySlug }: CategoryBadgeProps) {
   const href = citySlug
-    ? `/ciudades/${citySlug}/categorias/${category.en_slug}`
-    : `/categorias/${category.en_slug}`
+    ? `/ciudades/${citySlug}/categorias/${category.es_slug}`
+    : `/categorias/${category.es_slug}`
 
   return (
     <Link href={href}>
       <Badge variant="outline" className='rounded-full px-4 py-2 border-neongreen hover:border-green hover:bg-green hover:text-white'>
-        {category.en_title}
+        {category.es_title}
       </Badge>
     </Link>
   )
