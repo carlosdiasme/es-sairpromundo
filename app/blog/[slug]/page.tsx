@@ -7,8 +7,30 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"
 import Script from 'next/script'
+import dynamic from 'next/dynamic'
+import { insertAdsInContent } from '@/lib/insertAds'
 import { getBlogPost } from '@/app/actions/vw_blogs'
 
+// Lazy load ad components
+const DisplayLeft = dynamic(() => import('@/components/ads/DisplayLeft'), {
+  loading: () => <div className="min-h-[600px]" />,
+  ssr: false
+})
+
+const DisplayRight = dynamic(() => import('@/components/ads/DisplayRight'), {
+  loading: () => <div className="min-h-[600px]" />,
+  ssr: false
+})
+
+const DisplayAdsHorizontal = dynamic(() => import('@/components/ads/DisplayAdsHorizontal'), {
+  loading: () => <div className="min-h-[200px]" />,
+  ssr: false
+})
+
+const Multiplex = dynamic(() => import('@/components/ads/Multiplex'), {
+  loading: () => <div className="min-h-[250px]" />,
+  ssr: false
+})
 
 interface BlogPostPageProps {
   params: {
@@ -145,6 +167,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     }
   }
 
+  const contentWithAds = insertAdsInContent(post.content, 8)
+
   return (
     <>
       <Script id="breadcrumb-structured-data" type="application/ld+json">
@@ -153,8 +177,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <Script id="article-structured-data" type="application/ld+json">
         {JSON.stringify(articleData)}
       </Script>
-      <>
-        <article className="container mx-auto px-4 py-8 max-w-3xl">
+      <div className="flex justify-center">
+        <div className="hidden lg:block lg:w-1/6">
+          <Suspense fallback={<Skeleton className="h-[600px] w-full" />}>
+            <DisplayLeft />
+          </Suspense>
+        </div>
+        <article className="container mx-auto px-4 py-8 max-w-3xl lg:w-4/6">
           <Link href="/blog">
             <Button variant="ghost" className="mb-16 font-normal text-sm">
               ← Back to Blog
@@ -182,6 +211,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               />
             </div>
 
+            {/* DisplayAdsHorizontal for mobile */}
+            <div className="lg:hidden my-8">
+              <Suspense fallback={<Skeleton className="h-[200px] w-full" />}>
+                <DisplayAdsHorizontal />
+              </Suspense>
+            </div>
+
             <div 
               className="prose prose-lg max-w-none
                          prose-headings:text-primary
@@ -197,8 +233,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                          prose-li:mb-2
                          prose-button:bg-green prose-button:text-white hover:prose-button:bg-darkgreen
                          prose-blockquote:border-l-4 prose-blockquote:border-gray-300 prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:my-4"
-              dangerouslySetInnerHTML={{ __html: post.content }}
-            />
+            >
+              {contentWithAds}
+            </div>
 
             <Card className="mt-12 bg-lightgreen border-0">
               <CardContent className="flex items-center justify-between p-6">
@@ -213,10 +250,21 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 )}
               </CardContent>
             </Card>
+
+            {/* Multiplex component added below the article */}
+            <div className="mt-12">
+              <Suspense fallback={<Skeleton className="h-[250px] w-full" />}>
+                <Multiplex />
+              </Suspense>
+            </div>
           </Suspense>
         </article>
-      </>
+        <div className="hidden lg:block lg:w-1/6">
+          <Suspense fallback={<Skeleton className="h-[600px] w-full" />}>
+            <DisplayRight />
+          </Suspense>
+        </div>
+      </div>
     </>
   )
 }
-
