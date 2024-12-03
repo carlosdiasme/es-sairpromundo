@@ -1,20 +1,11 @@
 'use client'
 
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useCallback } from 'react'
 import { Button } from "@/components/ui/button"
 import { MapPin } from 'lucide-react'
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog"
 import { useToast } from "@/hooks/use-toast"
 
 export default function GeolocationButton() {
-  const [isOpen, setIsOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [hasLocation, setHasLocation] = useState(false)
   const { toast } = useToast()
@@ -46,25 +37,13 @@ export default function GeolocationButton() {
     )
   }, [toast])
 
-  useEffect(() => {
-    const hasRequestedBefore = localStorage.getItem('locationRequested')
-    if (!hasRequestedBefore) {
-      setIsOpen(true)
-      localStorage.setItem('locationRequested', 'true')
-    }
-  }, [])
-
-  const handleAllowLocation = () => {
-    setIsOpen(false)
-    requestGeolocation()
-  }
 
   return (
     <>
       <Button
         variant="ghost"
         size="icon"
-        onClick={() => setIsOpen(true)}
+        onClick={() => requestGeolocation()}
         disabled={isLoading}
         aria-label="Use my location"
       >
@@ -74,23 +53,6 @@ export default function GeolocationButton() {
           <MapPin className={`h-5 w-5 ${hasLocation ? 'text-green' : ''}`} />
         )}
       </Button>
-      <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Can we know your location?</DialogTitle>
-            <DialogDescription>
-              We&apos;d like to use your location to show places near you. 
-              This will help personalize your experience on Sair pro Mundo.
-            </DialogDescription>
-          </DialogHeader>
-          <DialogFooter>
-            <Button variant="outline" onClick={() => setIsOpen(false)}>No, thanks</Button>
-            <Button onClick={handleAllowLocation}>
-              Allow
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
     </>
   )
 }
