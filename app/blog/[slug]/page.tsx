@@ -43,7 +43,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 
   if (!post) {
     return {
-      title: 'Post Not Found',
+      title: 'Publicación no encontrada',
     }
   }
 
@@ -57,7 +57,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       description: post.content.substring(0, 160) || `${post.title}`,
       type: 'article',
       publishedTime: post.created_at,
-      authors: [post.user_name || 'Editorial Team'],
+      authors: [post.user_name || 'Equipo editorial'],
       images: [
         {
           url: post.image || defaultImage,
@@ -104,7 +104,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
+    return new Date(dateString).toLocaleDateString('es-ES', {
       year: 'numeric',
       month: 'long',
       day: 'numeric'
@@ -120,20 +120,20 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       {
         "@type": "ListItem",
         "position": 1,
-        "name": "Home",
-        "item": "https://en.sairpromundo.com"
+        "name": "Inicio",
+        "item": "https://es.sairpromundo.com"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Blog",
-        "item": "https://en.sairpromundo.com/blog"
+        "item": "https://es.sairpromundo.com/blog"
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": post.title,
-        "item": `https://en.sairpromundo.com/blog/${post.slug}`
+        "item": `https://es.sairpromundo.com/blog/${post.slug}`
       }
     ]
   }
@@ -149,21 +149,21 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     "dateModified": post.updated_at || post.created_at,
     "author": [{
       "@type": "Person",
-      "name": post.user_name || "Editorial Team",
-      "url": post.user_linkedin || "https://en.sairpromundo.com/about"
+      "name": post.user_name || "Equipo editorial",
+      "url": post.user_linkedin || "https://es.sairpromundo.com/about"
     }],
     "publisher": {
       "@type": "Organization",
       "name": "Sair pro Mundo",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://en.sairpromundo.com/logo.png"
+        "url": "https://es.sairpromundo.com/logo.png"
       }
     },
-    "description": post.content.substring(0, 160) || `Read ${post.title} on Sair pro Mundo Blog`,
+    "description": post.content.substring(0, 160) || `Lee ${post.title} en el Blog de Sair pro Mundo`,
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://en.sairpromundo.com/blog/${post.slug}`
+      "@id": `https://es.sairpromundo.com/blog/${post.slug}`
     }
   }
 
@@ -177,7 +177,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <Script id="article-structured-data" type="application/ld+json">
         {JSON.stringify(articleData)}
       </Script>
-      <div className="flex justify-between"> {/* Updated class name */}
+      <div className="flex justify-between">
         <div className="hidden lg:block lg:w-1/6 max-w-[200px]">
           <Suspense fallback={<Skeleton className="h-[600px] w-full" />}>
             <DisplayLeft />
@@ -186,7 +186,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <article className="w-full lg:w-4/6 max-w-3xl px-4 py-8">
           <Link href="/blog">
             <Button variant="ghost" className="mb-16 font-normal text-sm">
-              ← Back to Blog
+              ← Volver al blog
             </Button>
           </Link>
           
@@ -194,7 +194,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <h1 className="text-4xl sm:text-5xl font-regular mb-12 text-primary">{post.title}</h1>
             
             <div className="flex items-center text-sm text-muted-foreground mb-8">
-              <span>By {post.user_name || 'Editorial Team'}</span>
+              <span>Por {post.user_name || 'Equipo editorial'}</span>
               <span className="mx-2">•</span>
               <time dateTime={post.created_at}>{formatDate(post.created_at)}</time>
             </div>
@@ -240,12 +240,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <Card className="mt-12 bg-lightgreen border-0">
               <CardContent className="flex items-center justify-between p-6">
                 <div>
-                  <h2 className="text-xl font-semibold mb-2">About the author</h2>
-                  <p className="text-muted-foreground">{post.user_name || 'Editorial Team'}</p>
+                  <h2 className="text-xl font-semibold mb-2">Sobre el autor</h2>
+                  <p className="text-muted-foreground">{post.user_name || 'Equipo editorial'}</p>
                 </div>
                 {post.user_linkedin && (
                   <Link href={post.user_linkedin} target="_blank" rel="noopener noreferrer">
-                    <Button variant="outline">View LinkedIn Profile</Button>
+                    <Button variant="outline">Ver perfil de LinkedIn</Button>
                   </Link>
                 )}
               </CardContent>

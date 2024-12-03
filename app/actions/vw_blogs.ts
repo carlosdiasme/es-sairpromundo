@@ -32,7 +32,7 @@ export async function Blog(page: number, itemsPerPage: number, tagSlug?: string)
   const end = start + itemsPerPage - 1;
 
   let query = supabase
-    .from('vw_en_blogs')
+    .from('vw_es_blogs')
     .select('*', { count: 'exact' })
     .order('created_at', { ascending: false })
     .range(start, end);
@@ -58,7 +58,7 @@ export async function Blog(page: number, itemsPerPage: number, tagSlug?: string)
 
 export async function getBlogPost(slug: string): Promise<BlogView | null> {
   const { data, error } = await supabase
-    .from('vw_en_blogs')
+    .from('vw_es_blogs')
     .select('*')
     .eq('slug', slug)
     .single();

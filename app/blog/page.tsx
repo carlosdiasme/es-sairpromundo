@@ -91,7 +91,7 @@ export default function BlogHome() {
       "datePublished": blog.created_at,
       "author": {
         "@type": "Person",
-        "name": blog.user_name || "Redação"
+        "name": blog.user_name || "Redacción"
       },
       "image": blog.image || "https://www.sairpromundo.com/default-blog-image.jpg",
       "url": `https://www.sairpromundo.com/blog/${blog.slug}`
@@ -140,7 +140,7 @@ export default function BlogHome() {
                     </span>
                   </CardTitle>
                   <p className="text-xs sm:text-sm text-muted-foreground mb-2">
-                    Por {blog.user_name || 'Redação'} | {formatDate(blog.created_at)}
+                    Por {blog.user_name || 'Redacción'} | {formatDate(blog.created_at)}
                   </p>
                 </CardContent>
                 <CardFooter className="flex justify-start items-center p-4">
