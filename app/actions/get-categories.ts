@@ -5,7 +5,11 @@ type Category = {
   category_id: number
   created_at: string
   slug: string
+  en_slug: string
+  es_slug: string
   title: string
+  en_title: string
+  es_title: string
   plural: string | null
   description: string | null
   image: string | null

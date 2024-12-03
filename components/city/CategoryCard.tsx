@@ -5,8 +5,8 @@ import { Card, CardHeader, CardTitle } from "@/components/ui/card"
 
 interface Category {
   category_id: number
-  slug: string
-  title: string
+  en_slug: string
+  en_title: string
   description: string | null
   image: string | null
 }
@@ -18,8 +18,8 @@ interface CategoryCardProps {
 
 export function CategoryCard({ category, citySlug }: CategoryCardProps) {
   const href = citySlug 
-    ? `/cidades/${citySlug}/categorias/${category.slug}`
-    : `/categorias/${category.slug}`
+    ? `/cities/${citySlug}/categories/${category.en_slug}`
+    : `/categories/${category.en_slug}`
 
   return (
     <Link href={href} className="block flex-shrink-0">
@@ -28,7 +28,7 @@ export function CategoryCard({ category, citySlug }: CategoryCardProps) {
           {category.image ? (
             <Image
               src={category.image}
-              alt={category.title}
+              alt={category.en_title}
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -40,7 +40,7 @@ export function CategoryCard({ category, citySlug }: CategoryCardProps) {
           )}
         </div>
         <CardHeader>
-          <CardTitle>{category.title}</CardTitle>
+          <CardTitle>{category.en_title}</CardTitle>
         </CardHeader>
       </Card>
     </Link>

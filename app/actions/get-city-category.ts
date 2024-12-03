@@ -16,6 +16,8 @@ export interface CityCategory {
   city_slug: string
   category_id: number
   category_slug: string
+  category_en_slug: string
+  category_es_slug: string
 }
 
 export async function getCityCategories(page: number = 1, itemsPerPage: number = 100): Promise<{ cityCategories: CityCategory[], totalCount: number }> {

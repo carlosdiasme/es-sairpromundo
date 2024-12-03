@@ -19,7 +19,7 @@ const dmSans = Sora({
 export const metadata: Metadata = {
   metadataBase: new URL('https://en.sairpromundo.com'),
   title: {
-    default: 'Sair pro Mundo',
+    default: 'Sair pro Mundo | Discover amazing places',
     template: '%s | Sair pro Mundo',
   },
   description: "Explore the world with travel tips, itineraries, and unique experiences.",

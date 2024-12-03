@@ -10,12 +10,12 @@ import { getCategories } from '@/app/actions/get-categories'
 
 interface CityPageProps {
   params: {
-    cidade: string
+    city: string
   }
 }
 
 export async function generateMetadata({ params }: CityPageProps): Promise<Metadata> {
-  const city = await getCityBySlug(params.cidade)
+  const city = await getCityBySlug(params.city)
 
   if (!city) {
     return {
@@ -41,12 +41,13 @@ export async function generateMetadata({ params }: CityPageProps): Promise<Metad
 }
 
 export default async function CityPage({ params }: CityPageProps) {
-  const city = await getCityBySlug(params.cidade)
-  const categories = await getCategories()
-
+  const city = await getCityBySlug(params.city)
+  
   if (!city) {
     notFound()
   }
+
+  const categories = await getCategories()
 
   const mainCategories = categories.slice(0, 4)
   const otherCategories = categories.slice(4)

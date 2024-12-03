@@ -24,7 +24,7 @@ export function CityAbout({ city }: CityAboutProps) {
                    prose-li:mb-2
                    prose-button:bg-green prose-button:text-white hover:prose-button:bg-darkgreen
                    prose-blockquote:border-l-4 prose-blockquote:border-gray-300 prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:my-4"
-        dangerouslySetInnerHTML={{ __html: city.description || `Explore ${city.name} com Sair pro Mundo.` }}
+        dangerouslySetInnerHTML={{ __html: city.en_description || `Explore ${city.name} com Sair pro Mundo.` }}
       />
       <div className="flex items-center text-sm text-gray-500">
         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">

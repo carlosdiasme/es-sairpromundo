@@ -4,7 +4,7 @@ import React from 'react'
 import { useSearchParams } from 'next/navigation'
 
 const tabs = [
-  { name: 'Lugares', value: 'lugares' },
+  { name: 'Places', value: 'lugares' },
 
 ]
 

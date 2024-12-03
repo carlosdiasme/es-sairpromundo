@@ -20,7 +20,7 @@ export default function SearchInput({ placeholder = 'Search...', className = '' 
   const handleSubmit = useCallback((event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if (searchTerm.trim()) {
-      router.push(`/busca?q=${encodeURIComponent(searchTerm.trim())}`)
+      router.push(`/search?q=${encodeURIComponent(searchTerm.trim())}`)
     }
   }, [searchTerm, router])
 

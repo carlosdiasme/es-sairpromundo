@@ -21,6 +21,8 @@ export interface City {
   cover: string | null
   logo: string | null
   description: string | null
+  en_description: string | null
+  es_description: string | null
   image_1: string
   image_2: string
   image_3: string
